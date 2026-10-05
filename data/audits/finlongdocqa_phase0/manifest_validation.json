@@ -1,0 +1,88 @@
+{
+  "document_count": 10,
+  "errors": [],
+  "statistics": {
+    "datasets": {
+      "finlongdocqa": 10
+    },
+    "ocr_ready_documents": 0,
+    "question_types": {
+      "mixed": 42,
+      "table": 10,
+      "text": 7
+    },
+    "source_formats": {
+      "markdown": 10
+    },
+    "splits": {
+      "test": 10
+    },
+    "task_types": {
+      "question_answering": 59
+    }
+  },
+  "task_count": 59,
+  "valid": true,
+  "warnings": [
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:AAPL:2022",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:ABNB:2023",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:ALB:2023",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:CMS:2024",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:CNC:2024",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:EQR:2023",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:KIM:2024",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:LMT:2023",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:PSX:2022",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    },
+    {
+      "code": "not_ocr_input_ready",
+      "doc_id": "finlongdocqa:TYL:2022",
+      "message": "Document does not point to a verified PDF source",
+      "source_format": "markdown"
+    }
+  ]
+}

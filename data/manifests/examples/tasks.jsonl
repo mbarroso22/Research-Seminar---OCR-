@@ -1,0 +1,2 @@
+{"task_id":"example_q1","doc_id":"example_report","task_type":"question_answering","question":"What was the reported annual revenue?","answers":["1000000"],"evidence_pages":[4],"target_fields":{},"metadata":{"source_page_indexing":"zero_based"}}
+

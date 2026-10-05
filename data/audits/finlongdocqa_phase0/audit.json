@@ -1,0 +1,668 @@
+{
+  "audit_version": 1,
+  "dataset": "FinLongDocQA",
+  "manifest_validation": {
+    "document_count": 10,
+    "errors": [],
+    "statistics": {
+      "datasets": {
+        "finlongdocqa": 10
+      },
+      "ocr_ready_documents": 0,
+      "question_types": {
+        "mixed": 42,
+        "table": 10,
+        "text": 7
+      },
+      "source_formats": {
+        "markdown": 10
+      },
+      "splits": {
+        "test": 10
+      },
+      "task_types": {
+        "question_answering": 59
+      }
+    },
+    "task_count": 59,
+    "valid": true,
+    "warnings": [
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:AAPL:2022",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:ABNB:2023",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:ALB:2023",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:CMS:2024",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:CNC:2024",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:EQR:2023",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:KIM:2024",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:LMT:2023",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:PSX:2022",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      },
+      {
+        "code": "not_ocr_input_ready",
+        "doc_id": "finlongdocqa:TYL:2022",
+        "message": "Document does not point to a verified PDF source",
+        "source_format": "markdown"
+      }
+    ]
+  },
+  "manual_review": {
+    "checks": [
+      {
+        "calculation": {
+          "expression": "205489 / 394328 * 100",
+          "matches_gold": true,
+          "recomputed_answer": 52.11
+        },
+        "company": "AAPL",
+        "evidence_values": {
+          "iphone_net_sales_millions": 205489,
+          "total_net_sales_millions": 394328
+        },
+        "findings": [
+          {
+            "code": "redundant_evidence_pages",
+            "detail": "Pages 25 and 41 contain the same disaggregated-revenue values, so the answer does not require cross-page reasoning.",
+            "severity": "concern"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          24,
+          40
+        ],
+        "question_type": "table",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          25,
+          41
+        ],
+        "source_task_id": "20",
+        "status": "concern",
+        "summary": "The math and both citations are supported, but the pages duplicate the same evidence and do not form a genuine multi-page task.",
+        "task_id": "finlongdocqa:20",
+        "year": "2022"
+      },
+      {
+        "calculation": {
+          "expression": "3000 / 100000",
+          "matches_gold": true,
+          "recomputed_answer": 0.03
+        },
+        "company": "ABNB",
+        "evidence_values": {
+          "cities_and_towns": 100000,
+          "employees_outside_us": 3000
+        },
+        "findings": [
+          {
+            "code": "incorrect_evidence_page",
+            "detail": "Both cited operands appear on source page 19; page 20 does not contain either target value.",
+            "severity": "fail"
+          },
+          {
+            "code": "ambiguous_operand",
+            "detail": "The question says employees generally, while the cited 3,000 value is specifically employees outside the United States.",
+            "severity": "fail"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          18,
+          19
+        ],
+        "question_type": "text",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          19,
+          20
+        ],
+        "source_task_id": "59",
+        "status": "fail",
+        "summary": "The stored arithmetic is reproducible, but one gold page is wrong and the employee operand is narrower than the question states.",
+        "task_id": "finlongdocqa:59",
+        "year": "2023"
+      },
+      {
+        "calculation": {
+          "expression": "116955.66 / 175690000 * 100",
+          "matches_gold": true,
+          "recomputed_answer": 0.07
+        },
+        "company": "ALB",
+        "evidence_values": {
+          "annual_average_bromine_tonnes": 116955.66,
+          "measured_quantity_tonnes": 175690000
+        },
+        "findings": [
+          {
+            "code": "resource_reserve_terminology_mismatch",
+            "detail": "The question and reasoning call the 175.69 million-tonne quantity a measured resource, while the cited sentence labels it a measured mineral reserve.",
+            "severity": "concern"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          50,
+          657
+        ],
+        "question_type": "mixed",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          51,
+          658
+        ],
+        "source_task_id": "358",
+        "status": "concern",
+        "summary": "Both pages and the calculation are supported, but the technically distinct terms resource and reserve are conflated.",
+        "task_id": "finlongdocqa:358",
+        "year": "2023"
+      },
+      {
+        "calculation": {
+          "expression": "2370 / 993",
+          "matches_gold": true,
+          "recomputed_answer": 2.39
+        },
+        "company": "CMS",
+        "evidence_values": {
+          "net_cash_from_operations_millions": 2370,
+          "net_income_available_to_common_millions": 993
+        },
+        "findings": [],
+        "human_signoff": false,
+        "internal_pages": [
+          68,
+          73
+        ],
+        "question_type": "table",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          69,
+          74
+        ],
+        "source_task_id": "1688",
+        "status": "pass",
+        "summary": "Both operands appear on the cited pages and independently reproduce the gold answer.",
+        "task_id": "finlongdocqa:1688",
+        "year": "2024"
+      },
+      {
+        "calculation": {
+          "expression": "15000000 / 1000000",
+          "matches_gold": true,
+          "recomputed_answer": 15.0
+        },
+        "company": "CNC",
+        "evidence_values": {
+          "director_compensation_cap_dollars": 1000000,
+          "maximum_incentive_option_shares": 15000000
+        },
+        "findings": [
+          {
+            "code": "incorrect_evidence_page",
+            "detail": "Both values appear on source page 125; source page 128 does not contain either target value.",
+            "severity": "fail"
+          },
+          {
+            "code": "dimensionally_incoherent_ratio",
+            "detail": "The ratio divides a count of shares by a dollar compensation cap, so the numerical result lacks a coherent unit or financial interpretation.",
+            "severity": "fail"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          124,
+          127
+        ],
+        "question_type": "text",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          125,
+          128
+        ],
+        "source_task_id": "1703",
+        "status": "fail",
+        "summary": "The code yields 15, but a gold page is incorrect and the compared quantities have incompatible units.",
+        "task_id": "finlongdocqa:1703",
+        "year": "2024"
+      },
+      {
+        "calculation": {
+          "expression": "142.83 / 4566",
+          "matches_gold": true,
+          "recomputed_answer": 0.03
+        },
+        "company": "EQR",
+        "evidence_values": {
+          "ftse_nareit_index_level": 142.83,
+          "new_york_average_rent_dollars": 4566
+        },
+        "findings": [
+          {
+            "code": "dimensionally_incoherent_ratio",
+            "detail": "The task divides an index level by a dollar rental rate; the resulting ratio has no clear financial meaning.",
+            "severity": "fail"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          39,
+          139
+        ],
+        "question_type": "table",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          40,
+          140
+        ],
+        "source_task_id": "2765",
+        "status": "fail",
+        "summary": "Both values are on the cited pages and the arithmetic matches, but the requested ratio is not semantically meaningful.",
+        "task_id": "finlongdocqa:2765",
+        "year": "2023"
+      },
+      {
+        "calculation": {
+          "expression": "3.89 / 8.0",
+          "matches_gold": true,
+          "recomputed_answer": 0.49
+        },
+        "company": "KIM",
+        "evidence_values": {
+          "weighted_average_interest_rate_percent": 3.89,
+          "weighted_average_maturity_years": 8.0
+        },
+        "findings": [
+          {
+            "code": "incorrect_evidence_page",
+            "detail": "Both values occur together on source page 45; source page 58 does not contain either target value.",
+            "severity": "fail"
+          },
+          {
+            "code": "dimensionally_incoherent_ratio",
+            "detail": "The result divides a percentage rate by years and is reported without a meaningful unit.",
+            "severity": "fail"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          44,
+          57
+        ],
+        "question_type": "mixed",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          45,
+          58
+        ],
+        "source_task_id": "4446",
+        "status": "fail",
+        "summary": "The arithmetic matches, but one evidence page is unsupported and the ratio mixes percent and years.",
+        "task_id": "finlongdocqa:4446",
+        "year": "2024"
+      },
+      {
+        "calculation": {
+          "expression": "10.3 - (8507 / 67571 * 100)",
+          "matches_gold": true,
+          "recomputed_answer": -2.29
+        },
+        "company": "LMT",
+        "evidence_values": {
+          "aeronautics_operating_margin_percent": 10.3,
+          "consolidated_net_sales_millions": 67571,
+          "consolidated_operating_profit_millions": 8507
+        },
+        "findings": [],
+        "human_signoff": false,
+        "internal_pages": [
+          45,
+          117
+        ],
+        "question_type": "mixed",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          46,
+          118
+        ],
+        "source_task_id": "4715",
+        "status": "pass",
+        "summary": "The cited pages supply the segment margin and consolidated operands, and the recomputation matches the gold answer.",
+        "task_id": "finlongdocqa:4715",
+        "year": "2023"
+      },
+      {
+        "calculation": {
+          "expression": "2194 / 10813 * 100",
+          "matches_gold": true,
+          "recomputed_answer": 20.29
+        },
+        "company": "PSX",
+        "evidence_values": {
+          "capital_expenditures_and_investments_millions": 2194,
+          "cash_from_operating_activities_millions": 10813
+        },
+        "findings": [],
+        "human_signoff": false,
+        "internal_pages": [
+          8,
+          42
+        ],
+        "question_type": "mixed",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          9,
+          43
+        ],
+        "source_task_id": "6423",
+        "status": "pass",
+        "summary": "The two cited pages contain the required operands and reproduce the gold percentage.",
+        "task_id": "finlongdocqa:6423",
+        "year": "2022"
+      },
+      {
+        "calculation": {
+          "expression": "direct lookup",
+          "matches_gold": true,
+          "recomputed_answer": 80.0
+        },
+        "company": "TYL",
+        "evidence_values": {
+          "recurring_revenue_share_percent": 80
+        },
+        "findings": [
+          {
+            "code": "incorrect_or_unnecessary_evidence_page",
+            "detail": "Source page 7 directly states the 80% answer; page 58 does not contain that percentage or a required operand.",
+            "severity": "fail"
+          },
+          {
+            "code": "not_multi_page_reasoning",
+            "detail": "The task is a direct textual lookup and does not require a cross-page calculation.",
+            "severity": "fail"
+          }
+        ],
+        "human_signoff": false,
+        "internal_pages": [
+          6,
+          57
+        ],
+        "question_type": "text",
+        "review_method": "assistant content-level inspection; researcher signoff required",
+        "source_pages": [
+          7,
+          58
+        ],
+        "source_task_id": "7583",
+        "status": "fail",
+        "summary": "The answer is correct as a direct lookup, but the second evidence page is unsupported and the task is not multi-page reasoning.",
+        "task_id": "finlongdocqa:7583",
+        "year": "2022"
+      }
+    ],
+    "finding_code_counts": {
+      "ambiguous_operand": 1,
+      "dimensionally_incoherent_ratio": 3,
+      "incorrect_evidence_page": 3,
+      "incorrect_or_unnecessary_evidence_page": 1,
+      "not_multi_page_reasoning": 1,
+      "redundant_evidence_pages": 1,
+      "resource_reserve_terminology_mismatch": 1
+    },
+    "human_signoff_pending": 10,
+    "sample_size": 10,
+    "sampling_note": "Purposeful stratified pilot across years, question types, document lengths, and evidence spans; not a random error-rate estimate.",
+    "status_counts": {
+      "concern": 2,
+      "fail": 5,
+      "pass": 3
+    }
+  },
+  "next_actions": [
+    "Acquire the exact source PDFs used by the dataset authors or obtain an author-supplied PDF-to-report mapping.",
+    "Verify PDF page counts and page labels against every selected Markdown '# Page N' marker.",
+    "Resolve, correct, or exclude tasks marked fail or concern in the manual-review file.",
+    "Have the researcher inspect the evidence packets and record human signoff.",
+    "Populate pdf_path only after identity and pagination checks pass.",
+    "Render verified evidence pages at 200 DPI, then rerun the audit.",
+    "Install no OCR model until all Phase 0 blockers are cleared."
+  ],
+  "ocr_readiness": {
+    "blockers": [
+      {
+        "code": "source_pdfs_unavailable",
+        "message": "The official FinLongDocQA report archive contains Markdown, not the source PDFs used to create it."
+      },
+      {
+        "code": "pilot_not_ocr_ready",
+        "message": "Only 0 of 10 pilot documents point to verified PDF inputs."
+      },
+      {
+        "code": "manual_ground_truth_failures",
+        "message": "5 of 10 manually inspected tasks have blocking evidence or semantic issues."
+      },
+      {
+        "code": "researcher_signoff_pending",
+        "message": "10 content checks were prepared by assistant inspection and still require researcher signoff."
+      }
+    ],
+    "ready": false
+  },
+  "phase": 0,
+  "pilot": {
+    "document_count": 10,
+    "internal_page_index_base": 0,
+    "ocr_ready_document_count": 0,
+    "page_count_range": {
+      "max": 802,
+      "min": 44
+    },
+    "page_index_conversion": "source_page_number - 1",
+    "question_types": {
+      "mixed": 42,
+      "table": 10,
+      "text": 7
+    },
+    "source_formats": {
+      "markdown": 10
+    },
+    "source_page_index_base": 1,
+    "task_count": 59,
+    "years": {
+      "2022": 3,
+      "2023": 4,
+      "2024": 3
+    }
+  },
+  "release_integrity": {
+    "annotation_count": 7527,
+    "answer_type_counts": {
+      "float": 7510,
+      "int": 17
+    },
+    "company_count": 489,
+    "dataset": "FinLongDocQA",
+    "duplicate_task_ids": 0,
+    "evidence_page_count_distribution": {
+      "2": 7252,
+      "3": 260,
+      "4": 14,
+      "5": 1
+    },
+    "invalid_evidence_references": [],
+    "missing_reports": [],
+    "page_markers_contiguous_and_one_based": true,
+    "question_type_counts": {
+      "mixed": 5951,
+      "table": 1319,
+      "text": 257
+    },
+    "reference_programs_executed": false,
+    "released_pdf_count": 0,
+    "released_report_format": "markdown",
+    "report_count": 1456,
+    "report_page_count_range": {
+      "max": 802,
+      "min": 8
+    },
+    "reports_without_tasks_count": 127,
+    "reports_without_tasks_examples": [
+      {
+        "company": "ADM",
+        "year": "2024"
+      },
+      {
+        "company": "AIZ",
+        "year": "2023"
+      },
+      {
+        "company": "ALB",
+        "year": "2024"
+      },
+      {
+        "company": "ANET",
+        "year": "2023"
+      },
+      {
+        "company": "APD",
+        "year": "2024"
+      },
+      {
+        "company": "APO",
+        "year": "2024"
+      },
+      {
+        "company": "APTV",
+        "year": "2024"
+      },
+      {
+        "company": "AZO",
+        "year": "2023"
+      },
+      {
+        "company": "C",
+        "year": "2024"
+      },
+      {
+        "company": "CARR",
+        "year": "2022"
+      },
+      {
+        "company": "CAT",
+        "year": "2024"
+      },
+      {
+        "company": "CBOE",
+        "year": "2023"
+      },
+      {
+        "company": "CCI",
+        "year": "2024"
+      },
+      {
+        "company": "CDW",
+        "year": "2024"
+      },
+      {
+        "company": "CF",
+        "year": "2024"
+      },
+      {
+        "company": "CHD",
+        "year": "2022"
+      },
+      {
+        "company": "CINF",
+        "year": "2023"
+      },
+      {
+        "company": "COO",
+        "year": "2022"
+      },
+      {
+        "company": "COP",
+        "year": "2024"
+      },
+      {
+        "company": "CSGP",
+        "year": "2022"
+      }
+    ],
+    "source_evidence_page_range": {
+      "max": 658,
+      "min": 2
+    },
+    "source_files": {
+      "annotations": "../data/raw/finlongdocqa/dataset_qa.jsonl",
+      "annotations_sha256": "b4b8d7d78c4bf51b9cc891eaabe0d3324b13e21bdb5edcadc8ea756e7aac96c9",
+      "reports": "../data/raw/finlongdocqa/reports.zip",
+      "reports_sha256": "61ae06db1f599fcd76ff6f77a015af4104497f8fae62b4477ecaa8694a6ba3e9"
+    },
+    "source_version": "v1.1",
+    "structurally_valid": true,
+    "task_document_count": 1329,
+    "task_document_page_count_quantiles": {
+      "max": 802,
+      "median": 132,
+      "min": 8,
+      "p25": 106,
+      "p75": 172
+    },
+    "year_counts": {
+      "2022": 2577,
+      "2023": 2445,
+      "2024": 2505
+    }
+  },
+  "rendering": {
+    "markdown_evidence_packets_are_pdf_renders": false,
+    "requested_dpi": 200,
+    "status": "blocked_missing_verified_pdfs"
+  },
+  "source_version": "v1.1",
+  "status": "blocked_before_ocr"
+}

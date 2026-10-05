@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Full upstream downloads are reproducible but should not be committed.
+data/raw/finlongdocqa/dataset_qa.jsonl
+data/raw/finlongdocqa/reports.zip
+
+# Generated page images and run outputs can be large.
+data/interim/rendered_pages/
+results/*
+!results/.gitkeep
+

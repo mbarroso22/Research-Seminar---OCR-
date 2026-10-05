@@ -1,0 +1,68 @@
+{
+  "name": "finlongdocqa_phase0_pilot_v1",
+  "source_version": "v1.1",
+  "selection_method": "Purposeful stratification across fiscal year, question type, report length, and evidence span. This is a pipeline/audit pilot, not a random evaluation sample.",
+  "documents": [
+    {
+      "company": "PSX",
+      "year": "2022",
+      "manual_check_task_id": "6423",
+      "selection_target": "short report; 2022 mixed question"
+    },
+    {
+      "company": "AAPL",
+      "year": "2022",
+      "manual_check_task_id": "20",
+      "selection_target": "80-page report; 2022 table question"
+    },
+    {
+      "company": "TYL",
+      "year": "2022",
+      "manual_check_task_id": "7583",
+      "selection_target": "100-page report; 2022 text question"
+    },
+    {
+      "company": "LMT",
+      "year": "2023",
+      "manual_check_task_id": "4715",
+      "selection_target": "120-page report; 2023 mixed question"
+    },
+    {
+      "company": "EQR",
+      "year": "2023",
+      "manual_check_task_id": "2765",
+      "selection_target": "140-page report; 2023 table question; wide evidence span"
+    },
+    {
+      "company": "ABNB",
+      "year": "2023",
+      "manual_check_task_id": "59",
+      "selection_target": "approximately 160-page report; 2023 text question"
+    },
+    {
+      "company": "KIM",
+      "year": "2024",
+      "manual_check_task_id": "4446",
+      "selection_target": "180-page report; 2024 mixed question"
+    },
+    {
+      "company": "CMS",
+      "year": "2024",
+      "manual_check_task_id": "1688",
+      "selection_target": "220-page report; 2024 table question"
+    },
+    {
+      "company": "CNC",
+      "year": "2024",
+      "manual_check_task_id": "1703",
+      "selection_target": "approximately 300-page report; 2024 text question"
+    },
+    {
+      "company": "ALB",
+      "year": "2023",
+      "manual_check_task_id": "358",
+      "selection_target": "802-page upper-tail stress report; long evidence span"
+    }
+  ]
+}
+

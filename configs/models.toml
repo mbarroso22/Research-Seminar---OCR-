@@ -1,0 +1,28 @@
+[[models]]
+id = "unlimited_ocr"
+enabled = true
+strategies = ["one_shot", "page_by_page"]
+source = "https://github.com/baidu/Unlimited-OCR"
+model_name = "baidu/Unlimited-OCR"
+max_output_tokens = 32768
+
+[[models]]
+id = "deepseek_ocr"
+enabled = true
+strategies = ["page_by_page"]
+source = "https://github.com/deepseek-ai/DeepSeek-OCR"
+model_name = "deepseek-ai/DeepSeek-OCR"
+
+[[models]]
+id = "paddleocr_vl"
+enabled = true
+strategies = ["page_by_page"]
+source = "https://github.com/PaddlePaddle/PaddleOCR"
+model_name = "PaddleOCR-VL"
+
+[[models]]
+id = "native_pdf_text"
+enabled = true
+strategies = ["native_text"]
+source = "local_control"
+

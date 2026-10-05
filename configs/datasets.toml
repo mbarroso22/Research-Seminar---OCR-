@@ -1,0 +1,27 @@
+[[datasets]]
+id = "finlongdocqa"
+phase = 1
+required = true
+documents_manifest = "data/manifests/finlongdocqa/documents.jsonl"
+tasks_manifest = "data/manifests/finlongdocqa/tasks.jsonl"
+role = "evidence_retrieval_and_financial_qa"
+source = "https://github.com/AI-Application-and-Integration-Lab/FinLongDocQA"
+
+[[datasets]]
+id = "induocrbench"
+phase = 1
+required = true
+documents_manifest = "data/manifests/induocrbench/documents.jsonl"
+tasks_manifest = "data/manifests/induocrbench/tasks.jsonl"
+role = "ocr_and_structure_robustness"
+source = "https://huggingface.co/datasets/qihoo360/InduOCRBench"
+
+[[datasets]]
+id = "kleister_charity"
+phase = 2
+required = false
+documents_manifest = "data/manifests/kleister/documents.jsonl"
+tasks_manifest = "data/manifests/kleister/tasks.jsonl"
+role = "financial_field_extraction"
+source = "https://github.com/applicaai/kleister-charity"
+
