@@ -92,6 +92,26 @@ def build_parser() -> argparse.ArgumentParser:
     plan.add_argument("--models", required=True)
     plan.add_argument("--documents", required=True)
     plan.add_argument("--output", required=True)
+
+    native = commands.add_parser("native-baseline", help="Extract every native PDF page and run within-report BM25")
+    native.add_argument("--documents", required=True)
+    native.add_argument("--tasks", required=True)
+    native.add_argument("--output-dir", required=True, help="New run directory outside Git; existing paths are rejected")
+    native.add_argument("--repository-root", default=".")
+    native.add_argument("--pdf-dir", help="Rebase PDF basenames while retaining manifest IDs and checksums")
+    native.add_argument("--k1", type=float, default=1.2)
+    native.add_argument("--b", type=float, default=0.75)
+    native.add_argument("--k", nargs="+", type=int, default=[1, 3, 5])
+    native.add_argument("--expected-documents", type=int)
+    native.add_argument("--expected-pages", type=int)
+    native.add_argument("--expected-questions", type=int)
+    native.add_argument("--skip-evaluation", action="store_true")
+
+    evaluate = commands.add_parser("evaluate-retrieval", help="Score saved predictions offline against evidence labels")
+    evaluate.add_argument("--predictions", required=True)
+    evaluate.add_argument("--tasks", required=True)
+    evaluate.add_argument("--output", required=True, help="New metrics file; no overwrite")
+    evaluate.add_argument("--k", nargs="+", type=int, default=[1, 3, 5])
     return parser
 
 
@@ -371,7 +391,28 @@ def main(argv: list[str] | None = None) -> int:
             return _run_render(args)
         if args.command == "plan":
             return _run_plan(args)
-    except (FinanceBenchError, FinLongDocQAError, RenderingError, RuntimeError, ValueError) as exc:
+        if args.command == "native-baseline":
+            from finocr.pipelines.native_baseline import run_native_baseline
+            result = run_native_baseline(
+                args.documents, args.tasks, args.output_dir, repository_root=args.repository_root,
+                pdf_dir=args.pdf_dir, k1=args.k1, b=args.b, ks=tuple(args.k),
+                expected_documents=args.expected_documents, expected_pages=args.expected_pages,
+                expected_questions=args.expected_questions, skip_evaluation=args.skip_evaluation,
+                progress=lambda message: print(message, file=sys.stderr, flush=True),
+            )
+            print(json.dumps(result, indent=2))
+            return 0 if result["status"] == "complete" else 1
+        if args.command == "evaluate-retrieval":
+            from finocr.evaluation.retrieval import evaluate_retrieval
+            from finocr.io import read_jsonl
+            from finocr.pipelines.native_baseline import load_evidence_labels
+            if Path(args.output).exists():
+                raise ValueError("Metrics output already exists; choose a new path")
+            metrics = evaluate_retrieval(read_jsonl(args.predictions), load_evidence_labels(Path(args.tasks)), ks=tuple(args.k))
+            write_json(args.output, metrics)
+            print(json.dumps({"question_count": metrics["question_count"], "output": args.output}, indent=2))
+            return 0
+    except (FinanceBenchError, FinLongDocQAError, RenderingError, RuntimeError, ValueError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     raise AssertionError(f"Unhandled command: {args.command}")

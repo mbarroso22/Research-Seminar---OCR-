@@ -1,4 +1,20 @@
-# Financial OCR Research — Phase 0 working package
+# Financial OCR Research — audit and native-text baseline
+
+## Native-text continuation (2026-10-08)
+
+Setup and development-pilot validation are complete on the user's machine:
+12 reports, 2,620 pages, and 24 questions. `finocr native-baseline` now implements
+sequential pypdf extraction and within-report BM25, with label-free query inputs,
+zero-based page IDs, source verification, failure accounting, immutable run outputs,
+and offline evidence scoring. `finocr evaluate-retrieval` scores saved predictions
+separately. See [the Windows run guide](docs/NATIVE_BASELINE_WINDOWS.md).
+
+This implementation has been tested with small embedded-text PDF fixtures. **No
+FinanceBench extraction/retrieval results are available yet.** Real corpus execution
+and interpretation await the user's logs. The baseline command is functional; the
+older model adapter classes remain placeholders. No answer-generation or OCR-model
+execution is included. The current-state document and run guide supersede historical
+setup/readiness text below.
 
 ## Current direction and implementation status (2026-10-05)
 

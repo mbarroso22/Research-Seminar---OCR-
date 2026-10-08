@@ -56,11 +56,21 @@ def _atomic_text_write(path: Path, text: str) -> None:
 
 
 def write_jsonl(path: str | Path, records: Iterable[dict[str, Any]]) -> None:
-    lines = [
-        json.dumps(record, ensure_ascii=False, sort_keys=True, allow_nan=False)
-        for record in records
-    ]
-    _atomic_text_write(Path(path), "\n".join(lines) + ("\n" if lines else ""))
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        dir=destination.parent, prefix=f".{destination.name}.", suffix=".tmp", text=True,
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as handle:
+            for record in records:
+                handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True, allow_nan=False))
+                handle.write("\n")
+        temporary.replace(destination)
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 def write_json(path: str | Path, value: Any) -> None:

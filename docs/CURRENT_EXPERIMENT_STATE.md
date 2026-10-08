@@ -66,3 +66,25 @@ Read this file, PROJECT_HANDOFF.md, docs/MEMORY_EXPERIMENT_PROTOCOL.md, relevant
 ## Detailed technical roadmap
 
 Read `docs/TECHNICAL_RESEARCH_ROADMAP.md` for the paper relationship, provisional model choices, architecture, execution stages, data boundaries, budgets, scoring, cost accounting, implementation backlog, and handoff instructions. Its 35 sections distinguish verified state from proposals. Model names in the roadmap are not evidence of installation or successful inference.
+
+## Phase 1 implementation handoff (2026-10-08)
+
+The repository continuation is based on confirmed Git commit
+`5cf284233702edf82ed8f2bb496600eae76107a4`; the earlier `bfa5a46` setup reference
+above is historical. The native-text/BM25 CLI baseline is now implemented and tested
+locally on small fixtures. It has **not been run on the user's FinanceBench PDFs**.
+The pilot remains development-only; no empirical recall, latency, OCR, or answer
+correctness result has been established by this implementation.
+
+Read `docs/NATIVE_BASELINE_WINDOWS.md` for patch application, the existing .venv,
+`scripts/run_native_pilot.ps1`, direct Windows commands, output contracts, and the
+files to return. Runtime retrieval accepts only `task_id`, `doc_id`, and `question`.
+Scoring reads labels after predictions are saved. Every expected page and question
+is accounted for, including failed/empty native text, with zero-based IDs preserved.
+Source hashes/page counts and configuration/provenance are recorded. Resume is
+explicitly unsupported; use a new output directory for each run.
+
+The next experimental action is execution on the validated 12-report pilot and
+inspection of its real output artifacts. Keep the corpus results pending until those
+outputs are supplied. Earlier roadmap rows naming the native baseline as a proposed
+module now refer to implemented code; other OCR/context/memory stages remain proposed.
