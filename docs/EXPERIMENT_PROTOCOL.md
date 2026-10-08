@@ -1,5 +1,10 @@
 # Experiment protocol
 
+> Historical FinLongDocQA protocol. The current proposed FinanceBench context and
+> memory experiment is documented in [MEMORY_EXPERIMENT_PROTOCOL.md](MEMORY_EXPERIMENT_PROTOCOL.md).
+> Preserve this file for provenance; its source-PDF recovery requirements do not
+> define the current FinanceBench experiment.
+
 ## Research question
 
 How do one-shot multi-page and page-by-page OCR differ in efficiency and their ability to preserve financial evidence as document length increases?
@@ -113,4 +118,3 @@ Only after Phase 0 passes:
 5. Compare against native PDF text before adding another OCR system.
 
 Page counts of 1, 2, 5, 10, 20, and 40 and additional model baselines remain later phases.
-

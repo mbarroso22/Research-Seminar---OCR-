@@ -1,5 +1,25 @@
 # Financial OCR research handoff
 
+## Current continuation (2026-10-05)
+
+The project direction has moved toward compact extraction with section context,
+retrieval, and bounded source-linked memory. Read `docs/MEMORY_EXPERIMENT_PROTOCOL.md`
+for the proposed comparison, limits, split rules, scoring, and execution stages.
+It supersedes the earlier continuation prompt below. It is a proposed protocol,
+not an implemented OCR/memory experiment.
+
+The FinanceBench audit now reconciles input/output question counts, rejects malformed
+evidence, includes ingestion issues in readiness, and saves diagnostic outputs even
+when pilot selection fails. The suite has 26 passing tests, including 12 new tests
+using temporary PDFs and malformed supervision. This does not validate the real
+downloaded corpus, whose audit outputs have not been supplied here.
+
+Next: run the corrected audit on the processing machine, inspect real annotation
+coverage and release totals, choose development/held-out companies, verify evidence
+content, and implement native-text extraction plus BM25. Model selection, token
+budgets, and memory policy must be frozen after development checks. No OCR models,
+retrieval benchmark, or fine-tuning runs have been executed.
+
 ## Status as of 2026-09-18
 
 Phase 0 code, manifests, and audits are complete. The project must **not** install or run an OCR model yet.

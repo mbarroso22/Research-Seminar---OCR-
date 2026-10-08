@@ -1,7 +1,18 @@
 [[datasets]]
-id = "finlongdocqa"
+id = "financebench"
 phase = 1
 required = true
+documents_manifest = "data/manifests/financebench/documents.jsonl"
+tasks_manifest = "data/manifests/financebench/tasks.jsonl"
+role = "primary_financial_evidence_retrieval"
+source = "https://github.com/patronus-ai/financebench"
+# These are example paths. Point to the audit manifests under DATA_ROOT on the
+# processing machine; the CLI does not expand environment variables in TOML.
+
+[[datasets]]
+id = "finlongdocqa"
+phase = 3
+required = false
 documents_manifest = "data/manifests/finlongdocqa/documents.jsonl"
 tasks_manifest = "data/manifests/finlongdocqa/tasks.jsonl"
 role = "evidence_retrieval_and_financial_qa"
@@ -9,8 +20,8 @@ source = "https://github.com/AI-Application-and-Integration-Lab/FinLongDocQA"
 
 [[datasets]]
 id = "induocrbench"
-phase = 1
-required = true
+phase = 3
+required = false
 documents_manifest = "data/manifests/induocrbench/documents.jsonl"
 tasks_manifest = "data/manifests/induocrbench/tasks.jsonl"
 role = "ocr_and_structure_robustness"
@@ -24,4 +35,3 @@ documents_manifest = "data/manifests/kleister/documents.jsonl"
 tasks_manifest = "data/manifests/kleister/tasks.jsonl"
 role = "financial_field_extraction"
 source = "https://github.com/applicaai/kleister-charity"
-

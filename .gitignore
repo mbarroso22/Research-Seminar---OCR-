@@ -7,9 +7,11 @@ __pycache__/
 # Full upstream downloads are reproducible but should not be committed.
 data/raw/finlongdocqa/dataset_qa.jsonl
 data/raw/finlongdocqa/reports.zip
+data/raw/financebench/
+model_weights/
+checkpoints/
 
 # Generated page images and run outputs can be large.
 data/interim/rendered_pages/
 results/*
 !results/.gitkeep
-

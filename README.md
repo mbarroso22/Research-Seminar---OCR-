@@ -1,5 +1,30 @@
 # Financial OCR Research — Phase 0 working package
 
+## Current direction and implementation status (2026-10-05)
+
+The current proposal is a compact financial-document pipeline comparing ordinary
+retrieval, section context, and bounded source-linked memory at a fixed inference
+budget. Read [the proposed protocol](docs/MEMORY_EXPERIMENT_PROTOCOL.md) before
+continuing the earlier experiment design. It describes a study to implement,
+not completed model experiments. The existing OCR and native-text adapters remain
+placeholders; no OCR benchmark has run.
+
+The FinanceBench audit now blocks on malformed/dropped questions, conflicting
+evidence-document mappings, invalid pages, and failed pilot selection. It preserves
+inventory and diagnostic outputs when selection fails and reports pilot annotation
+and sector coverage. It reconciles supplied/retained records; verify the expected
+release totals separately so a partial download is not mistaken for the full release.
+
+Python 3.11+ and `pypdf` are required. The current suite has 26 tests, including
+12 PDF-backed audit regression tests. Run `python -m unittest discover -s tests -v`.
+Windows PowerShell is sufficient for auditing; WSL is not required for this stage.
+Use a separate Python environment for project dependencies when possible.
+
+The generated longitudinal pilot is not yet a company-held-out experiment split.
+Coverage and split decisions remain pending the audit of the downloaded files.
+The sections below retain earlier implementation history; the new protocol governs
+the revised research scope.
+
 ## Revised study center: FinanceBench
 
 The primary corpus is now FinanceBench because it supplies 368 real financial PDFs,
@@ -32,7 +57,9 @@ The selector ranks companies by annotated annual-report coverage, preserves sect
 diversity, requires at least eight annual-report years, and chooses each company's
 earliest, middle, and latest usable report.
 
-This package implements and audits the FinLongDocQA ingestion layer for the research question:
+## Earlier FinLongDocQA design (retained for provenance)
+
+The earlier package implemented and audited the FinLongDocQA ingestion layer for the research question:
 
 > How do one-shot multi-page and page-by-page OCR differ in efficiency and their ability to preserve financial evidence as document length increases?
 
@@ -70,7 +97,7 @@ The larger starter repository contained model, metric, page-window, and risk-sco
 
 ## Setup and verification
 
-Python 3.11 or newer is sufficient; Phase 0 has no third-party Python dependency.
+Python 3.11 or newer is required; the FinanceBench audit depends on `pypdf`.
 
 ```bash
 python -m venv .venv

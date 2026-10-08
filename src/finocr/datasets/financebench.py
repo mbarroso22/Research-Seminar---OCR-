@@ -25,6 +25,27 @@ class FinanceBenchConversion:
     tasks: list[TaskRecord]
     inventory: list[dict[str, Any]]
     issues: list[dict[str, Any]]
+    source_document_count: int = 0
+    source_question_count: int = 0
+
+
+def _validate_question(row: dict[str, Any]) -> None:
+    """Reject malformed supervision instead of silently deleting evidence."""
+    for field in ("financebench_id", "doc_name", "question", "answer"):
+        if not isinstance(row.get(field), str) or not row[field].strip():
+            raise FinanceBenchError(f"{field} must be a non-empty string")
+    evidence = row.get("evidence")
+    if not isinstance(evidence, list) or not evidence:
+        raise FinanceBenchError("evidence must be a non-empty list")
+    for item in evidence:
+        if not isinstance(item, dict):
+            raise FinanceBenchError("each evidence entry must be an object")
+        page = item.get("evidence_page_num")
+        if isinstance(page, bool) or not isinstance(page, int) or page < 0:
+            raise FinanceBenchError("evidence_page_num must be a non-negative integer")
+        for field in ("evidence_doc_name", "doc_name"):
+            if field in item and (not isinstance(item[field], str) or not item[field].strip()):
+                raise FinanceBenchError(f"evidence {field} must be a non-empty string")
 
 
 def _sha256(path: Path, chunk_size: int = 1024 * 1024) -> str:
@@ -104,6 +125,25 @@ def convert_financebench(
         raise FinanceBenchError(f"PDF directory does not exist: {pdf_root}")
 
     pdfs, issues = _pdf_index(pdf_root)
+    if not metadata:
+        issues.append({"code": "empty_metadata"})
+    if not questions:
+        issues.append({"code": "empty_questions"})
+    source_question_count = len(questions)
+    valid_questions = []
+    seen_question_ids: set[str] = set()
+    for position, question in enumerate(questions, start=1):
+        try:
+            _validate_question(question)
+        except FinanceBenchError as exc:
+            issues.append({"code": "invalid_question_schema", "source_row": position, "message": str(exc)})
+            continue
+        identifier = question["financebench_id"].strip()
+        if identifier in seen_question_ids:
+            issues.append({"code": "duplicate_source_question_id", "financebench_id": identifier})
+        seen_question_ids.add(identifier)
+        valid_questions.append(question)
+    questions = valid_questions
     metadata_names = [str(row.get("doc_name", "")).strip() for row in metadata]
     for name, count in Counter(metadata_names).items():
         if not name:
@@ -121,6 +161,15 @@ def convert_financebench(
     for row in metadata:
         doc_name = str(row.get("doc_name", "")).strip()
         if not doc_name:
+            continue
+        year = row.get("doc_period")
+        if (
+            not isinstance(row.get("company"), str) or not row["company"].strip()
+            or not isinstance(row.get("doc_type"), str) or not row["doc_type"].strip()
+            or isinstance(year, bool) or not isinstance(year, (str, int))
+            or not str(year).isdigit() or len(str(year)) != 4
+        ):
+            issues.append({"code": "invalid_document_metadata", "doc_name": doc_name})
             continue
         path = pdfs.get(doc_name.casefold())
         inspected = _inspect_pdf(path) if path else {
@@ -145,7 +194,8 @@ def convert_financebench(
             "company": row.get("company"),
             "fiscal_year": row.get("doc_period"),
             "doc_type": str(row.get("doc_type", "")).lower(),
-            "sector": row.get("company_sector_gics", row.get("comany_sector_gics")),
+            "sector": (row.get("gics_sector") or row.get("company_sector_gics")
+                       or row.get("comany_sector_gics")),
             "source_url": row.get("doc_link"),
             "sha256": _sha256(path) if path and inspected["pdf_valid"] else None,
             "file_size_bytes": path.stat().st_size if path else None,
@@ -253,7 +303,10 @@ def convert_financebench(
     metadata_keys = set(metadata_names)
     for orphan in sorted(set(pdfs) - {name.casefold() for name in metadata_keys if name}):
         issues.append({"code": "pdf_without_metadata", "pdf_path": str(pdfs[orphan])})
-    return FinanceBenchConversion(documents, tasks, inventory, issues)
+    return FinanceBenchConversion(
+        documents, tasks, inventory, issues,
+        source_document_count=len(metadata), source_question_count=source_question_count,
+    )
 
 
 def select_financebench_pilot(
@@ -263,6 +316,8 @@ def select_financebench_pilot(
     reports_per_company: int = 3,
     minimum_years: int = 8,
 ) -> list[dict[str, Any]]:
+    if company_count < 1 or reports_per_company < 1 or minimum_years < 1:
+        raise FinanceBenchError("Pilot counts and minimum_years must be positive")
     annual = [
         row for row in inventory
         if row["doc_type"] in ANNUAL_TYPES and row["pdf_valid"]
@@ -274,7 +329,7 @@ def select_financebench_pilot(
     candidates: list[dict[str, Any]] = []
     for company, rows in grouped.items():
         years = {int(row["fiscal_year"]) for row in rows}
-        if len(years) < minimum_years:
+        if len(years) < max(minimum_years, reports_per_company):
             continue
         candidates.append(
             {
@@ -321,7 +376,9 @@ def select_financebench_pilot(
         for row in candidate["rows"]:
             by_year[int(row["fiscal_year"])].append(row)
         years = sorted(by_year)
-        if reports_per_company == 3:
+        if reports_per_company == 1:
+            indices = [len(years) // 2]
+        elif reports_per_company == 3:
             indices = [0, len(years) // 2, len(years) - 1]
         else:
             indices = [round(i * (len(years) - 1) / (reports_per_company - 1)) for i in range(reports_per_company)]

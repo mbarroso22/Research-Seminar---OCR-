@@ -123,13 +123,19 @@ def validate_manifests(
                     task_id=task.task_id,
                 )
             )
-        if task.task_type == "question_answering" and not task.answers:
+        if task.task_type == "question_answering" and not any(
+            isinstance(answer, str) and answer.strip() for answer in task.answers
+        ):
             errors.append(
                 _issue(
                     "empty_answers",
                     "Question-answering task has no answers",
                     task_id=task.task_id,
                 )
+            )
+        if task.task_type == "question_answering" and not task.evidence_pages:
+            errors.append(
+                _issue("empty_evidence_pages", "Question-answering task has no evidence pages", task_id=task.task_id)
             )
         if len(task.evidence_pages) != len(set(task.evidence_pages)):
             errors.append(
@@ -184,4 +190,3 @@ def validate_manifests(
         warnings=warnings,
         statistics=statistics,
     )
-

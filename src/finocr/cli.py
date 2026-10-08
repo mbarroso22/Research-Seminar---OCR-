@@ -199,12 +199,6 @@ def _run_render(args: argparse.Namespace) -> int:
 
 def _run_financebench(args: argparse.Namespace) -> int:
     conversion = convert_financebench(args.metadata, args.questions, args.pdf_dir)
-    selected = select_financebench_pilot(
-        conversion.inventory,
-        company_count=args.company_count,
-        reports_per_company=args.reports_per_company,
-        minimum_years=args.minimum_years,
-    )
     output = Path(args.output_dir)
     manifests = output / "manifests"
     output.mkdir(parents=True, exist_ok=True)
@@ -215,6 +209,18 @@ def _run_financebench(args: argparse.Namespace) -> int:
     write_jsonl(manifests / "documents.jsonl", (item.to_dict() for item in conversion.documents))
     write_jsonl(manifests / "tasks.jsonl", (item.to_dict() for item in conversion.tasks))
 
+    selected = []
+    pilot_errors: list[dict[str, object]] = []
+    try:
+        selected = select_financebench_pilot(
+            conversion.inventory,
+            company_count=args.company_count,
+            reports_per_company=args.reports_per_company,
+            minimum_years=args.minimum_years,
+        )
+    except FinanceBenchError as exc:
+        pilot_errors.append({"code": "pilot_selection_failed", "message": str(exc)})
+
     selected_ids = {row["doc_id"] for row in selected}
     pilot_documents = [item for item in conversion.documents if item.doc_id in selected_ids]
     pilot_tasks = [item for item in conversion.tasks if item.doc_id in selected_ids]
@@ -223,6 +229,21 @@ def _run_financebench(args: argparse.Namespace) -> int:
     write_jsonl(manifests / "pilot_tasks.jsonl", (item.to_dict() for item in pilot_tasks))
 
     audit = validate_manifests(conversion.documents, conversion.tasks, require_files=True)
+    if conversion.source_document_count != len(conversion.documents):
+        conversion.issues.append({"code": "document_count_mismatch"})
+    if conversion.source_question_count != len(conversion.tasks):
+        conversion.issues.append({"code": "question_count_mismatch"})
+    if selected and not pilot_tasks:
+        pilot_errors.append({"code": "pilot_has_no_questions", "message": "Selected reports have no annotated QA cases"})
+    sectors = sorted({str(row.get("sector") or "Unknown") for row in selected})
+    pilot_warnings = []
+    if selected and ("Unknown" in sectors or len(sectors) < args.company_count):
+        pilot_warnings.append({"code": "limited_sector_coverage", "sectors": sectors})
+    unannotated = [row["doc_name"] for row in selected if not row["qa_case_count"]]
+    if unannotated:
+        pilot_warnings.append({"code": "pilot_reports_without_questions", "documents": unannotated})
+    blocking_issues = [issue for issue in conversion.issues if issue["code"] != "pdf_without_metadata"]
+    ready = audit.valid and not blocking_issues and not pilot_errors
     issue_counts: dict[str, int] = {}
     for issue in conversion.issues:
         code = str(issue["code"])
@@ -230,7 +251,9 @@ def _run_financebench(args: argparse.Namespace) -> int:
     summary = {
         "phase": 0,
         "dataset": "FinanceBench",
-        "status": "ready_for_native_text_baseline" if audit.valid else "blocked",
+        "status": "ready_for_native_text_baseline" if ready else "blocked",
+        "source_documents": conversion.source_document_count,
+        "source_questions": conversion.source_question_count,
         "documents": len(conversion.documents),
         "annual_reports": sum(row["doc_type"] in {"10k", "10k_annualreport"} for row in conversion.inventory),
         "questions": len(conversion.tasks),
@@ -239,11 +262,22 @@ def _run_financebench(args: argparse.Namespace) -> int:
         "native_text_documents": sum(bool(row["native_text_available"]) for row in conversion.inventory),
         "evidence_page_errors": sum(error["code"] == "invalid_evidence_page" for error in audit.errors),
         "issue_counts": dict(sorted(issue_counts.items())),
+        "ingestion_issues": conversion.issues,
+        "blocking_ingestion_issues": blocking_issues,
         "manifest_validation": audit.to_dict(),
         "pilot": {
             "selection_rule": "highest annual-report QA coverage with sector diversity; earliest, middle, and latest usable year",
             "document_count": len(pilot_documents),
             "task_count": len(pilot_tasks),
+            "sectors": sectors,
+            "errors": pilot_errors,
+            "warnings": pilot_warnings,
+            "tasks_by_document": {row["doc_name"]: row["qa_case_count"] for row in selected},
+            "parameters": {
+                "company_count": args.company_count,
+                "reports_per_company": args.reports_per_company,
+                "minimum_years": args.minimum_years,
+            },
             "companies": sorted({str(row["company"]) for row in selected}),
             "documents": [row["doc_name"] for row in selected],
         },
@@ -279,6 +313,15 @@ def _run_financebench(args: argparse.Namespace) -> int:
         )
     lines.extend([
         "",
+        "## Diagnostics",
+        "",
+    ])
+    for issue in blocking_issues + audit.errors + pilot_errors + pilot_warnings:
+        lines.append(f"- `{issue['code']}`: {json.dumps(issue, ensure_ascii=False, sort_keys=True)}")
+    if not (blocking_issues or audit.errors or pilot_errors or pilot_warnings):
+        lines.append("No blocking issues or pilot warnings.")
+    lines.extend([
+        "",
         "## Gate",
         "",
         "Proceed to the native-PDF-text baseline only when the status is "
@@ -287,7 +330,7 @@ def _run_financebench(args: argparse.Namespace) -> int:
     ])
     (output / "AUDIT_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
     print(json.dumps(summary, indent=2))
-    return 0 if audit.valid else 1
+    return 0 if ready else 1
 
 
 def _run_plan(args: argparse.Namespace) -> int:
