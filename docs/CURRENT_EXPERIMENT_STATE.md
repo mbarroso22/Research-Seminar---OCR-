@@ -135,3 +135,52 @@ retrieval evidence scoring, not answer correctness, OCR accuracy, measured energ
 or held-out generalization. No new OCR or answer-generation result is established.
 See `docs/STOPWORD_COMPARISON_RESULTS.md` for the verified metrics, paired changes,
 provenance, limitations, and the next diagnostic recommendation.
+
+## Next implemented experiment: question-only financial-term expansion
+
+Continuation starts at pushed commit `3550ba2f352a9be216455275559fbf0c9bbc3a1e`.
+The next development ablation tests a fixed 12-rule financial-term expansion of
+question text on the unchanged stopword page index. This addresses the diagnostic
+terminology gap without mixing in OCR, page enrichment, section cues, adjacent-page
+packing, or memory. It is explicitly development-designed after labeled review.
+
+`compare-query-expansion` reuses the full native cache and requires the matching
+saved stopword comparison. It reproduces both controls, records the exact versioned
+rule policy and expanded questions, and saves all three rankings before loading
+annotations for scoring. Source IDs remain zero-based and the complete within-report
+page scope is preserved. Primary comparison is expansion versus stopwords; original
+BM25 is a second frozen control. Outputs go to a new directory outside Git.
+
+Read `docs/QUERY_EXPANSION_EXPERIMENT.md` for the frozen policy, commands, output
+contract, and required returned artifacts. All 76 local fixture tests pass. No
+full-pilot expansion outcome is available yet; report new experimental results only
+after the researcher supplies the real execution outputs. The earlier verified
+original and stopword results remain separate conditions, with no answer or OCR
+accuracy claim.
+
+## Verified question-expansion development results (2026-10-08 EDT)
+
+The researcher supplied complete Windows run `20261009T020622Z-76a16239e13d`
+(22:06 EDT). All seven uploaded artifact hashes/sizes match. Both earlier control
+rankings and scores reproduce; all 24 expanded query/audit records reproduce from
+the minimal original question projection. The package-source digest matches the
+delivered Windows CRLF implementation. Independently recomputed metrics agree.
+This supersedes the preceding pending-expansion-outcome statement.
+
+Expansion changed six questions; the other 18 retain exact stopword rankings.
+Recall@1/@3/@5 is 10.42%/32.64%/40.97%. Against the fixed stopword control,
+Recall@5 rises by 10.42 percentage points, any-evidence Hit@5 goes from 9/24 to
+12/24, all-evidence coverage@5 from 6/24 to 8/24, and full-ranking MRR from
+0.246135 to 0.302408. Three questions gain Recall@5 and none lose it: AMD 2022
+quick-ratio page 55 reaches rank 5, AMD operating-margin page 42 reaches rank 3,
+and PepsiCo EBITDA-margin cash-flow page 63 reaches rank 1. Its operations page
+61 remains at rank 24. All five multi-page questions still lack complete top-five
+coverage. Some deeper operand ranks regress (PepsiCo EBITDA-less-capex page 61:
+17 to 23), despite no measured-cutoff recall losses.
+
+Read `docs/QUERY_EXPANSION_RESULTS.md` for the full verified review and limitations.
+Freeze all three conditions and v1 query rules. A separate source-derived section
+context ablation is the next proposal; no structural, OCR, answer-generation,
+ledger-memory, or held-out generalization result has run. This remains a labeled
+development pilot. The complete native-page cache was not uploaded for local score
+reconstruction; its coverage/checksum validation is recorded by the completed runner.

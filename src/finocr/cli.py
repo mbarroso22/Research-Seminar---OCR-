@@ -118,6 +118,12 @@ def build_parser() -> argparse.ArgumentParser:
     stopwords.add_argument("--output-dir", required=True)
     stopwords.add_argument("--tasks", help="Original frozen task manifest; defaults to recorded baseline path")
     stopwords.add_argument("--repository-root", default=".")
+    expansion = commands.add_parser("compare-query-expansion", help="Reproduce both cached controls and test fixed financial question terms")
+    expansion.add_argument("--baseline-dir", required=True)
+    expansion.add_argument("--stopword-dir", required=True, help="Completed stopword comparison for the same baseline")
+    expansion.add_argument("--output-dir", required=True, help="New comparison directory outside Git")
+    expansion.add_argument("--tasks", help="Original frozen task manifest; defaults to recorded baseline path")
+    expansion.add_argument("--repository-root", default=".")
     return parser
 
 
@@ -422,6 +428,15 @@ def main(argv: list[str] | None = None) -> int:
             from finocr.pipelines.stopword_comparison import compare_stopwords
             result = compare_stopwords(
                 args.baseline_dir, args.output_dir, tasks_path=args.tasks,
+                repository_root=args.repository_root,
+                progress=lambda message: print(message, file=sys.stderr, flush=True),
+            )
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "compare-query-expansion":
+            from finocr.pipelines.stopword_comparison import compare_query_expansion
+            result = compare_query_expansion(
+                args.baseline_dir, args.stopword_dir, args.output_dir, tasks_path=args.tasks,
                 repository_root=args.repository_root,
                 progress=lambda message: print(message, file=sys.stderr, flush=True),
             )
