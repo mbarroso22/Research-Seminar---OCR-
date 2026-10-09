@@ -112,6 +112,12 @@ def build_parser() -> argparse.ArgumentParser:
     evaluate.add_argument("--tasks", required=True)
     evaluate.add_argument("--output", required=True, help="New metrics file; no overwrite")
     evaluate.add_argument("--k", nargs="+", type=int, default=[1, 3, 5])
+
+    stopwords = commands.add_parser("compare-stopwords", help="Reproduce cached native BM25 and compare a function-word ablation")
+    stopwords.add_argument("--baseline-dir", required=True)
+    stopwords.add_argument("--output-dir", required=True)
+    stopwords.add_argument("--tasks", help="Original frozen task manifest; defaults to recorded baseline path")
+    stopwords.add_argument("--repository-root", default=".")
     return parser
 
 
@@ -411,6 +417,15 @@ def main(argv: list[str] | None = None) -> int:
             metrics = evaluate_retrieval(read_jsonl(args.predictions), load_evidence_labels(Path(args.tasks)), ks=tuple(args.k))
             write_json(args.output, metrics)
             print(json.dumps({"question_count": metrics["question_count"], "output": args.output}, indent=2))
+            return 0
+        if args.command == "compare-stopwords":
+            from finocr.pipelines.stopword_comparison import compare_stopwords
+            result = compare_stopwords(
+                args.baseline_dir, args.output_dir, tasks_path=args.tasks,
+                repository_root=args.repository_root,
+                progress=lambda message: print(message, file=sys.stderr, flush=True),
+            )
+            print(json.dumps(result, indent=2))
             return 0
     except (FinanceBenchError, FinLongDocQAError, RenderingError, RuntimeError, ValueError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)

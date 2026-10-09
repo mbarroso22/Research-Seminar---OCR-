@@ -5,7 +5,7 @@ import re
 import unicodedata
 from collections import Counter
 from dataclasses import asdict, dataclass
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 
 TOKENIZER_VERSION = "unicode-financial-v1"
@@ -54,18 +54,19 @@ class BM25Index:
 
     def __init__(
         self, doc_id: str, pages: Iterable[tuple[int, str]], *, k1: float = 1.2,
-        b: float = 0.75,
+        b: float = 0.75, tokenizer: Callable[[str], list[str]] = tokenize,
     ) -> None:
         if not math.isfinite(k1) or k1 <= 0 or not math.isfinite(b) or not 0 <= b <= 1:
             raise ValueError("BM25 requires finite k1 > 0 and 0 <= b <= 1")
         self.doc_id, self.k1, self.b = doc_id, k1, b
+        self.tokenizer = tokenizer
         self.counts: dict[int, Counter[str]] = {}
         for page_index, text in pages:
             if type(page_index) is not int or page_index < 0 or page_index in self.counts:
                 raise ValueError("Page indices must be distinct nonnegative integers")
             if not isinstance(text, str):
                 raise ValueError("Page text must be a string")
-            self.counts[page_index] = Counter(tokenize(text))
+            self.counts[page_index] = Counter(self.tokenizer(text))
         self.lengths = {page: sum(counts.values()) for page, counts in self.counts.items()}
         self.n = len(self.counts)
         self.avgdl = sum(self.lengths.values()) / self.n if self.n else 0.0
@@ -78,7 +79,7 @@ class BM25Index:
             raise TypeError("BM25 accepts only the minimal RetrievalQuery schema")
         if query.doc_id != self.doc_id:
             raise ValueError("Query must be scoped to this report")
-        terms = sorted(set(tokenize(query.question)))
+        terms = sorted(set(self.tokenizer(query.question)))
         scores = []
         for page, counts in self.counts.items():
             score = 0.0

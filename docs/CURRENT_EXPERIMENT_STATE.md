@@ -88,3 +88,50 @@ The next experimental action is execution on the validated 12-report pilot and
 inspection of its real output artifacts. Keep the corpus results pending until those
 outputs are supplied. Earlier roadmap rows naming the native baseline as a proposed
 module now refer to implemented code; other OCR/context/memory stages remain proposed.
+
+## Verified native baseline and diagnostic continuation
+
+The researcher supplied a completed Windows run and its artifacts on 2026-10-08:
+`20261008T051510Z-7b1970c7f4e8`. All 12 reports/2,620 pages were attempted, with
+zero extraction failures and seven pages with empty native text. PDF checksums and
+observed page counts matched the frozen pilot. All 24 rankings were present.
+Independently recomputed Recall@5 was 28.47%, any-evidence Hit@5 was 8/24, and
+all-evidence coverage@5 was 6/24. No answer generation or OCR comparison has run.
+This supersedes the earlier statement that native corpus execution was pending.
+
+The supplied 25-page native-text diagnostic shows financial line items on missed
+evidence pages, competing exhibit/boilerplate pages, terminology mismatches, and some
+damaged native text. This is label-selected offline inspection, not new evaluation.
+Read `docs/NATIVE_DIAGNOSTIC_FINDINGS.md` for exact observations and next commands.
+
+A separate cached-page stopword-only comparison is implemented with 61 passing local
+fixture tests. It reproduces original rankings before accepting new results, keeps
+the complete page scope and labels out of retrieval, and writes to a new directory.
+Its Windows/corpus execution and accuracy changes remain pending real user outputs.
+Do not report it as an improvement yet or use the diagnostic page subset as its corpus.
+
+## Verified stopword-only development comparison (2026-10-08 EDT)
+
+The researcher supplied completed comparison run `20261009T012131Z-1e32aa99fc79`
+(2026-10-08 21:21 EDT). Uploaded artifact hashes/sizes, the original baseline
+manifest identity, frozen task checksum, minimal query projection, zero-based
+full-report candidate rankings, original ranking reproduction, and independently
+recomputed metrics all passed review. The delivered Python source digest matched
+the recorded Windows CRLF source bytes. This supersedes the pending-execution
+statement above. The complete native-page cache was not uploaded for this review;
+its checksum and full-cohort validation are recorded by the completed runner.
+
+Across the same 24 development questions, stopword-only Recall@1/@3/@5 was
+8.33%/26.39%/30.56%, compared with 6.25%/20.14%/28.47% for the frozen baseline.
+Any-evidence Hit@5 increased from 8/24 to 9/24; all-evidence coverage@5 stayed
+6/24. Full-ranking MRR increased from 0.208245 to 0.246135. At k=5, only AMD
+2015 D&A question 03069 gained recall: cash-flow page 59 moved from rank 6 to 1,
+but operations page 55 remained outside top five (rank 64 to 25). All five
+multi-page questions still lacked complete evidence coverage@5. Some evidence
+pages regressed deeper in the ranking; the result is a limited development gain.
+
+Keep the original baseline and stopword variant as separate conditions. This is
+retrieval evidence scoring, not answer correctness, OCR accuracy, measured energy,
+or held-out generalization. No new OCR or answer-generation result is established.
+See `docs/STOPWORD_COMPARISON_RESULTS.md` for the verified metrics, paired changes,
+provenance, limitations, and the next diagnostic recommendation.
