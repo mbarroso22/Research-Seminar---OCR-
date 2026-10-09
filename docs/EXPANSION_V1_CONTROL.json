@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "role": "Frozen development-control documentation; not a new executable retrieval configuration",
+  "name": "N_native_text_bm25_question_expansion_v1",
+  "freeze_date": "2026-10-09",
+  "repository_commit": "585390fe08fc2d719b72c78c4384881cd135ad8b",
+  "reference_run_id": "20261009T020622Z-76a16239e13d",
+  "reference_manifest_sha256": "4eb18afc2eecc460cdd7b38b50773625ed8a59dfd862ada787395223b31bba63",
+  "reference_baseline_run_id": "20261008T051510Z-7b1970c7f4e8",
+  "reference_stopword_run_id": "20261009T012131Z-1e32aa99fc79",
+  "cohort": {
+    "documents": 12,
+    "pages": 2620,
+    "questions": 24
+  },
+  "frozen_tasks_sha256": "1d1bfa444a3041b3e51be9535ff276fc89fa3d7985231a0bd7f4aa6746395356",
+  "native_cache": {
+    "sha256": "c6de36446465cc9bdc27dfbf1dde2bc24c5cdd7f6b52a57b0f03fd7358d03a52",
+    "size_bytes": 16163945
+  },
+  "original_question_projection": {
+    "sha256": "8bf7176baedff9d5c8e9a37200d7c8960fa6925164ad4ee90aeabc92af81c99e",
+    "size_bytes": 5838
+  },
+  "reference_expanded_predictions": {
+    "sha256": "b460e9b3e085ea384119474f157e128ebaa8e10401c78d96007ef0c14eb8140c",
+    "size_bytes": 258487
+  },
+  "page_index_base": 0,
+  "configuration": {
+    "b": 0.75,
+    "baseline_reproduction_tolerance": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "candidate_policy": "all physical page indices; empty/failed page text is empty",
+    "change": "fixed financial-term expansion of questions only, on the reproduced stopword index",
+    "expansion_policy": {
+      "match_policy": "contiguous original question tokens; all matching rules; no recursive expansion",
+      "maximum_added_terms": 32,
+      "rules": [
+        {
+          "phrases": [
+            "quick ratio",
+            "quick ratios",
+            "acid test ratio"
+          ],
+          "rule_id": "quick_ratio",
+          "terms": [
+            "cash",
+            "equivalents",
+            "short",
+            "term",
+            "investments",
+            "marketable",
+            "securities",
+            "accounts",
+            "receivable",
+            "current",
+            "liabilities"
+          ]
+        },
+        {
+          "phrases": [
+            "current ratio",
+            "current ratios"
+          ],
+          "rule_id": "current_ratio",
+          "terms": [
+            "current",
+            "assets",
+            "liabilities"
+          ]
+        },
+        {
+          "phrases": [
+            "gross margin",
+            "gross margins",
+            "gross profit margin",
+            "gross profit margins"
+          ],
+          "rule_id": "gross_margin",
+          "terms": [
+            "gross",
+            "profit",
+            "revenue",
+            "revenues",
+            "net",
+            "sales",
+            "cost",
+            "goods",
+            "sold"
+          ]
+        },
+        {
+          "phrases": [
+            "operating margin",
+            "operating margins",
+            "operating profit margin"
+          ],
+          "rule_id": "operating_margin",
+          "terms": [
+            "operating",
+            "income",
+            "profit",
+            "revenue",
+            "revenues",
+            "net",
+            "sales"
+          ]
+        },
+        {
+          "phrases": [
+            "net margin",
+            "net margins",
+            "net profit margin",
+            "net income margin"
+          ],
+          "rule_id": "net_margin",
+          "terms": [
+            "net",
+            "income",
+            "earnings",
+            "revenue",
+            "revenues",
+            "sales"
+          ]
+        },
+        {
+          "phrases": [
+            "ebitda"
+          ],
+          "rule_id": "ebitda",
+          "terms": [
+            "operating",
+            "income",
+            "profit",
+            "depreciation",
+            "amortization"
+          ]
+        },
+        {
+          "phrases": [
+            "ebit"
+          ],
+          "rule_id": "ebit",
+          "terms": [
+            "operating",
+            "income",
+            "profit"
+          ]
+        },
+        {
+          "phrases": [
+            "capex",
+            "capital expenditure",
+            "capital expenditures",
+            "capital spending"
+          ],
+          "rule_id": "capital_expenditure",
+          "terms": [
+            "capital",
+            "expenditures",
+            "spending",
+            "purchases",
+            "property",
+            "plant",
+            "equipment"
+          ]
+        },
+        {
+          "phrases": [
+            "d a",
+            "depreciation and amortization",
+            "depreciation amortization"
+          ],
+          "rule_id": "depreciation_amortization",
+          "terms": [
+            "depreciation",
+            "amortization",
+            "cash",
+            "flows"
+          ]
+        },
+        {
+          "phrases": [
+            "return on assets",
+            "roa"
+          ],
+          "rule_id": "return_on_assets",
+          "terms": [
+            "net",
+            "income",
+            "total",
+            "assets"
+          ]
+        },
+        {
+          "phrases": [
+            "return on equity",
+            "roe"
+          ],
+          "rule_id": "return_on_equity",
+          "terms": [
+            "net",
+            "income",
+            "shareholders",
+            "stockholders",
+            "equity"
+          ]
+        },
+        {
+          "phrases": [
+            "debt to equity",
+            "debt equity"
+          ],
+          "rule_id": "debt_to_equity",
+          "terms": [
+            "debt",
+            "borrowings",
+            "shareholders",
+            "stockholders",
+            "equity"
+          ]
+        }
+      ],
+      "sha256": "80414d370839eceef3dc5c8574b57d65a22f7551ddad520c263dc4c15c67f1a3",
+      "term_policy": "append sorted distinct absent content tokens; binary BM25 query frequency",
+      "truncation_policy": "alphabetical first 32",
+      "version": "financial-question-terms-v1"
+    },
+    "ingestion_cost_policy": "reuse native text; original extraction cost remains attributed to shared ingestion",
+    "k1": 1.2,
+    "ks": [
+      1,
+      3,
+      5
+    ],
+    "page_text_transformation": "unchanged from stopword baseline",
+    "primary_comparison": "question_expansion minus stopwords",
+    "query_expansion": true,
+    "query_fields": [
+      "task_id",
+      "doc_id",
+      "question"
+    ],
+    "stemming": false,
+    "stopword_sha256": "577d51d00457b28c9fa35d0fa4198d74d414ecbdf5c51a94b395666774644b99",
+    "stopword_version": "english-function-words-v1",
+    "stopwords": [
+      "a",
+      "am",
+      "an",
+      "and",
+      "are",
+      "as",
+      "at",
+      "be",
+      "been",
+      "being",
+      "but",
+      "by",
+      "did",
+      "do",
+      "does",
+      "for",
+      "from",
+      "had",
+      "has",
+      "have",
+      "he",
+      "her",
+      "hers",
+      "him",
+      "his",
+      "how",
+      "i",
+      "if",
+      "in",
+      "into",
+      "is",
+      "it",
+      "its",
+      "me",
+      "my",
+      "of",
+      "on",
+      "onto",
+      "or",
+      "our",
+      "ours",
+      "she",
+      "than",
+      "that",
+      "the",
+      "their",
+      "theirs",
+      "them",
+      "these",
+      "they",
+      "this",
+      "those",
+      "to",
+      "us",
+      "was",
+      "we",
+      "were",
+      "what",
+      "when",
+      "where",
+      "which",
+      "who",
+      "whom",
+      "whose",
+      "why",
+      "with",
+      "you",
+      "your",
+      "yours"
+    ],
+    "tie_policy": "score descending, zero-based page_index ascending; zero ties retained",
+    "year_normalization": "unchanged"
+  },
+  "verified_reference_metrics": {
+    "macro_evidence_recall_at_5": 0.40972222222222227,
+    "any_evidence_hit_at_5": {
+      "hits": 12,
+      "questions": 24
+    },
+    "complete_evidence_coverage_at_5": {
+      "complete": 8,
+      "questions": 24
+    }
+  },
+  "allowed_retrieval_inputs": [
+    "task_id",
+    "doc_id",
+    "question",
+    "immutable source page text"
+  ],
+  "excluded_retrieval_inputs": [
+    "answers",
+    "justifications",
+    "evidence page labels",
+    "annotation evidence text",
+    "manual review document",
+    "gold-derived correction memory"
+  ],
+  "change_policy": "Future lexical rule, tokenizer, BM25 parameter, page-scope, or query changes require a separately versioned condition. Preserve this control.",
+  "section_context_status": "Deferred pending multi-page review and source/heading diagnostics; not implemented or evaluated",
+  "answer_generation_status": "not implemented in this retrieval condition",
+  "tokenizer_version": "unicode-financial-v1",
+  "executed_reference_package_source_sha256": "bb3986de16e85d6b0e6f2d8030be0ef06e2dc797c2fb018c2f50820ea4300a38"
+}

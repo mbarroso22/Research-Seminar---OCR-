@@ -19,6 +19,11 @@ from test_native_baseline import text_pdf
 
 
 class QueryExpansionRuleTests(unittest.TestCase):
+    def test_v1_development_control_policy_is_frozen(self):
+        policy = policy_record()
+        self.assertEqual(policy["version"], "financial-question-terms-v1")
+        self.assertEqual(policy["sha256"], "80414d370839eceef3dc5c8574b57d65a22f7551ddad520c263dc4c15c67f1a3")
+
     def expand(self, text):
         return expand_query(RetrievalQuery("task", "report", text))
 

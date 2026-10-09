@@ -9,12 +9,21 @@ zero-based page IDs, source verification, failure accounting, immutable run outp
 and offline evidence scoring. `finocr evaluate-retrieval` scores saved predictions
 separately. See [the Windows run guide](docs/NATIVE_BASELINE_WINDOWS.md).
 
-This implementation has been tested with small embedded-text PDF fixtures. **No
-FinanceBench extraction/retrieval results are available yet.** Real corpus execution
-and interpretation await the user's logs. The baseline command is functional; the
-older model adapter classes remain placeholders. No answer-generation or OCR-model
-execution is included. The current-state document and run guide supersede historical
-setup/readiness text below.
+The user supplied verified original and stopword-only pilot runs: evidence Recall@5
+was 28.47% and 30.56%, respectively; complete evidence coverage was 6/24 for both.
+Read [the verified comparison](docs/STOPWORD_COMPARISON_RESULTS.md) for its scope
+and limitations. No answer-generation or OCR-model result is established.
+
+The next implemented development experiment is `finocr compare-query-expansion`:
+fixed question-only financial terms on the unchanged stopword page index, with both
+saved controls reproduced before new results are accepted. Read
+[the experiment policy and Windows commands](docs/QUERY_EXPANSION_EXPERIMENT.md).
+Its verified pilot Recall@5 is 40.97%, compared with 30.56% for stopwords; complete
+evidence coverage rises from 6/24 to 8/24. Read
+[the expansion results](docs/QUERY_EXPANSION_RESULTS.md) for paired changes and
+development limitations. All five multi-page questions remain incomplete at k=5.
+The older model adapter classes remain placeholders. The current-state document and run guides
+supersede historical setup/readiness text below.
 
 ## Current direction and implementation status (2026-10-05)
 

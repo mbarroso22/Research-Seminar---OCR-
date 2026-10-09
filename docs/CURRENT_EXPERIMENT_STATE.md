@@ -184,3 +184,39 @@ context ablation is the next proposal; no structural, OCR, answer-generation,
 ledger-memory, or held-out generalization result has run. This remains a labeled
 development pilot. The complete native-page cache was not uploaded for local score
 reconstruction; its coverage/checksum validation is recorded by the completed runner.
+
+## Advisor-directed review before section context (2026-10-09)
+
+Continuation starts at pushed commit `585390fe08fc2d719b72c78c4384881cd135ad8b`.
+Expansion v1 is frozen as the development control: policy SHA-256
+`80414d370839eceef3dc5c8574b57d65a22f7551ddad520c263dc4c15c67f1a3`.
+`docs/EXPANSION_V1_CONTROL.json` records its exact policy/configuration and reference
+input/output identities. A fingerprint test guards against silent rule changes;
+the retrieval implementation is unchanged. The original and stopword conditions
+are retained. Future changes are separate conditions, not edits to this control.
+
+The supplied pilot_tasks.jsonl matches the frozen 24-task checksum. All five
+multi-page questions were reviewed using actual saved rankings, annotation evidence,
+and the supplied native diagnostic where available. Their structures differ:
+separate financial statements (AMD and two PepsiCo metrics), dispersed customer
+prose (Boeing), and an adjacent-page operating-geography list (PepsiCo). There are
+11 task/page references but nine unique report/page pairs; the two PepsiCo numerical
+tasks share the same statement pages. Native inspection covers four of those unique
+pages; the other five currently have annotation full-page text only.
+
+The detailed trace is PepsiCo question 03620. It preserves the minimal query,
+adds eight fixed terms, indexes all 503 report pages, and retrieves [63,46,53,76,54].
+Page 63 contains D&A/capex. Missing page 61 contains Operating Profit; its score
+increases from 18.811897 to 23.447328 while rank worsens from 17 to 23. Other pages
+gain more score. Source TF counts support broader capex matching, but exact DF/
+average-length/term contributions require the complete native cache. Offline scores
+are Recall@5=0.5, hit=1, complete=0, reciprocal rank=1. Reviewer arithmetic is not
+an automated answer result; the pipeline stops before answer extraction/generation.
+
+Read `docs/MULTIPAGE_REVIEW_AND_PIPELINE_TRACE.md`. Per advisor feedback, section
+context remains unimplemented. Obtain the original native_pages.jsonl for exact
+score attribution and source heading/boundary checks before choosing a section
+policy. Exclude the label-derived review document from retrieval/context/memory.
+The source store must remain complete; repeated navigation headers, multiple
+headings per page, list continuation, risk prose, and statement boundaries need
+separate treatment. No new corpus experiment or held-out result has run.
