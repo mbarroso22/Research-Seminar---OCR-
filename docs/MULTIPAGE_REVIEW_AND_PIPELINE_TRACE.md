@@ -3,6 +3,12 @@
 Review date: 2026-10-09. Repository starting point:
 `585390fe08fc2d719b72c78c4384881cd135ad8b`.
 
+**Continuation from b15a868:** the full native cache has now been supplied and
+validated. [The native-cache diagnostic](NATIVE_CACHE_DIAGNOSTIC.md) resolves the
+initial DF/average-length, term-attribution, and annotation-only page limitations
+below. This document preserves the initial review's artifact availability and
+historical handoff; another cache upload is no longer needed. Expansion v1 is unchanged.
+
 The frozen expansion control retrieves part of the annotated evidence for four
 multi-page questions and none for the fifth. It retrieves **no complete annotated
 multi-page set at k=5**. The traced PepsiCo example shows a ranking/completeness
@@ -353,7 +359,7 @@ including the five annotation-only pages and uninspected trace competitors. The
 original 12-report extraction need not run again. The saved file is approximately
 16 MB under the original native run directory.
 
-## Windows handoff
+## Historical Windows handoff (completed)
 
 Apply `multipage-review-freeze.patch` to the repository at 585390f. It adds this
 review, the frozen-control snapshot, a v1 policy guard test, and current-state/README

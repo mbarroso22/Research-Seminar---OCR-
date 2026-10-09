@@ -14,7 +14,7 @@ was 28.47% and 30.56%, respectively; complete evidence coverage was 6/24 for bot
 Read [the verified comparison](docs/STOPWORD_COMPARISON_RESULTS.md) for its scope
 and limitations. No answer-generation or OCR-model result is established.
 
-The next implemented development experiment is `finocr compare-query-expansion`:
+The implemented development comparison is `finocr compare-query-expansion`:
 fixed question-only financial terms on the unchanged stopword page index, with both
 saved controls reproduced before new results are accepted. Read
 [the experiment policy and Windows commands](docs/QUERY_EXPANSION_EXPERIMENT.md).
@@ -22,8 +22,17 @@ Its verified pilot Recall@5 is 40.97%, compared with 30.56% for stopwords; compl
 evidence coverage rises from 6/24 to 8/24. Read
 [the expansion results](docs/QUERY_EXPANSION_RESULTS.md) for paired changes and
 development limitations. All five multi-page questions remain incomplete at k=5.
-The older model adapter classes remain placeholders. The current-state document and run guides
-supersede historical setup/readiness text below.
+
+Expansion v1 is frozen as the development control. See
+[the frozen policy snapshot](docs/EXPANSION_V1_CONTROL.json) and
+[the five-question review and pipeline trace](docs/MULTIPAGE_REVIEW_AND_PIPELINE_TRACE.md).
+The uploaded full native cache now reproduces all 72 saved rankings; read
+[the exact score attribution and source-boundary review](docs/NATIVE_CACHE_DIAGNOSTIC.md).
+An offline reproduction helper and Windows commands are included there. The suite
+has 83 passing tests. Source/score review precedes section-context implementation;
+no section-context, ledger, answer-generation, OCR-model, or held-out result is established.
+The older model adapter classes remain placeholders. The current-state document
+and run guides supersede historical setup/readiness text below.
 
 ## Current direction and implementation status (2026-10-05)
 

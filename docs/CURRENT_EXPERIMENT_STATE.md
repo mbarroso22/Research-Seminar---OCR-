@@ -220,3 +220,44 @@ policy. Exclude the label-derived review document from retrieval/context/memory.
 The source store must remain complete; repeated navigation headers, multiple
 headings per page, list continuation, risk prose, and statement boundaries need
 separate treatment. No new corpus experiment or held-out result has run.
+
+## Complete native-cache diagnostic (2026-10-09)
+
+Continuation starts at pushed commit `b15a868`. Its README preserves the verified
+stopword/expansion results; omitted frozen-control and review links are reconciled
+without replacing those results. Expansion v1's policy and control snapshot remain
+unchanged. No files under src/ are changed by this continuation.
+
+The uploaded native_pages.jsonl matches the original manifest exactly: SHA-256
+`c6de36446465cc9bdc27dfbf1dde2bc24c5cdd7f6b52a57b0f03fd7358d03a52`,
+16,163,945 bytes, 12 reports, 2,620 zero-based contiguous page records, 2,613 with
+native text and seven with no native text, zero failures. All extraction provenance,
+normalization, source identities, counts and statuses match the extraction summary.
+The cache is no longer missing; earlier upload/inspection limitations are historical.
+
+All 24 questions' original, stopword and expansion full rankings reproduce from the
+cache: 72 rankings, 15,717 page scores, maximum absolute score difference
+7.105427357601002e-15. This is reproduction of the user's existing execution, not
+a new treatment, accuracy improvement or timing benchmark. No labels are loaded
+by the new offline helper. Selected diagnostic pages never filter its full indexes.
+
+The 03620 trace now has exact term attribution: N=503, total stopword page tokens
+124,621, average length 247.7554671968191. Page 61 gains only the added word profit
+(4.635432); competitors match more capex terms. Page 76 is accounting-policy prose,
+and page 54 is balance-sheet change commentary in billions, not the missing income
+statement in millions. All nine unique annotated multi-page source pages have now
+been inspected in native text, including Boeing's risk prose and PepsiCo's split list.
+
+PepsiCo statement titles precede the explicit Item 8 cross-reference. Its list on
+page 4 changes to local division headings at raw offset 374. Cash-flow page 63
+explicitly continues to 64. Signatures/exhibits establish attachment reset boundaries
+at 2019 pages 145/147 and 2022 pages 128/130. Keep all attachments as candidates.
+Observed native offsets are text pointers, not verified PDF geometry/transcription.
+
+Read `docs/NATIVE_CACHE_DIAGNOSTIC.md` before choosing the section policy. The
+offline `scripts/diagnose_native_cache.py` validates artifacts, reproduces saved
+rankings, and writes score attribution outside Git. Six diagnostic regression tests
+bring the suite to 83 passing tests. Section context remains unimplemented; source
+heading extraction, context resets and declared heading-token budgets are the next
+design/implementation work. Keep all review documents and diagnostic outputs out
+of retrieval inputs, prompts, and ledger memory.
