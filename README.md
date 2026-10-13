@@ -28,11 +28,21 @@ Expansion v1 is frozen as the development control. See
 [the five-question review and pipeline trace](docs/MULTIPAGE_REVIEW_AND_PIPELINE_TRACE.md).
 The uploaded full native cache now reproduces all 72 saved rankings; read
 [the exact score attribution and source-boundary review](docs/NATIVE_CACHE_DIAGNOSTIC.md).
-An offline reproduction helper and Windows commands are included there. The suite
-has 83 passing tests. Source/score review precedes section-context implementation;
+An offline reproduction helper and Windows commands are included there. That
+source/score review was completed before the new section-context implementation;
 no section-context, ledger, answer-generation, OCR-model, or held-out result is established.
 The older model adapter classes remain placeholders. The current-state document
 and run guides supersede historical setup/readiness text below.
+
+The separate `finocr compare-section-context` condition is now implemented against
+frozen expansion v1. It adds a source-only heading field with local spans, one-page
+continuation and exhibit resets, reproduces all earlier controls, and scores offline.
+Read [the fixed policy and exact PowerShell run guide](docs/SECTION_CONTEXT_EXPERIMENT.md).
+The suite has 103 passing tests. The user's section-v1 run is now verified:
+Recall@5 remains 40.97%, Hit@5 remains 12/24, and complete coverage remains 8/24.
+MRR rises from 0.302408 to 0.314780; all five multi-page questions remain incomplete.
+Read [the verified structural results and regressions](docs/SECTION_CONTEXT_RESULTS.md).
+Expansion v1 remains the development control; earlier verified results are unchanged.
 
 ## Current direction and implementation status (2026-10-05)
 

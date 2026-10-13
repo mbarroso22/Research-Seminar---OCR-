@@ -1,0 +1,62 @@
+{
+  "candidate_limits": "<=32 stopword tokens and <=240 normalized characters; risk sentences <=2 consecutive raw lines, second starts lowercase, ending period",
+  "contents_minimum_reference_lines": 6,
+  "contents_reference_pattern": "(?i)^(?:(?:Item|Article|Section|Note)\\s+[\\dIVX]+[A-C]?\\.?\\s+)?[^\\d$%]{3,140}\\s+\\d{1,3}(?:[\\u2013\\-]\\d{1,3})?$",
+  "continuation": "last observed local heading to next physical page only; opening span ends at first heading/reset; no chaining or future pages",
+  "duplicates": "normalized casefold heading text once per page; observed/inherited entries retained with rejection reasons",
+  "exhibit_pattern": "(?i)^Exhibit\\s+\\d+(?:\\.\\d+)?[A-Z]?$",
+  "heading_weight": 0.25,
+  "maximum_page_heading_tokens": 64,
+  "navigation_lines": [
+    "contents",
+    "table of contents"
+  ],
+  "ranking": "unchanged expansion BM25 body score + 0.25 * separate heading BM25 score; all physical pages; (-score,page_index)",
+  "reset_lines": [
+    "exhibit index",
+    "index to exhibits",
+    "signatures"
+  ],
+  "resets": "new report; blank/navigation/footer-only text; contents listing; signatures/index-to-exhibits; standalone top-three-line exhibit; filing cover",
+  "risk_sentence_prefix": "^(?:We (?:depend|conduct|derive)\\b|Changes in levels of\\b)",
+  "rules": [
+    {
+      "kind": "item",
+      "pattern": "(?i)^Item\\s+\\d{1,2}[A-C]?\\.?\\s+\\S.+$"
+    },
+    {
+      "kind": "statement",
+      "pattern": "(?i)^(?:Consolidated (?:Statements? of .+|Balance Sheets?)|Notes to Consolidated Financial Statements)(?:\\s*\\(continued\\))?$"
+    },
+    {
+      "kind": "note",
+      "pattern": "(?i)^Note\\s+\\d{1,2}\\s*[:.\\u2014\\-]\\s*\\S.+$"
+    },
+    {
+      "kind": "risk_group",
+      "pattern": "(?i)^Risks Related to\\s+\\S.+$"
+    }
+  ],
+  "scope": "raw Unicode offsets [start,end); local spans end at next heading/reset; inherited spans are weak inference",
+  "sha256": "159fd78a039d914e3c91489ccf37b40f43009a10e7808826e5b64b833b194b7e",
+  "title_lowercase_words": [
+    "a",
+    "an",
+    "and",
+    "at",
+    "by",
+    "for",
+    "from",
+    "in",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "with"
+  ],
+  "title_rule": "2..12 words; <=120 characters; letters/hyphens/apostrophes/& only; title case or all caps; no terminal punctuation",
+  "token_budget": "frozen stopword tokenizer; complete headings only; source/scope order; skip overflow",
+  "variables": "no year/currency/unit propagation; no adjacency, question cleanup, ledger or model calls",
+  "version": "source-local-headings-v1"
+}

@@ -261,3 +261,99 @@ bring the suite to 83 passing tests. Section context remains unimplemented; sour
 heading extraction, context resets and declared heading-token budgets are the next
 design/implementation work. Keep all review documents and diagnostic outputs out
 of retrieval inputs, prompts, and ledger memory.
+
+## Source-derived section comparison implementation (2026-10-12)
+
+Continuation starts at pushed commit `dae9897`. `finocr compare-section-context`
+now compares a fixed source-derived heading field against frozen expansion v1.
+Implementation and fixture verification are complete; new experimental results
+remain pending the researcher's real Windows execution. None are reported here.
+The earlier native-cache diagnostic/review and all verified results remain intact.
+
+Policy: source-local-headings-v1, SHA-256
+`159fd78a039d914e3c91489ccf37b40f43009a10e7808826e5b64b833b194b7e`.
+The exact policy is checked in at configs/section_context_v1.json and copied into
+each new run manifest. The unchanged expansion-v1 body BM25 score is augmented
+by 0.25 times a separate heading BM25 score. The heading field contains at most
+64 frozen-stopword tokens per page, including complete observed local headings
+and eligible opening continuation. Body DF/lengths/average length remain unchanged.
+The heading index has its own DF/length statistics over the very same physical pages.
+
+Context reads only doc_id, zero-based page_index and raw_text, traversing full reports
+in source order without questions or labels. It records observed raw spans and weak
+inherited scopes; the last locally observed heading may carry to the next physical
+page's opening only, ends at its first new heading/reset, and never chains across
+more pages. Contents listings, navigation/footer-only or blank pages, signatures,
+exhibit-index lines, standalone top-of-page exhibits and filing covers clear state.
+No currency/year/unit inheritance, adjacency, query cleanup or ledger is combined.
+
+The runner verifies immutable inputs and lineage, reproduces original/stopword/
+expansion full rankings and queries, saves all context/query/prediction artifacts,
+then parses frozen labels for offline scoring. It also checks that all three control
+metrics reproduce. Full-report candidates, blank pages, attachments, zero-based
+IDs and ties remain fixed. The original pipelines and expansion-control snapshot
+are unchanged. Both inputs are the saved original native and expansion-v1 runs;
+the old stopword run directory need not be loaded again.
+
+All 103 tests pass (83 prior plus 20 new). Source-only smoke checks confirm the
+reviewed local statement/risk/list heading offsets, PepsiCo page 4's opening scope
+ending at raw offset 374, and the 2019/2022 exhibit resets. No new corpus ranking or
+metric was executed for these smoke checks. Source-derived headings remain weak
+heuristics without PDF line geometry; they are not verified semantic segmentation.
+
+Read docs/SECTION_CONTEXT_EXPERIMENT.md and scripts/run_section_context.ps1 for
+exact PowerShell commands, immutable outputs, acceptance checks and artifacts to
+return. Reuse cached extraction, create a new run outside Git, and wait for actual
+outputs before reporting structural retrieval effects. No OCR, answer-generation,
+ledger-memory, timing/energy benchmark or held-out generalization result is added.
+
+## Verified section-v1 development results (2026-10-12)
+
+The user supplied section-context-results.zip after successful Windows execution.
+Internal run ID: `20261013T010312Z-967cd9567b9c`; folder suffix: `1a0d48a0`.
+Execution was October 12 at 21:03 EDT (October 13 at 01:03 UTC). All 11 files are
+present, ZIP CRC checks pass, and all ten artifact byte hashes/sizes match the manifest.
+The executed Python source digest matches the delivered implementation with CRLF
+newlines. Base commit dae9897 plus the applied implementation patch is recorded dirty;
+no new pushed implementation commit is assumed by this review.
+
+The frozen expansion reference is unchanged. All input identities, policies, minimal
+queries and audits match. The full original native cache remains available locally.
+All 2,620 context records reproduce, including raw spans, source hashes, inherited
+one-page pointers, caps/resets and the structural summary. All 96 full rankings
+reproduce, with 20,956 page scores checked and maximum absolute difference
+7.105427357601002e-15. All per-question/aggregate/subgroup metrics, MRR and deltas
+were independently recomputed without the pipeline evaluator and match the upload.
+
+Compared with frozen expansion v1, Recall@1/3/5 is unchanged (10.42%, 32.64%, 40.97%).
+Hit@5 remains 12/24 and complete coverage remains 8/24. Every question's Recall@5 is
+unchanged. At k=3, AMD quick-ratio gains one complete page (rank 5 to 3), canceled by
+Best Buy acquisitions losing its gold page (rank 3 to 4). Full MRR improves from
+0.3024075204503773 to 0.31477955742883584: nine first-evidence ranks improve, three
+regress and twelve stay fixed. This is a secondary ranking gain, not a coverage gain.
+
+All five multi-page cases remain incomplete at k=5: AMD D&A stays 1/2, Boeing
+customers 1/3, PepsiCo geographies 0/2, EBITDA-less-capex 1/2, EBITDA margin 1/2.
+Missing income-statement page 61 improves from 23 to 19 and from 24 to 20 in the
+two PepsiCo questions, but remains outside the cutoff. Geographic page 4 improves
+20 to 13; page 3 stays 228. Boeing pages 7/13 worsen 39 to 46 and 161 to 162,
+despite their headings being detected: their heading fields have zero query overlap.
+
+Context adds 14,633 capped lexical tokens on 1,662 pages and stores 1,908,325 bytes
+of page context. Observed column labels can be mistaken for section headings,
+including Year Ended and a division-name table header. Bare numbered Best Buy notes
+and en-dash Note headings are missed by the fixed v1 grammar. These are demonstrated
+limitations, not a measured overall heading precision/recall estimate.
+
+The single Windows run records 1.924067 seconds total wall time and 0.701294 seconds
+context construction. Section-query total for 24 questions is 0.029820 seconds
+versus 0.016828 for expansion. These include declared processing/validation costs;
+they do not establish repeated query latency or energy savings.
+
+Read docs/SECTION_CONTEXT_RESULTS.md. Preserve expansion v1 as the development
+control and keep section v1/run outputs as a fixed completed ablation. No source
+policy, weight, candidate set, query or implementation changes are included in this
+results update. Review heading precision and missed formats before a separate v2
+or ledger experiment; do not assume more heading weight will recover all operands.
+This remains label-exposed development retrieval evidence, not answer correctness,
+OCR quality or held-out generalization. Exclude results/review artifacts from inputs.

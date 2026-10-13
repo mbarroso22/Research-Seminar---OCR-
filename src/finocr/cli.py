@@ -124,6 +124,12 @@ def build_parser() -> argparse.ArgumentParser:
     expansion.add_argument("--output-dir", required=True, help="New comparison directory outside Git")
     expansion.add_argument("--tasks", help="Original frozen task manifest; defaults to recorded baseline path")
     expansion.add_argument("--repository-root", default=".")
+    section = commands.add_parser("compare-section-context", help="Reproduce frozen expansion v1 and add source-only local heading cues")
+    section.add_argument("--baseline-dir", required=True, help="Original complete native-text run")
+    section.add_argument("--expansion-dir", required=True, help="Completed frozen expansion-v1 comparison for that native run")
+    section.add_argument("--output-dir", required=True, help="New immutable comparison directory outside Git")
+    section.add_argument("--tasks", help="Original frozen task file; defaults to recorded native path; parsed only after rankings")
+    section.add_argument("--repository-root", default=".")
     return parser
 
 
@@ -437,6 +443,15 @@ def main(argv: list[str] | None = None) -> int:
             from finocr.pipelines.stopword_comparison import compare_query_expansion
             result = compare_query_expansion(
                 args.baseline_dir, args.stopword_dir, args.output_dir, tasks_path=args.tasks,
+                repository_root=args.repository_root,
+                progress=lambda message: print(message, file=sys.stderr, flush=True),
+            )
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "compare-section-context":
+            from finocr.pipelines.section_comparison import compare_section_context
+            result = compare_section_context(
+                args.baseline_dir, args.expansion_dir, args.output_dir, tasks_path=args.tasks,
                 repository_root=args.repository_root,
                 progress=lambda message: print(message, file=sys.stderr, flush=True),
             )
