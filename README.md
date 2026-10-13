@@ -44,6 +44,11 @@ MRR rises from 0.302408 to 0.314780; all five multi-page questions remain incomp
 Read [the verified structural results and regressions](docs/SECTION_CONTEXT_RESULTS.md).
 Expansion v1 remains the development control; earlier verified results are unchanged.
 
+The [heading-detection versus query-matching review](docs/HEADING_FAILURE_REVIEW.md)
+separates missed/spurious headings from correct titles with zero, incidental, or
+insufficient lexical signal. It recommends a note-format coverage ablation with
+scoring held fixed. This recommendation is documented; no v2 change is implemented.
+
 ## Current direction and implementation status (2026-10-05)
 
 The current proposal is a compact financial-document pipeline comparing ordinary

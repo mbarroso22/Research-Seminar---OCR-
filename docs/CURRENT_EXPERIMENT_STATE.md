@@ -357,3 +357,53 @@ results update. Review heading precision and missed formats before a separate v2
 or ledger experiment; do not assume more heading weight will recover all operands.
 This remains label-exposed development retrieval evidence, not answer correctness,
 OCR quality or held-out generalization. Exclude results/review artifacts from inputs.
+
+## Detection-versus-matching review and next experiment (2026-10-12)
+
+Continuation starts at pushed `10e91145bd6b9530c2f43f18c9e91512f2173093`, which
+contains section v1 and its verified results. Expansion v1 remains the development
+control. Runtime, policies, configs, tests and saved run artifacts are unchanged.
+This is an offline source/failure review, not a new condition or new metric execution.
+
+Read docs/HEADING_FAILURE_REVIEW.md. The review separates heading detection and
+scope correctness, lexical query overlap, and cutoff/ranking sufficiency. Selected
+native-text examples and saved score components support the diagnoses; they do not
+provide population heading precision/recall or PDF geometry verification.
+
+An additional directly relevant detection failure is Boeing 2022 page 111's
+`Note 21 – Legal Proceedings`, raw span [2122,2149). Its en dash is unsupported by
+v1, and legal is a query token for question 01091. V1 instead carries Fair Value
+Disclosures across page 112, where legal prose continues before `Note 22 – Segment
+and Revenue Information` at [2429,2470). That second missed heading has zero overlap
+with the legal query: a missing boundary can matter even when its own title does
+not supply search terms. Best Buy page 50's missed `2. Acquisitions` does match
+question 01077; its missed `3. Restructuring` does not.
+
+Other failures are different. Boeing customer headings are detected correctly and
+match none of that question's tokens. PepsiCo's Operations heading/continuation is
+correct, but operations and operates differ; page 4's only heading overlap is the
+company term pepsico. AMD's correct Statements of Operations title does not match
+P&L statement wording. PepsiCo's correct Income title matches income/statement and
+gets a positive score, yet page 61 stays outside the top five in both calculations.
+These cases cannot all be attributed to detection errors or fixed by larger weights.
+
+Spurious title/state examples include Year Ended, a PepsiCo division table header,
+and Best Buy page 46's wrapped prose line `Consolidated Statements of Earnings from
+the fair value of the derivatives.` The latter is incorrectly accepted as a statement
+heading. These quality issues remain recorded independently of query usefulness.
+
+Recommended next controlled experiment: a separately versioned **note-format coverage
+ablation**. Add en-dash Note headings and cautiously gated bare-number note headings
+inside a source-observed notes region. Keep generic-title/prose rules, query expansion,
+tokenization, weight 0.25, 64-token cap, one-page continuation, resets, candidates and
+body scores fixed. New heading boundaries naturally change context scopes and heading
+index statistics; record those consequences rather than treating the heading index
+as unchanged. Source hard-negative checks must reject contents references, numeric
+tables and numbered non-note lists; no company/page/answer lookup table is permitted.
+
+Compare the proposed condition with saved section v1 to isolate note recognition;
+also compare with expansion v1 for the overall structural effect. No new rule or
+code is implemented yet. Do not bundle table-label cleanup, query stemming/synonyms,
+weight search, adjacency, statement-family selection or ledger retention into this
+first ablation. Better detection is a testable hypothesis for lost legal/acquisition
+heading signal, not a promised recovery of the five multi-page evidence sets.
