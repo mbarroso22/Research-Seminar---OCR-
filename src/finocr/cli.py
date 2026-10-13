@@ -137,6 +137,27 @@ def build_parser() -> argparse.ArgumentParser:
     notes.add_argument("--output-dir", required=True, help="New immutable directory outside Git and saved runs")
     notes.add_argument("--tasks", help="Original frozen task file; parsed only after all predictions/context are saved")
     notes.add_argument("--repository-root", default=".")
+    full_render = commands.add_parser("render-reports", help="Render all physical pages, or source-only setup samples; no QA inputs")
+    full_render.add_argument("--documents", required=True)
+    full_render.add_argument("--native-dir", help="Verify cohort/PDF identities against the original complete native run")
+    full_render.add_argument("--pdf-dir", help="Rebase PDF basenames without changing IDs/checksums")
+    full_render.add_argument("--renderer", required=True, help="Explicit pdftoppm executable; version and binaries recorded")
+    full_render.add_argument("--output-dir", required=True)
+    full_render.add_argument("--repository-root", default=".")
+    full_render.add_argument("--dpi", type=int, default=200)
+    full_render.add_argument("--sample", action="store_true", help="First/middle/last page of each report; keep full pending-page plan")
+    full_render.add_argument("--resume", action="store_true", help="Reuse verified completed images; retry errors/pending pages")
+    full_render.add_argument("--timeout-seconds", type=float, default=120)
+    full_render.add_argument("--expected-documents", type=int)
+    full_render.add_argument("--expected-pages", type=int)
+    smoke = commands.add_parser("ocr-smoke", help="One selected physical-page standard OCR setup test; no metrics")
+    smoke.add_argument("--render-dir", required=True)
+    smoke.add_argument("--models-dir", required=True)
+    smoke.add_argument("--output-dir", required=True)
+    smoke.add_argument("--doc-id", required=True)
+    smoke.add_argument("--page-index", type=int, required=True)
+    smoke.add_argument("--repository-root", default=".")
+    smoke.add_argument("--timeout-seconds", type=float, default=600)
     return parser
 
 
@@ -414,6 +435,22 @@ def main(argv: list[str] | None = None) -> int:
             return _run_financebench(args)
         if args.command == "render-pages":
             return _run_render(args)
+        if args.command == "render-reports":
+            from finocr.pipelines.report_rendering import render_full_reports
+            result = render_full_reports(args.documents, args.output_dir, renderer_path=args.renderer,
+                repository_root=args.repository_root, pdf_dir=args.pdf_dir, native_dir=args.native_dir, dpi=args.dpi,
+                sample=args.sample, resume=args.resume, timeout_seconds=args.timeout_seconds,
+                expected_documents=args.expected_documents, expected_pages=args.expected_pages,
+                progress=lambda message: print(message, file=sys.stderr, flush=True))
+            print(json.dumps(result, indent=2))
+            return 0 if result["status"] in {"complete", "sample_complete"} else 1
+        if args.command == "ocr-smoke":
+            from finocr.pipelines.ocr_smoke import run_ocr_smoke
+            result = run_ocr_smoke(args.render_dir, args.models_dir, args.output_dir, doc_id=args.doc_id,
+                page_index=args.page_index, repository_root=args.repository_root, timeout_seconds=args.timeout_seconds,
+                progress=lambda message: print(message, file=sys.stderr, flush=True))
+            print(json.dumps(result, indent=2))
+            return 0 if result["status"] == "smoke_complete" else 1
         if args.command == "plan":
             return _run_plan(args)
         if args.command == "native-baseline":

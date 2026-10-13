@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "role": "Offline development baseline recommendation; never a runtime retrieval input",
-  "status": "recommend carrying forward the already frozen expansion v1 for matched native/OCR retrieval",
+  "status": "frozen expansion v1 for matched native/OCR retrieval at k=5; explicitly authorized after bb274db",
+  "freeze_authorized_from_commit": "bb274db5436473984456c1e95e30b1407337c1c4",
   "review_date_local": "2026-10-12 EDT",
   "baseline": "N_native_text_bm25_question_expansion_v1",
   "frozen_policy_document": "docs/EXPANSION_V1_CONTROL.json",

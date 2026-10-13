@@ -514,3 +514,47 @@ full candidates, minimal queries and failure accounting. Choose/freeze resolutio
 after the documented 200/300-DPI smoke inspection; hardware/runtime/checkpoints
 and OCR results remain pending. Keep answer extraction, ledger and held-out
 evaluation separate; no further heading-format tuning is planned.
+
+## OCR setup continuation and accepted retrieval freeze (2026-10-12 EDT)
+
+Continue from pushed bb274db5436473984456c1e95e30b1407337c1c4. The researcher
+explicitly freezes expansion v1 for matched native/OCR retrieval at k=5 and closes
+heading-format tuning. Existing expansion/stopword/BM25 policy snapshots and
+historical controls are unchanged. The recommendation record now records that
+accepted freeze; it remains offline documentation, not a runtime label input.
+
+Read docs/OCR_SETUP_WINDOWS.md. First run scripts/check_ocr_machine.ps1 on the
+actual Windows machine: GPU/VRAM/driver, Python installations/current baseline
+version, physical/available RAM and free disk are **pending local measurement**.
+Historical hardware labels and the hosted development machine are not current
+local measurements. The inventory does not install dependencies and saves a
+baseline package fingerprint for a later unchanged-environment check.
+
+New finocr render-reports and scripts/run_report_rendering.ps1 implement
+source-only full-report Poppler RGB rendering with original-native PDF/cohort
+identity checks, zero-based physical IDs, every report/page including blanks and
+exhibits, atomic per-page cache records, failed/pending accounting and verified
+resume. A first/middle/last source-only sample preserves the complete 2,620-page
+plan; sample_complete is distinct from full_report_rendering_complete. Proposed
+200/300 DPI settings require visual/disk inspection before resolution is frozen.
+The old evidence-only render-pages command remains separate and unchanged.
+
+New finocr ocr-smoke prepares one source-selected page under standard PaddleOCR
+with explicit local detector/English-recognizer weights, raw JSON/line boxes,
+literal text and unchanged search normalization. The proposed separate 64-bit
+Python 3.12 .venv-ocr uses CPU PaddlePaddle 3.3.0, PaddleOCR 3.3.2 and PaddleX
+3.3.10; dependency resolution and real API execution are pending. Commands are
+provided before installing anything. Do not modify the baseline .venv, install
+CUDA/GPU packages before inventory review, or assume an RTX-3060 label specifies
+VRAM. Preserve model hashes and the successful Windows dependency/wheel snapshot.
+
+Setup observations, source rendering, a one-page nonempty OCR smoke and fixture
+tests do not establish OCR accuracy, full-report throughput or retrieval results.
+No QA/evidence input is accepted by the renderer/OCR engine. The smoke has a
+process deadline and explicit failures/blanks and never claims full OCR coverage.
+After local setup/source/numeric inspection, proceed to clearly labeled oracle
+diagnostics and complete-report OCR before matched frozen-expansion retrieval.
+No new corpus run or experimental metric is reported by this implementation.
+The 138-test suite includes real small PDF rendering fixtures and simulated
+OCR orchestration, with no downloaded/inferred model in development. Actual
+PowerShell/Windows renderer/model execution remains pending local setup outputs.

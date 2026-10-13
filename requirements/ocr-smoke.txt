@@ -1,0 +1,4 @@
+# Install the CPU framework separately from its official index; see the staged guide.
+paddleocr==3.3.2
+paddlex==3.3.10
+pypdf==6.19.0

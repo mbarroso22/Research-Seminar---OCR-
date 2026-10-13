@@ -59,6 +59,14 @@ retain the note-format condition as the structural comparator. All five
 multi-page questions remain incomplete. This concludes the planned heading-format
 ablations; full-report rendering and OCR smoke evaluation are the next milestone.
 
+Expansion v1 is now frozen for matched native/OCR retrieval at k=5. The OCR
+setup tools collect current Windows GPU/VRAM, RAM, disk and interpreter details,
+render all physical pages with a resumable full-cohort plan, and provide a separate
+pinned CPU environment for one standard PaddleOCR smoke page. Read
+[the staged PowerShell guide](docs/OCR_SETUP_WINDOWS.md) and run the **no-install
+machine inventory first**. Existing `.venv` dependencies and retrieval policies
+remain fixed. Hardware readings, OCR installation and real smoke results are pending.
+
 ## Current direction and implementation status (2026-10-05)
 
 The current proposal is a compact financial-document pipeline comparing ordinary
