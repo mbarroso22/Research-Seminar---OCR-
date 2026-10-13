@@ -79,10 +79,15 @@ def _validate_pages(records, doc, native):
 
 
 def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_path=None,
-                            repository_root=".", progress=None):
+                            repository_root=".", progress=None, note_reference_dir=None):
     started, started_utc = time.perf_counter(), datetime.now(timezone.utc).isoformat()
     baseline, reference, output, root = (Path(p).resolve() for p in
                                         (baseline_dir, expansion_dir, output_dir, repository_root))
+    section_reference = Path(note_reference_dir).resolve() if note_reference_dir is not None else None
+    if section_reference is not None:
+        from finocr.retrieval.note_context import build_note_context, note_policy_record
+        _require(output != section_reference and section_reference not in output.parents,
+                 "Keep new outputs outside the saved section-v1 run")
     if (root / ".git").exists() and (root == output or root in output.parents):
         raise ValueError("Save section-comparison outputs outside the Git repository")
     _require(output != baseline and output != reference and baseline not in output.parents
@@ -141,6 +146,33 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
     task_identity = verify(tasks)
     _require(task_identity["sha256"] == native["inputs"]["tasks"]["sha256"] == expansion["task_sha256"],
              "Frozen task annotations changed")
+    section_configuration = {"section_policy": section_policy_record(), "expansion_policy": policy_record(),
+        "control_configuration": ref_config, "k1": config["k1"], "b": config["b"], "ks": config["ks"],
+        "primary_comparison": "section_context minus frozen question_expansion",
+        "body_index": "exact unchanged stopword index", "query_fields": ["task_id", "doc_id", "question"]}
+    if section_reference is not None:
+        prior_inputs = sorted((e["sha256"], e["size_bytes"]) for e in verified.values())
+        section_identity = verify(section_reference / "run_manifest.json")
+        section = read_json(section_reference / "run_manifest.json")
+        _require(section["status"] == "complete" and section["experiment"] == "N_native_text_bm25_section_context"
+                 and section["baseline_reproduced"] is True and section["stopword_baseline_reproduced"] is True
+                 and section["expansion_control_reproduced"] is True and section["page_index_base"] == 0
+                 and section["manifest_totals"] == native["manifest_totals"]
+                 and section["baseline_run_id"] == native["run_id"] and section["baseline_manifest"] == native_identity
+                 and section["expansion_reference_run_id"] == expansion["run_id"]
+                 and section["expansion_manifest"] == expansion_identity and section["task_sha256"] == task_identity["sha256"]
+                 and section["configuration"] == section_configuration
+                 and sorted((e["sha256"], e["size_bytes"]) for e in section["inputs"].values()) == prior_inputs,
+                 "Section-v1 reference lineage, frozen policy or input identity mismatch")
+        names = {*_PREDICTIONS.values(), "section_predictions.jsonl", "retrieval_queries.jsonl",
+                 "expanded_retrieval_queries.jsonl", "query_expansion_audit.jsonl", "section_context.jsonl",
+                 "section_context_summary.json", "comparison_metrics.json"}
+        _require(set(section["artifacts"]) == names, "Incomplete section-v1 artifact set")
+        for name in names:
+            verify(section_reference / name, section["artifacts"][name])
+        for name in ("retrieval_queries.jsonl", "expanded_retrieval_queries.jsonl", "query_expansion_audit.jsonl"):
+            _require(read_jsonl(section_reference / name) == read_jsonl(reference / name),
+                     "Section-v1 frozen query/audit mismatch")
     summary = read_json(baseline / "extraction_summary.json")
     totals = native["manifest_totals"]
     docs = {d["doc_id"]: d for d in summary["documents"]}
@@ -157,6 +189,10 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
     saved = {key: _by_task(read_jsonl(reference / name), ids) for key, name in _PREDICTIONS.items()}
     saved_queries = _by_task(read_jsonl(reference / "expanded_retrieval_queries.jsonl"), ids)
     saved_audits = _by_task(read_jsonl(reference / "query_expansion_audit.jsonl"), ids)
+    if section_reference is not None:
+        section_saved = {key: _by_task(read_jsonl(section_reference / name), ids)
+                         for key, name in {**_PREDICTIONS, "section_context": "section_predictions.jsonl"}.items()}
+        saved_contexts = read_jsonl(section_reference / "section_context.jsonl")
     expanded, audits = {}, []
     for q in queries:
         eq, audit = expand_query(q)
@@ -173,18 +209,25 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
                 "expansion_reference_run_id": expansion["run_id"], "expansion_manifest": expansion_identity,
                 "task_sha256": task_identity["sha256"],
                 "inputs": {str(path): entry for path, entry in verified.items()},
-                "configuration": {"section_policy": section_policy_record(), "expansion_policy": policy_record(),
-                    "control_configuration": ref_config, "k1": config["k1"], "b": config["b"], "ks": config["ks"],
-                    "primary_comparison": "section_context minus frozen question_expansion",
-                    "body_index": "exact unchanged stopword index", "query_fields": ["task_id", "doc_id", "question"]},
+                "configuration": section_configuration,
                 "timing_policy": "wall includes validation, control reproduction, all-report context construction, indexes, ranking, scoring and serialization; native extraction is prior shared ingestion",
                 "initial_validation_seconds": time.perf_counter() - started}
+    if section_reference is not None:
+        manifest.update(experiment="N_native_text_bm25_note_formats", section_reference_run_id=section["run_id"],
+                        section_manifest=section_identity, last_planned_heading_format_ablation=True)
+        manifest["configuration"] = {**section_configuration, "note_policy": note_policy_record(),
+            "primary_comparison": "note_formats minus reproduced section_context v1",
+            "secondary_comparison": "note_formats minus frozen question_expansion v1"}
     write_json(output / "run_manifest.json", manifest)
     try:
         predictions = {key: {} for key in (*_PREDICTIONS, "section_context")}
-        contexts, seen = [], set()
+        contexts, note_contexts, seen = [], [], set()
         timing = {"context_build_seconds": 0.0, "original_index_seconds": 0.0, "body_index_seconds": 0.0,
                   "heading_index_seconds": 0.0, "query_seconds": {key: 0.0 for key in predictions}}
+        if section_reference is not None:
+            predictions["note_formats"] = {}
+            timing.update(note_context_build_seconds=0.0, note_heading_index_seconds=0.0)
+            timing["query_seconds"]["note_formats"] = 0.0
         for doc_id, group in groupby(iter_jsonl(baseline / "native_pages.jsonl"), lambda r: r["doc_id"]):
             _require(doc_id in docs and doc_id not in seen, "Native report groups must be contiguous and unique")
             seen.add(doc_id)
@@ -196,6 +239,13 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
             for row in context:
                 row["source_document_sha256"] = docs[doc_id]["expected_sha256"]
             contexts.extend(context)
+            if section_reference is not None:
+                step = time.perf_counter()
+                note_context = build_note_context([SourcePage.from_record(r) for r in records])
+                timing["note_context_build_seconds"] += time.perf_counter() - step
+                for row in note_context:
+                    row["source_document_sha256"] = docs[doc_id]["expected_sha256"]
+                note_contexts.extend(note_context)
             if progress:
                 progress(f"Validated and built source context: {doc_id}; {len(records)} pages")
             report_queries = [q for q in queries if q.doc_id == doc_id]
@@ -212,28 +262,53 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
             heading_index = BM25Index(doc_id, [(r["page_index"], " ".join(r["heading_tokens"])) for r in context],
                                       k1=config["k1"], b=config["b"], tokenizer=tokenize_without_stopwords)
             timing["heading_index_seconds"] += time.perf_counter() - step
+            if section_reference is not None:
+                step = time.perf_counter()
+                note_index = BM25Index(doc_id, [(r["page_index"], " ".join(r["heading_tokens"])) for r in note_context],
+                                       k1=config["k1"], b=config["b"], tokenizer=tokenize_without_stopwords)
+                timing["note_heading_index_seconds"] += time.perf_counter() - step
             for q in report_queries:
                 conditions = [("baseline", "N_native_text_bm25_reproduced", original, q),
                               ("stopwords", "N_native_text_bm25_stopwords", body, q),
                               ("question_expansion", "N_native_text_bm25_question_expansion", body, expanded[q.task_id]),
                               ("section_context", "N_native_text_bm25_section_context", body, expanded[q.task_id])]
+                if section_reference is not None:
+                    conditions.append(("note_formats", "N_native_text_bm25_note_formats", body, expanded[q.task_id]))
                 for key, condition, index, retrieval_query in conditions:
                     step = time.perf_counter()
-                    ranking = (rank_with_section_context(body, heading_index, retrieval_query) if key == "section_context"
+                    ranking = (rank_with_section_context(body, note_index, retrieval_query) if key == "note_formats" else
+                               rank_with_section_context(body, heading_index, retrieval_query) if key == "section_context"
                                else index.rank(retrieval_query))
                     elapsed = time.perf_counter() - step
                     timing["query_seconds"][key] += elapsed
-                    if key != "section_context":
+                    if key in _PREDICTIONS:
                         _check_saved(saved[key][q.task_id], q, ranking, expansion["run_id"], condition)
+                    if section_reference is not None and key != "note_formats":
+                        prior = section_saved[key][q.task_id]
+                        _check_saved(prior, q, ranking, section["run_id"], condition)
+                        if key == "section_context":
+                            for left, right in zip(prior["ranked_pages"], ranking):
+                                for field in ("body_score", "heading_score", "weighted_heading_score"):
+                                    _require(type(left[field]) in (int, float) and math.isfinite(left[field])
+                                             and math.isclose(left[field], right[field], rel_tol=1e-12, abs_tol=1e-12),
+                                             "Section-v1 score components failed reproduction")
                     if key == "baseline":
                         _check_saved(original_saved[q.task_id], q, ranking, native["run_id"], "N_native_text_bm25")
+                    if key == "note_formats":
+                        body_scores = {r["page_index"]: r["score"] for r in predictions["question_expansion"][q.task_id]["ranked_pages"]}
+                        _require(all(r["body_score"] == body_scores[r["page_index"]] for r in ranking),
+                                 "Note-format body scores changed")
                     predictions[key][q.task_id] = {"schema_version": 1, "run_id": run_id, "condition": condition,
                         "task_id": q.task_id, "doc_id": doc_id, "page_index_base": 0, "page_count": len(records),
                         "status": "ok", "error": None, "no_match": ranking[0]["score"] == 0,
                         "positive_score_page_count": sum(r["score"] > 0 for r in ranking),
                         "ranked_pages": ranking, "elapsed_seconds": elapsed}
         _require(seen == set(docs) and len(contexts) == totals["pages"], "Missing full-cohort native pages")
-        for key, name in {**_PREDICTIONS, "section_context": "section_predictions.jsonl"}.items():
+        names = {**_PREDICTIONS, "section_context": "section_predictions.jsonl"}
+        if section_reference is not None:
+            _require(contexts == saved_contexts, "Section-v1 source contexts failed reproduction")
+            names["note_formats"] = "note_predictions.jsonl"
+        for key, name in names.items():
             write_jsonl(output / name, (predictions[key][q.task_id] for q in queries))
         write_jsonl(output / "retrieval_queries.jsonl", (q.to_dict() for q in queries))
         write_jsonl(output / "expanded_retrieval_queries.jsonl", (expanded[q.task_id].to_dict() for q in queries))
@@ -248,6 +323,26 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
             "resets": dict(Counter(reset["reason"] for r in contexts for reset in r["resets"])),
             "policy": section_policy_record(), "source_cache": native_inputs["native_pages.jsonl"]}
         write_json(output / "section_context_summary.json", context_summary)
+        if section_reference is not None:
+            _require(context_summary == read_json(section_reference / "section_context_summary.json"),
+                     "Section-v1 context summary failed reproduction")
+            write_jsonl(output / "note_context.jsonl", note_contexts)
+            write_json(output / "note_context_summary.json", {
+                "documents": len(docs), "pages": len(note_contexts), "policy": note_policy_record(),
+                "source_cache": native_inputs["native_pages.jsonl"],
+                "pages_with_heading_tokens": sum(bool(r["heading_tokens"]) for r in note_contexts),
+                "total_heading_tokens": sum(r["heading_token_count"] for r in note_contexts),
+                "maximum_page_heading_tokens": max(r["heading_token_count"] for r in note_contexts),
+                "included_heading_modes": dict(Counter(h["mode"] for r in note_contexts for h in r["headings"] if h["included"])),
+                "rejections": dict(Counter(h["rejection_reason"] for r in note_contexts for h in r["headings"] if not h["included"])),
+                "changed_context_pages": sum({k: v for k, v in r.items() if k != "note_detection"} != old
+                                             for r, old in zip(note_contexts, contexts)),
+                "bare_candidate_decisions": dict(Counter("accepted" if c["accepted"] else c["rejection_reason"]
+                    for r in note_contexts for c in r["note_detection"]["candidates"])),
+                "observed_new_heading_kinds": dict(Counter(h["kind"] for r in note_contexts for h in r["headings"]
+                    if h["mode"] == "observed" and h["kind"] in {"note_bare_number", "note_en_dash"})),
+            })
+            manifest["section_control_reproduced"] = True
         manifest.update({"baseline_reproduced": True, "stopword_baseline_reproduced": True,
                          "expansion_control_reproduced": True, "timings": timing})
         verify_unchanged()
@@ -257,6 +352,10 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
                    for key in predictions}
         previous_metrics = read_json(reference / "comparison_metrics.json")
         _require(all(metrics[key] == previous_metrics[key] for key in _PREDICTIONS), "Control metrics failed reproduction")
+        if section_reference is not None:
+            prior_metrics = read_json(section_reference / "comparison_metrics.json")
+            _require(all(metrics[key] == prior_metrics[key] for key in (*_PREDICTIONS, "section_context")),
+                     "Section-v1 control metrics failed reproduction")
         comparison = {**metrics, "delta_at_k": {
             k: {metric: metrics["section_context"]["at_k"][k][metric] - values[metric]
                 for metric in ("macro_evidence_recall", "any_evidence_hit_rate", "all_evidence_coverage_rate")}
@@ -265,7 +364,18 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
             "interpretation": "labeled development heading-field ablation; not answer correctness, ledger memory or held-out evaluation"}
         multi = [label for label in labels if len(set(label["evidence_pages"])) > 1]
         comparison["multi_page"] = {key: evaluate_retrieval([predictions[key][l["task_id"]] for l in multi], multi,
-                                        ks=tuple(config["ks"])) for key in ("question_expansion", "section_context")} if multi else None
+                                        ks=tuple(config["ks"])) for key in
+                                        (("question_expansion", "section_context", "note_formats") if section_reference is not None
+                                         else ("question_expansion", "section_context"))} if multi else None
+        if section_reference is not None:
+            _require(prior_metrics["delta_at_k"] == comparison["delta_at_k"]
+                     and prior_metrics["delta_mrr_full_ranking"] == comparison["delta_mrr_full_ranking"]
+                     and prior_metrics["multi_page"] == ({key: comparison["multi_page"][key]
+                         for key in ("question_expansion", "section_context")} if multi else None),
+                     "Section-v1 comparison/subgroup metrics failed reproduction")
+            from finocr.pipelines.note_comparison import paired_comparisons
+            comparison["note_comparisons"] = paired_comparisons(predictions, metrics, labels, config["ks"])
+            comparison["interpretation"] = "last planned development heading-format ablation; no answer, held-out or OCR results"
         verify_unchanged()
         write_json(output / "comparison_metrics.json", comparison)
         verify_unchanged()
@@ -281,7 +391,8 @@ def _compare_section_context(baseline_dir, expansion_dir, output_dir, *, tasks_p
         manifest["elapsed_seconds"] = time.perf_counter() - started
         write_json(output / "run_manifest.json", manifest)
     return {"status": "complete", "run_id": run_id, "output_dir": str(output), **totals,
-            "expansion_control_reproduced": True, "evaluation": "complete"}
+            "expansion_control_reproduced": True, "evaluation": "complete",
+            **({"section_control_reproduced": True} if section_reference is not None else {})}
 
 
 def compare_section_context(baseline_dir, expansion_dir, output_dir, **kwargs):

@@ -136,6 +136,11 @@ def _observe(page):
 
 def build_section_context(pages: list[SourcePage]) -> list[dict]:
     """Only SourcePage objects accepted. Every report page is emitted, including blanks."""
+    return _build_context(pages, _observe)
+
+
+def _build_context(pages, observe):
+    """Shared scope/continuation/budget assembly; observers cannot change these rules."""
     if not pages or any(not isinstance(page, SourcePage) for page in pages):
         raise TypeError("Section construction accepts only a nonempty list of minimal SourcePage objects")
     doc_id = pages[0].doc_id
@@ -143,7 +148,7 @@ def build_section_context(pages: list[SourcePage]) -> list[dict]:
         raise ValueError("Context construction requires one report in contiguous zero-based physical order")
     output, active = [], None
     for page in pages:
-        observed, resets, meaningful = _observe(page)
+        observed, resets, meaningful = observe(page)
         blank = not meaningful
         if blank:
             resets.append({"offset": 0, "reason": "blank_or_navigation_only"})

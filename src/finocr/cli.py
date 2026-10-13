@@ -130,6 +130,13 @@ def build_parser() -> argparse.ArgumentParser:
     section.add_argument("--output-dir", required=True, help="New immutable comparison directory outside Git")
     section.add_argument("--tasks", help="Original frozen task file; defaults to recorded native path; parsed only after rankings")
     section.add_argument("--repository-root", default=".")
+    notes = commands.add_parser("compare-note-formats", help="Reproduce expansion/section v1 and test guarded note formats")
+    notes.add_argument("--baseline-dir", required=True)
+    notes.add_argument("--expansion-dir", required=True)
+    notes.add_argument("--section-dir", required=True, help="Saved complete section-v1 run on the same inputs")
+    notes.add_argument("--output-dir", required=True, help="New immutable directory outside Git and saved runs")
+    notes.add_argument("--tasks", help="Original frozen task file; parsed only after all predictions/context are saved")
+    notes.add_argument("--repository-root", default=".")
     return parser
 
 
@@ -452,6 +459,15 @@ def main(argv: list[str] | None = None) -> int:
             from finocr.pipelines.section_comparison import compare_section_context
             result = compare_section_context(
                 args.baseline_dir, args.expansion_dir, args.output_dir, tasks_path=args.tasks,
+                repository_root=args.repository_root,
+                progress=lambda message: print(message, file=sys.stderr, flush=True),
+            )
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "compare-note-formats":
+            from finocr.pipelines.note_comparison import compare_note_formats
+            result = compare_note_formats(
+                args.baseline_dir, args.expansion_dir, args.section_dir, args.output_dir, tasks_path=args.tasks,
                 repository_root=args.repository_root,
                 progress=lambda message: print(message, file=sys.stderr, flush=True),
             )

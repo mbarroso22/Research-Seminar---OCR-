@@ -29,8 +29,8 @@ Expansion v1 is frozen as the development control. See
 The uploaded full native cache now reproduces all 72 saved rankings; read
 [the exact score attribution and source-boundary review](docs/NATIVE_CACHE_DIAGNOSTIC.md).
 An offline reproduction helper and Windows commands are included there. That
-source/score review was completed before the new section-context implementation;
-no section-context, ledger, answer-generation, OCR-model, or held-out result is established.
+source/score review preceded section context; verified section-v1 results are
+described below. Ledger, answer-generation, OCR-model and held-out results remain pending.
 The older model adapter classes remain placeholders. The current-state document
 and run guides supersede historical setup/readiness text below.
 
@@ -47,7 +47,17 @@ Expansion v1 remains the development control; earlier verified results are uncha
 The [heading-detection versus query-matching review](docs/HEADING_FAILURE_REVIEW.md)
 separates missed/spurious headings from correct titles with zero, incidental, or
 insufficient lexical signal. It recommends a note-format coverage ablation with
-scoring held fixed. This recommendation is documented; no v2 change is implemented.
+scoring held fixed. The final planned heading-format ablation is now implemented as
+`finocr compare-note-formats`: en-dash Note titles and source-parent/sequentially
+gated bare numbered notes, with both frozen expansion/S1 controls reproduced.
+Read [the policy, exact PowerShell guide and retrieval-to-OCR transition](docs/NOTE_FORMAT_EXPERIMENT.md).
+The real note-format run is now verified: Recall@1/3 increases to 14.58%/36.81%,
+MRR to 0.347073, and Recall@5/complete coverage remain 40.97%/8 of 24.
+Read [the results, paired gains/regressions and baseline recommendation](docs/NOTE_FORMAT_RESULTS.md).
+Recommend carrying frozen expansion v1 into matched native/OCR retrieval at k=5;
+retain the note-format condition as the structural comparator. All five
+multi-page questions remain incomplete. This concludes the planned heading-format
+ablations; full-report rendering and OCR smoke evaluation are the next milestone.
 
 ## Current direction and implementation status (2026-10-05)
 

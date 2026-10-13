@@ -407,3 +407,110 @@ code is implemented yet. Do not bundle table-label cleanup, query stemming/synon
 weight search, adjacency, statement-family selection or ledger retention into this
 first ablation. Better detection is a testable hypothesis for lost legal/acquisition
 heading signal, not a promised recovery of the five multi-page evidence sets.
+
+## Final planned heading-format ablation implemented (2026-10-13 UTC)
+
+Continuation starts at pushed `7ebb8f5`. `finocr compare-note-formats` and
+`scripts/run_note_formats.ps1` implement the authorized note-format coverage
+comparison. Expansion v1 remains the development control; section v1 remains
+the saved structural comparator. No new experimental retrieval results are
+reported until the user executes locally and supplies the new run artifacts.
+
+The new source-only policy supports U+2013 en-dash Note titles and bare `N. Title`
+lines only after an exact standalone Notes to Consolidated Financial Statements
+parent. A bare chain must start at 1 on the parent page and then follow consecutive
+numbers; prose mentions, sequence gaps/repeats, unsupported title syntax, numeric
+tables and page references are rejected with source pointers/reasons. Region
+eligibility clears at observed Item boundaries and all existing resets. Its state
+permits recognition, not multi-page heading-text or financial-variable retention.
+Read docs/NOTE_FORMAT_EXPERIMENT.md and configs/note_formats_v1.json.
+
+Scoring/tokenization/expansion, heading weight 0.25, cap 64, continuation/reset
+rules, raw zero-based page IDs, full-report candidates and label exclusion remain
+fixed. Scopes and heading-index statistics can change only as a consequence of
+new detections. Existing generic-title/table-label and statement-prose false
+positives remain. The shared scope assembler preserves section v1 behavior and
+its original policy SHA. All 2,620 saved S1 source contexts reproduce exactly
+in a source-only cache check; S2 pilot ranking and metrics have not been run.
+Conservative source misses remain, including split numbering/title lines in
+Best Buy 2019 and the unchanged false contents reset at Best Buy 2015 p74.
+
+The comparison requires the saved native, expansion and S1 run lineages and
+hashes, reproduces all four historical full-ranking controls and S1 score
+components/context/metrics, and saves S2 outputs before parsing evidence labels.
+It verifies exact unchanged body scores, evaluates S2 against both S1 and E,
+and records paired gains/regressions, deeper gold-page ranks and the five
+multi-page questions. New artifacts are immutable and outside Git. The suite
+has 123 passing tests; actual Windows PowerShell/pilot execution remains pending.
+
+This is the last planned heading-format ablation. After verifying real outputs,
+recommend one retrieval baseline to freeze using primary Recall@5, complete
+coverage, paired regressions and incremental cost; do not select on MRR alone.
+If valid new headings yield no useful coverage advantage, favor expansion v1
+and record detector/matching/selection limits without another heading repair
+round. Any selection is development-only, not held-out evidence.
+
+Then follow roadmap phases 2–4: freeze cohort/retrieval, pin and inspect rendering,
+smoke-test one OCR engine (gold evidence pages only as an oracle diagnostic),
+cache complete-report OCR with source-page/failure accounting, and compare
+matched OCR/native retrieval under the frozen policy. The current render-pages
+command is evidence-only; full-report rendering must be implemented for that
+comparison. Answer extraction, ledger memory and held-out studies remain later
+separate stages; native text/evidence snippets are not full transcription ground
+truth and no OCR accuracy/cost/energy result is established by this patch.
+
+## Verified final note-format results and retrieval recommendation (2026-10-12 EDT)
+
+The researcher supplied complete run `20261013T030434Z-320eab2ccfc7` from folder
+`note-formats-20261013T030434Z-7541d0a1`, exit code 0, after 123 local tests passed.
+All 13 output hashes/sizes and 25 original/expansion/S1 input identities verify.
+Executed source fingerprint matches the delivered note-format implementation
+with Windows CRLF, on base 7ebb8f5 plus applied patch. Both 2,620-page source
+contexts and all 120 full rankings reproduce; independent BM25 verifies 26,195
+page scores (maximum absolute discrepancy 7.105427357601002e-15). Independent
+rank/set arithmetic confirms all metrics, paired deltas and five-question subgroup.
+
+Read docs/NOTE_FORMAT_RESULTS.md. S2 note formats improves Recall@1/3 to
+14.58%/36.81% versus E/S1 10.42%/32.64%; MRR is 0.3470729345497992 versus
+0.3024075204503773/0.31477955742883584. Recall@5 remains 40.97%, Hit@5 12/24,
+complete coverage 8/24, and all 24 annotated top-five sets are unchanged.
+All five multi-page tasks remain incomplete: subgroup Recall@5 36.67%, Hit@5
+4/5, Complete@5 0/5. Their S2 gold ranks are identical to S1.
+
+Against S1, Best Buy acquisitions p50 improves 4→1, Boeing legal p112 21→14,
+and Boeing cyclicality p7 29→28; no gold ranks regress. Against E, first-gold
+ranks improve for 11 questions, regress for 1 and stay fixed for 12. The
+remaining regressions are AMD revenue change p42 7→8 and Boeing customer p7
+39→46/p13 161→162; these already occurred in S1. At k=1 acquisitions supplies
+the gain against E/S1; at k=3 the gain against S1 is acquisitions and the gain
+against E is the earlier AMD quick-ratio change. No new top-five evidence is found.
+
+Source repair is established: bare acquisition/restructuring boundaries and
+the en-dash legal heading/one-page continuation reproduce. S2 adds 39 en-dash
+headings and 17 accepted bare notes, changes 57 page contexts and retains the
+64-token cap. Context contains 14,887 tokens on 1,667 pages. Known conservative
+split-note/false-contents limitations and generic/prose false positives remain.
+Correct note detection does not resolve vocabulary or multi-statement selection.
+
+The single run records 3.067642 s total including reproduction/validation/scoring;
+S2 context construction 0.999540 s versus S1 0.698179 s, and E/S1/S2 query
+totals 0.016589/0.031507/0.029583 s. These are descriptive fixed-order logs,
+not repeated latency, standalone pipeline cost or energy measurements.
+
+Recommend carrying forward the already frozen **expansion v1** as the matched
+native/OCR retrieval baseline at the predeclared five-page budget. Preserve
+docs/EXPANSION_V1_CONTROL.json unchanged; the recommendation record is
+docs/RETRIEVAL_BASELINE_RECOMMENDATION.json. S2's smaller-cutoff/MRR benefits
+are real but do not improve primary/complete evidence coverage; keep S2 as the
+completed structural comparator. This is an exploratory development choice,
+not demonstrated held-out superiority. No executable policies change here.
+
+The planned heading-format series is complete. Next implement full-report
+resumable rendering (existing render-pages is evidence-only), verify/pin one
+OCR adapter and inspect representative pages plus the 25 unique evidence pages
+as an oracle diagnostic. Then cache complete-report OCR and compare matched
+OCR/native retrieval under frozen E. Preserve cohort/PDF hashes, source IDs,
+full candidates, minimal queries and failure accounting. Choose/freeze resolution
+after the documented 200/300-DPI smoke inspection; hardware/runtime/checkpoints
+and OCR results remain pending. Keep answer extraction, ledger and held-out
+evaluation separate; no further heading-format tuning is planned.
