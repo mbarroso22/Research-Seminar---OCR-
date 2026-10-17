@@ -158,6 +158,38 @@ def build_parser() -> argparse.ArgumentParser:
     smoke.add_argument("--page-index", type=int, required=True)
     smoke.add_argument("--repository-root", default=".")
     smoke.add_argument("--timeout-seconds", type=float, default=600)
+    tables = commands.add_parser("select-ocr-tables", help="Select eight source-only financial tables without reading QA annotations")
+    tables.add_argument("--native-dir", required=True)
+    tables.add_argument("--render-dir", required=True)
+    tables.add_argument("--output", required=True)
+    table_review = commands.add_parser("review-ocr-tables", help="Offline approximate native/OCR numeric inspection; not CER/WER")
+    table_review.add_argument("--native-dir", required=True)
+    table_review.add_argument("--ocr-dir", required=True)
+    table_review.add_argument("--selection", required=True)
+    table_review.add_argument("--output", required=True)
+    report_ocr = commands.add_parser("ocr-reports", help="Resumable pinned CPU OCR; immutable attempts and full source coverage")
+    report_ocr.add_argument("--render-dir", required=True)
+    report_ocr.add_argument("--models-dir", required=True)
+    report_ocr.add_argument("--output-dir", required=True)
+    report_ocr.add_argument("--repository-root", default=".")
+    report_ocr.add_argument("--selection", help="Source financial-table setup selection; omit to process every report page")
+    report_ocr.add_argument("--resume", action="store_true")
+    report_ocr.add_argument("--device", choices=("cpu", "gpu:0"), default="cpu")
+    report_ocr.add_argument("--page-timeout-seconds", type=float, default=600)
+    report_ocr.add_argument("--initialization-timeout-seconds", type=float, default=180)
+    report_ocr.add_argument("--max-pages", type=int, help="Optional per-invocation attempt limit; preserves pending pages for resume")
+    matched = commands.add_parser("compare-native-ocr", help="Reproduce expansion v1 and compare complete native/OCR candidate rankings at k=5")
+    matched.add_argument("--native-dir", required=True)
+    matched.add_argument("--expansion-dir", required=True)
+    matched.add_argument("--ocr-dir", required=True)
+    matched.add_argument("--output-dir", required=True)
+    matched.add_argument("--tasks", help="Frozen scoring file; annotations parsed only after both rankings are saved")
+    matched.add_argument("--repository-root", default=".")
+    devices = commands.add_parser("compare-ocr-devices", help="Source-only eight-table CPU/GPU differences and timing, before full GPU execution")
+    devices.add_argument("--cpu-dir", required=True)
+    devices.add_argument("--gpu-dir", required=True)
+    devices.add_argument("--selection", required=True)
+    devices.add_argument("--output-dir", required=True)
     return parser
 
 
@@ -425,6 +457,36 @@ def _run_plan(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "compare-ocr-devices":
+            from finocr.pipelines.ocr_device_comparison import compare_ocr_devices
+            result = compare_ocr_devices(args.cpu_dir, args.gpu_dir, args.selection, args.output_dir)
+            print(json.dumps({k: result[k] for k in ("status", "page_count", "raw_text_equal_pages", "numeric_multisets_equal_pages", "full_gpu_recommendation")}, indent=2))
+            return 0 if result["status"] == "awaiting_manual_review" else 3
+        if args.command == "select-ocr-tables":
+            from finocr.pipelines.ocr_tables import select_financial_tables
+            result = select_financial_tables(args.native_dir, args.render_dir, args.output)
+            print(json.dumps({"output": args.output, "pages": result["pages"]}, indent=2))
+            return 0
+        if args.command == "review-ocr-tables":
+            from finocr.pipelines.ocr_tables import review_financial_tables
+            result = review_financial_tables(args.native_dir, args.ocr_dir, args.selection, args.output)
+            print(json.dumps({"output": args.output, "page_count": len(result["pages"]), "interpretation": result["interpretation"]}, indent=2))
+            return 0
+        if args.command == "ocr-reports":
+            from finocr.pipelines.report_ocr import run_report_ocr
+            result = run_report_ocr(args.render_dir, args.models_dir, args.output_dir, repository_root=args.repository_root,
+                resume=args.resume, selection_path=args.selection, page_timeout=args.page_timeout_seconds,
+                initialization_timeout=args.initialization_timeout_seconds, max_pages=args.max_pages, device=args.device,
+                progress=lambda message: print(message, file=sys.stderr, flush=True))
+            print(json.dumps(result, indent=2))
+            return 0 if result["status"] in {"complete", "diagnostic_complete"} else 3
+        if args.command == "compare-native-ocr":
+            from finocr.pipelines.ocr_comparison import compare_native_ocr
+            result = compare_native_ocr(args.native_dir, args.expansion_dir, args.ocr_dir, args.output_dir,
+                tasks_path=args.tasks, repository_root=args.repository_root,
+                progress=lambda message: print(message, file=sys.stderr, flush=True))
+            print(json.dumps(result, indent=2))
+            return 0
         if args.command == "convert-finlongdocqa":
             return _run_convert(args)
         if args.command == "validate-data":

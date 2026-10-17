@@ -558,3 +558,86 @@ No new corpus run or experimental metric is reported by this implementation.
 The 138-test suite includes real small PDF rendering fixtures and simulated
 OCR orchestration, with no downloaded/inferred model in development. Actual
 PowerShell/Windows renderer/model execution remains pending local setup outputs.
+
+## Full-report OCR implementation and recovered-workspace validation (2026-10-17)
+
+Continue from pushed `61a696d9ca7dd0c505b1de662ca3eaea57ed3e9d`. The supplied
+full-rendering records reconcile all 12 reports and 2,620 zero-based physical
+pages at 200 DPI. The pinned CPU smoke's artifact hashes, raw/normalized output,
+runtime and source image identity verify. Read docs/OCR_SETUP_REVIEW.md for
+identities, observed setup timings and limits: original PDFs, all rendered PNGs
+and model weights were not uploaded, and the old rendering wall time is only
+the last resume invocation. Baseline preservation was reported by the researcher;
+the next guide records a fresh independent before/after inventory pair.
+
+The recovered implementation now provides resumable full-report CPU OCR using
+the existing .venv-ocr and local model bundle. Per-report workers reuse model
+initialization. Immutable attempts retain raw results, line boxes/confidences,
+source/model checksums and explicit timeout/failure/interruption records.
+Atomic commits rebuild the aggregate after a crash. Resume verifies condition,
+code/runtime, source images, model files and previous results; completed/blank
+pages are reused, failures retried and prior attempts preserved. Full cohort
+records remain present during diagnostics and interruptions, with pending pages
+explicit. No PDF or baseline dependency is changed.
+
+The source-only financial-table selector previews eight pages across the four
+2015 reports. It reads no QA labels. Inspect local OCR on those tables before
+extending the same cache to all reports. Approximate numeric-token overlap is
+an inspection aid, not transcription or financial-accuracy ground truth.
+
+Matched native/OCR retrieval keeps frozen expansion v1 at primary k=5 with
+unchanged questions, scoring, tokenizer/stopwords, query expansion, full-report
+candidates and deterministic zero-based ties. Native full rankings/scores and
+expanded queries reproduce before evidence labels are parsed; both predictions
+are saved before evaluation. Answers/justifications/evidence labels never enter
+OCR or indexes. Blank/failed pages remain empty-text candidates. Pending,
+diagnostic and interrupted caches cannot supply full-pilot scores; final partial
+caches with all pages accounted for are explicitly failure-inclusive.
+
+Outputs report coverage, cumulative OCR attempts/retries and descriptive timing,
+paired evidence gains/losses/ranks, and all five multi-page questions' completeness.
+No OCR result or gain/regression is established by implementing that reporting.
+The latest reporting edits pass all 16 feature tests; the full 157-test suite
+passes with no skips on Linux, including real small rendering fixtures and
+simulated OCR workers. Windows execution of the new wrappers, financial-table
+quality review, full-report OCR and matched retrieval remain pending local
+execution and verification of real outputs. No CER/WER, answer, energy or
+held-out result is claimed.
+
+Read docs/FULL_OCR_WINDOWS.md for exact no-install PowerShell commands and
+recovery/resume steps. The final cumulative patch is against 61a696d and includes
+all required files. The earlier full-ocr-recovery.patch is preserved unchanged
+as a work-in-progress checkpoint; its status document remains historical.
+
+## Isolated second-machine GPU support (2026-10-17)
+
+The researcher reports Windows 11 Education 10.0.22000, Ryzen 5 PRO 5645,
+16 GB RAM, RTX 3070 Ti 8 GB, driver 537.70, Python 3.13 only and 563 GiB free.
+Official Paddle's cu118 index supplies a 3.3.0 Windows CPython 3.12 GPU wheel;
+NVIDIA's CUDA 11.8 Windows toolkit driver requirement is 522.06, below 537.70.
+Add Python 3.12.10 x64 per user to match the CPU reference, without replacing
+3.13. Keep PaddleOCR 3.3.2/PaddleX 3.3.10 and non-framework CPU dependency pins.
+Read docs/GPU_OCR_WINDOWS.md for official sources and exact staged commands.
+
+The incremental patch applies over 61a696d plus full-report-ocr-final.patch on
+the second machine only. Do not update the first machine while its CPU run
+continues: source fingerprint is part of resume validation. Existing CPU
+wrappers, frozen retrieval policies, model bundle and recovery checkpoint stay
+unchanged. GPU uses .venv-ocr-gpu and a separate cache; only device and required
+runtime differences change. Actual GPU/compiled CUDA checks reject CPU fallback;
+timing synchronizes around GPU prediction. FP32 and all OCR parameters stay fixed.
+
+The retained CPU diagnostic ad4cddfa7ac7489b8839275df9baf870 verifies all eight
+nonempty page attempts, manifest artifacts, full 2,620-page source plan and eight
+uploaded PNG hashes. Its selection is reused exactly. A source-only comparator
+validates CPU/GPU lineages and attempts, then reports per-page raw/normalized text,
+line order, polygons/confidences, numeric-token differences and separate page,
+startup and invocation timing. Equal number sets do not establish table accuracy;
+cross-machine timings are descriptive, not a device-isolated speedup estimate.
+No questions, answers or evidence labels enter this diagnostic.
+
+The complete suite is now 171 passing tests, including 14 new simulated device,
+cache-isolation, synchronization and comparison cases. Windows runtime and test
+execution, eight-page GPU OCR, manual inspection and CPU/GPU comparison remain
+pending local outputs. The comparator deliberately leaves a full-GPU recommendation
+pending manual/artifact review. No new GPU experimental result is reported here.

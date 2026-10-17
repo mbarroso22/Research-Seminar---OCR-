@@ -12,7 +12,7 @@ separately. See [the Windows run guide](docs/NATIVE_BASELINE_WINDOWS.md).
 The user supplied verified original and stopword-only pilot runs: evidence Recall@5
 was 28.47% and 30.56%, respectively; complete evidence coverage was 6/24 for both.
 Read [the verified comparison](docs/STOPWORD_COMPARISON_RESULTS.md) for its scope
-and limitations. No answer-generation or OCR-model result is established.
+and limitations. No answer-generation or matched OCR retrieval result is established.
 
 The implemented development comparison is `finocr compare-query-expansion`:
 fixed question-only financial terms on the unchanged stopword page index, with both
@@ -30,7 +30,7 @@ The uploaded full native cache now reproduces all 72 saved rankings; read
 [the exact score attribution and source-boundary review](docs/NATIVE_CACHE_DIAGNOSTIC.md).
 An offline reproduction helper and Windows commands are included there. That
 source/score review preceded section context; verified section-v1 results are
-described below. Ledger, answer-generation, OCR-model and held-out results remain pending.
+described below. Ledger, answer-generation, matched OCR retrieval and held-out results remain pending.
 The older model adapter classes remain placeholders. The current-state document
 and run guides supersede historical setup/readiness text below.
 
@@ -57,7 +57,7 @@ Read [the results, paired gains/regressions and baseline recommendation](docs/NO
 Recommend carrying frozen expansion v1 into matched native/OCR retrieval at k=5;
 retain the note-format condition as the structural comparator. All five
 multi-page questions remain incomplete. This concludes the planned heading-format
-ablations; full-report rendering and OCR smoke evaluation are the next milestone.
+ablations; full-report OCR and matched retrieval are the next milestone.
 
 Expansion v1 is now frozen for matched native/OCR retrieval at k=5. The OCR
 setup tools collect current Windows GPU/VRAM, RAM, disk and interpreter details,
@@ -65,7 +65,23 @@ render all physical pages with a resumable full-cohort plan, and provide a separ
 pinned CPU environment for one standard PaddleOCR smoke page. Read
 [the staged PowerShell guide](docs/OCR_SETUP_WINDOWS.md) and run the **no-install
 machine inventory first**. Existing `.venv` dependencies and retrieval policies
-remain fixed. Hardware readings, OCR installation and real smoke results are pending.
+remain fixed. The researcher's completed 200-DPI rendering cache and pinned CPU
+smoke are now verified; see [the setup artifact review](docs/OCR_SETUP_REVIEW.md).
+
+Continue from `61a696d` with [resumable full-report OCR and the matched comparison](docs/FULL_OCR_WINDOWS.md).
+The new source-only financial-table diagnostic precedes the full run. Per-report
+workers reuse initialization; immutable attempts preserve raw outputs, failures and
+zero-based IDs. Matched retrieval reproduces expansion v1 before loading labels,
+keeps every report page as a candidate, and reports paired/multi-page coverage at k=5.
+Full OCR, table-diagnostic quality and native/OCR experimental outcomes remain
+pending local execution; the successful cover-page smoke is a setup result.
+
+The second machine's [isolated GPU diagnostic guide](docs/GPU_OCR_WINDOWS.md)
+uses the official CUDA 11.8 Paddle 3.3.0 Windows wheel with the existing 537.70
+driver, a separate environment/cache, and the same eight source financial tables.
+It compares raw/normalized output differences and synchronized timing against the
+retained CPU diagnostic. Full GPU execution remains pending that review; leave
+the continuing first-machine CPU run and its checkout unchanged.
 
 ## Current direction and implementation status (2026-10-05)
 

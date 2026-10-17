@@ -150,21 +150,50 @@ def run_ocr_smoke(render_dir, models_dir, output_dir, *, doc_id, page_index, rep
             "selected_pages": 1, "full_ocr_coverage": False}
 
 
-def _worker(request_path):
-    request = read_json(request_path); output = Path(request["output"])
+def create_ocr_engine(model_paths, device="cpu"):
+    """Frozen settings and model files, with an explicit isolated device condition."""
+    from finocr.pipelines.ocr_device import device_condition, synchronize, validate_worker_runtime
+    configuration, pins = device_condition(device)
     if sys.version_info[:2] != (3, 12) or struct.calcsize("P") != 8:
         raise RuntimeError("Use the separate 64-bit Python 3.12 OCR environment")
-    actual = {name: importlib.metadata.version(name) for name in PACKAGE_PINS}
-    if actual != PACKAGE_PINS:
+    actual = {name: importlib.metadata.version(name) for name in pins}
+    if actual != pins:
         raise RuntimeError(f"OCR package pins differ: {actual}")
-    print("Importing and initializing the local CPU OCR models", flush=True)
+    opposite = "paddlepaddle-gpu" if device == "cpu" else "paddlepaddle"
+    try:
+        importlib.metadata.version(opposite)
+    except importlib.metadata.PackageNotFoundError:
+        pass
+    else:
+        raise RuntimeError("CPU and GPU Paddle distributions must use separate environments")
+    print(f"Importing and initializing the local {device} OCR models", flush=True)
     start = time.perf_counter()
     import paddle
     from paddleocr import PaddleOCR
+    if device == "gpu:0":
+        if not paddle.is_compiled_with_cuda() or paddle.version.cuda() != "11.8":
+            raise RuntimeError("Use the pinned CUDA 11.8 GPU wheel; no CPU fallback")
+        paddle.set_device(device)
     paddle.seed(0)
-    engine = PaddleOCR(**OCR_CONFIG,
-        text_detection_model_name=MODEL_NAMES[0], text_detection_model_dir=request["model_paths"][MODEL_NAMES[0]],
-        text_recognition_model_name=MODEL_NAMES[1], text_recognition_model_dir=request["model_paths"][MODEL_NAMES[1]])
+    engine = PaddleOCR(**configuration,
+        text_detection_model_name=MODEL_NAMES[0], text_detection_model_dir=model_paths[MODEL_NAMES[0]],
+        text_recognition_model_name=MODEL_NAMES[1], text_recognition_model_dir=model_paths[MODEL_NAMES[1]])
+    synchronize(device)
+    initialized = time.perf_counter()
+    runtime = {"packages": actual, "python": sys.version, "paddle_device": paddle.device.get_device(),
+               "compiled_with_cuda": paddle.is_compiled_with_cuda()}
+    if device == "gpu:0":
+        properties = paddle.device.cuda.get_device_properties(0)
+        runtime.update(cuda=paddle.version.cuda(), cudnn=paddle.version.cudnn(),
+                       gpu_name=properties.name, gpu_total_memory=properties.total_memory,
+                       gpu_compute_capability=[properties.major, properties.minor])
+    validate_worker_runtime(runtime, device)
+    return engine, runtime, initialized-start
+
+
+def _worker(request_path):
+    request = read_json(request_path); output = Path(request["output"])
+    engine, runtime, initialization = create_ocr_engine(request["model_paths"])
     initialized = time.perf_counter()
     print("Processing the selected source PNG", flush=True)
     results = list(engine.predict(request["image"]))
@@ -173,9 +202,8 @@ def _worker(request_path):
     write_json(output / "raw_ocr_result.json", payload)
     normalized = normalize_ocr_result(payload)
     write_json(output / "worker_result.json", {"normalized": normalized,
-        "timings": {"imports_and_initialization_seconds": initialized-start, "inference_and_serialization_seconds": time.perf_counter()-initialized},
-        "runtime": {"packages": actual, "python": sys.version, "paddle_device": paddle.device.get_device(),
-                    "compiled_with_cuda": paddle.is_compiled_with_cuda()}})
+        "timings": {"imports_and_initialization_seconds": initialization, "inference_and_serialization_seconds": time.perf_counter()-initialized},
+        "runtime": runtime})
 
 
 if __name__ == "__main__":

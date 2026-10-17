@@ -16,3 +16,5 @@ checkpoints/
 data/interim/rendered_pages/
 results/*
 !results/.gitkeep
+
+.venv-ocr-gpu/
