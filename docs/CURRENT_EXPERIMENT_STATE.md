@@ -641,3 +641,58 @@ cache-isolation, synchronization and comparison cases. Windows runtime and test
 execution, eight-page GPU OCR, manual inspection and CPU/GPU comparison remain
 pending local outputs. The comparator deliberately leaves a full-GPU recommendation
 pending manual/artifact review. No new GPU experimental result is reported here.
+
+## Verified completed native/CPU-OCR/GPU-OCR pilot (2026-10-18)
+
+The four supplied full-cache/matched-retrieval archives are now independently
+verified. Read docs/NATIVE_OCR_PILOT_RESULTS.md and its JSON record. This
+supersedes the dated pending-run statements above; it does not alter OCR,
+retrieval, source PDFs or the frozen expansion v1 policy/control.
+
+CPU run ad4cddfa7ac7489b8839275df9baf870 and GPU run
+2ceb1dc5ae404c01b65e7128ea5afb3b each account for all 12 reports and 2,620
+zero-based physical pages: 2,615 nonempty and five explicit blanks, no failures,
+pending pages or retries. All 5,240 immutable page commits/raw normalizations,
+118 manifest-listed artifacts and 32 successful worker sessions reconcile.
+Source/render/model identities match across conditions. Actual PDF/image/model
+bytes are not all included in these four archives; recorded lineage is verified.
+
+Independent query-expansion, token counting, BM25 and label/set arithmetic
+reproduce all saved full rankings/metrics and the historical native E control.
+There are 15,717 independently computed scores across 72 unique rankings;
+maximum absolute discrepancy is 7.105427357601002e-15. Primary Recall@5 is
+40.972222%, Hit@5 12/24 and Complete@5 8/24 for native, CPU-OCR and GPU-OCR.
+All 24 tasks recover the same annotated top-five evidence sets, with no
+Recall@5 gain/regression. OCR Recall@1/3 is 8.333333%/24.305556% versus native
+10.416667%/32.638889%; MRR falls 0.3024075204503773 -> 0.26647403541841813.
+Three overall top-five page sets and seven top-five orders change. All five
+multi-page tasks remain incomplete: Recall@5 36.666667%, Hit@5 4/5, Complete 0/5.
+
+CPU/GPU raw text differs only at AMD 2022 p29 (period), Best Buy 2019 p99
+(leading empty line), PepsiCo 2019 p107 (slash/em dash) and PepsiCo 2022 p255
+(period). Raw/search strings match on 2,616/2,617 pages; all 2,620 indexed token
+multisets and all CPU/GPU scores/ranks match. None of the four pages is selected
+at k=5; all 24 ordered CPU/GPU top-five raw-text packets match exactly. The
+slash/dash cell's financial/source meaning is not established by token equality.
+
+Cumulative recorded OCR wall time, including the diagnostic, is CPU
+65,903.791720 s and GPU 1,163.585884 s. Both retain two invocations, 2,620
+attempts and 16 model initializations. The observed ratio 56.6385 is descriptive,
+not a randomized device-only speedup or an energy/corpus-throughput claim.
+Rendering retains only its last invocation time. Shared dependency versions
+match; GPU-only NVIDIA packages and htcondor are explicitly recorded. The CPU
+run's source matches the delivered CPU patch, while GPU sources match committed
+3d0fc59 under Windows CRLF; earlier OCR runs recorded 61a696d plus working edits.
+
+Next follow docs/BOUNDED_ANSWER_EXPERIMENT.md: one fixed compact text generator,
+saved k=5 packets, deterministic bounded packing and isolated generation runtime.
+Propose at most 48 distinct primary requests for 72 logical N/C/G records because
+identical CPU/GPU requests can share a completion; at most 24 annotated-page
+diagnostics follow sealed primary predictions. Freeze the private scoring key
+before generation. Separate numerical extraction/units/sign/year/formula/arithmetic,
+financial interpretation and citation support. All 24 remain in task denominators;
+facet scores use their own predeclared eligible subsets. No new OCR/retrieval
+tuning, new answer result, CER/WER, training or held-out claim is introduced.
+
+This is a documentation-only patch against 3d0fc59. Runtime code, dependencies,
+all executable policies and docs/EXPANSION_V1_CONTROL.json remain unchanged.

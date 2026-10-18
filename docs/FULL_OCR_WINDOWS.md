@@ -1,5 +1,10 @@
 # Resumable full-report OCR and matched retrieval on Windows
 
+**Status update 2026-10-18:** both full OCR runs and matched comparisons are
+complete and independently verified in [NATIVE_OCR_PILOT_RESULTS.md](NATIVE_OCR_PILOT_RESULTS.md).
+The setup/pending statements below describe the original execution stage;
+retain these instructions as history. Reuse the completed immutable caches.
+
 Continue from `61a696d` using the existing `.venv`, `.venv-ocr`, model bundle and
 complete 200-DPI rendering. **No installation commands are needed.** Expansion
 v1 stays frozen at primary **k=5**. Read the verified setup observations in

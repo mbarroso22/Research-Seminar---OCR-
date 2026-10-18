@@ -1,5 +1,9 @@
 # Review of the supplied rendering and CPU-smoke artifacts
 
+**Later milestone 2026-10-18:** full CPU/GPU OCR and matched retrieval are now
+verified in [NATIVE_OCR_PILOT_RESULTS.md](NATIVE_OCR_PILOT_RESULTS.md). This file
+retains the earlier setup-only review and its then-pending execution status.
+
 Reviewed 2026-10-17, continuing from `61a696d`. This is a review of real setup
 outputs supplied by the researcher, not a full-report OCR experiment. The next
 commands are in [FULL_OCR_WINDOWS.md](FULL_OCR_WINDOWS.md).

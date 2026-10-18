@@ -73,17 +73,27 @@ The new source-only financial-table diagnostic precedes the full run. Per-report
 workers reuse initialization; immutable attempts preserve raw outputs, failures and
 zero-based IDs. Matched retrieval reproduces expansion v1 before loading labels,
 keeps every report page as a candidate, and reports paired/multi-page coverage at k=5.
-Full OCR, table-diagnostic quality and native/OCR experimental outcomes remain
-pending local execution; the successful cover-page smoke is a setup result.
+The completed native/CPU-OCR/GPU-OCR pilot is now independently verified; see
+[the results and limitations](docs/NATIVE_OCR_PILOT_RESULTS.md) and
+[the structured verification record](docs/NATIVE_OCR_PILOT_RESULTS.json).
+All three conditions have Recall@5 40.97%, Hit@5 12/24 and complete coverage 8/24;
+all five multi-page questions remain incomplete. OCR has lower k=1/3 performance
+than native. Both full OCR caches cover 2,620 pages with 2,615 nonempty pages,
+five explicit blanks and no failures. CPU/GPU full scores/rankings match despite
+four raw-text differences; this is not a transcription or answer-accuracy result.
 
 The second machine's [isolated GPU diagnostic guide](docs/GPU_OCR_WINDOWS.md)
 uses the official CUDA 11.8 Paddle 3.3.0 Windows wheel with the existing 537.70
 driver, a separate environment/cache, and the same eight source financial tables.
 It compares raw/normalized output differences and synchronized timing against the
-retained CPU diagnostic. Full GPU execution remains pending that review; leave
-the continuing first-machine CPU run and its checkout unchanged.
+retained CPU diagnostic. Both full runs and matched comparisons have completed;
+the earlier setup guides remain historical execution instructions. Keep expansion
+v1 frozen and reuse the immutable caches. Next is the
+[proposed bounded answer-generation/correctness pilot](docs/BOUNDED_ANSWER_EXPERIMENT.md),
+with numerical accuracy, interpretation and evidence support scored separately.
+Generation is not implemented or run by this documentation update.
 
-## Current direction and implementation status (2026-10-05)
+## Historical implementation status (2026-10-05)
 
 The current proposal is a compact financial-document pipeline comparing ordinary
 retrieval, section context, and bounded source-linked memory at a fixed inference

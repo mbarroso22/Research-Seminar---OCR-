@@ -1,0 +1,2271 @@
+{
+  "schema_version": 1,
+  "status": "verified_real_execution_artifacts",
+  "verification_date": "2026-10-18",
+  "documentation_base_commit": "3d0fc599cfb3b7abae0c60761c5f31d5018e43fc",
+  "cohort": {
+    "companies": 4,
+    "reports": 12,
+    "annotated_reports": 6,
+    "pages": 2620,
+    "questions": 24,
+    "distinct_gold_pages": 25,
+    "question_gold_page_references": 30,
+    "multipage_questions": 5,
+    "experimental_group": "label-exposed development pilot"
+  },
+  "frozen_control": {
+    "name": "N_native_text_bm25_question_expansion_v1",
+    "policy_sha256": "80414d370839eceef3dc5c8574b57d65a22f7551ddad520c263dc4c15c67f1a3",
+    "reference_run_id": "20261009T020622Z-76a16239e13d",
+    "reference_manifest_sha256": "4eb18afc2eecc460cdd7b38b50773625ed8a59dfd862ada787395223b31bba63",
+    "tasks": {
+      "sha256": "1d1bfa444a3041b3e51be9535ff276fc89fa3d7985231a0bd7f4aa6746395356",
+      "size_bytes": 147707
+    },
+    "page_index_base": 0,
+    "primary_k": 5,
+    "k1": 1.2,
+    "b": 0.75,
+    "candidate_policy": "all physical page indices; empty/failed page text is empty",
+    "tokenizer_version": "unicode-financial-v1",
+    "stopword_sha256": "577d51d00457b28c9fa35d0fa4198d74d414ecbdf5c51a94b395666774644b99",
+    "query_fields": [
+      "task_id",
+      "doc_id",
+      "question"
+    ],
+    "labels_used_only_for_offline_scoring": true,
+    "executable_changes": false
+  },
+  "archives": {
+    "full-cpu-ocr-cache(1).zip": {
+      "sha256": "6fda4820c21414fea1f28fd60d198326387665f57611bf5e29e60afaac56abf7",
+      "size_bytes": 46380508
+    },
+    "full-gpu-ocr-cache(3).zip": {
+      "sha256": "6e90f7a041affc8c13bf5d2757656ca03a72975a80a35dd5ac476a0dcdd61aa9",
+      "size_bytes": 46877069
+    },
+    "native-cpu-ocr-retrieval(2).zip": {
+      "sha256": "e0d409aec072ca42c9fdf6bbeb4f1182af2e90e2a54edc6869ddb2bede7ed1a9",
+      "size_bytes": 127954
+    },
+    "native-gpu-ocr-retrieval(2).zip": {
+      "sha256": "eee979e63d36e95c5a99324356c1281f6b88bd460545d3bc1f5236216d63551e",
+      "size_bytes": 127664
+    }
+  },
+  "runs": {
+    "cpu": {
+      "directory": "cpu-full-200dpi-20261017T204901Z-f3f8357f",
+      "run_id": "ad4cddfa7ac7489b8839275df9baf870",
+      "manifest": {
+        "sha256": "12a73c95b9d72a4100dd4c716c15705c42be5e6870b379b2b3b18273e0ee6d5e",
+        "size_bytes": 45180
+      },
+      "code": {
+        "git_commit": "61a696d9ca7dd0c505b1de662ca3eaea57ed3e9d",
+        "git_diff_sha256": "12ee65a07cba25398fb24939ebfb5da4d94cbaaacf1dfd6c22538a0ea531e7a1",
+        "git_dirty": true,
+        "package_versions": {
+          "cryptography": "50.0.2",
+          "financial-ocr-research": "0.2.0",
+          "fonttools": null,
+          "pypdf": "6.19.0"
+        },
+        "platform": "Windows-11-10.0.22000-SP0",
+        "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+        "python_source_sha256": "a408775060c340843c51f93f4dcc36f1ef3983bb70b421a21c31bd0d37593fad"
+      },
+      "status": "complete",
+      "coverage": {
+        "blank_pages": 5,
+        "completed_engine_pages": 2620,
+        "documents": 12,
+        "expected_pages": 2620,
+        "failure_pages": 0,
+        "nonempty_pages": 2615,
+        "pending_pages": 0,
+        "reports": {
+          "financebench:AMD_2015_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 215,
+            "expected_pages": 215,
+            "failure_pages": 0,
+            "nonempty_pages": 215,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 215
+            }
+          },
+          "financebench:AMD_2019_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 109,
+            "expected_pages": 109,
+            "failure_pages": 0,
+            "nonempty_pages": 109,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 109
+            }
+          },
+          "financebench:AMD_2022_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 121,
+            "expected_pages": 121,
+            "failure_pages": 0,
+            "nonempty_pages": 121,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 121
+            }
+          },
+          "financebench:BESTBUY_2015_10K": {
+            "blank_pages": 2,
+            "completed_engine_pages": 147,
+            "expected_pages": 147,
+            "failure_pages": 0,
+            "nonempty_pages": 145,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 2,
+              "ok": 145
+            }
+          },
+          "financebench:BESTBUY_2019_10K": {
+            "blank_pages": 1,
+            "completed_engine_pages": 107,
+            "expected_pages": 107,
+            "failure_pages": 0,
+            "nonempty_pages": 106,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 1,
+              "ok": 106
+            }
+          },
+          "financebench:BESTBUY_2023_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 75,
+            "expected_pages": 75,
+            "failure_pages": 0,
+            "nonempty_pages": 75,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 75
+            }
+          },
+          "financebench:BOEING_2015_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 174,
+            "expected_pages": 174,
+            "failure_pages": 0,
+            "nonempty_pages": 174,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 174
+            }
+          },
+          "financebench:BOEING_2019_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 144,
+            "expected_pages": 144,
+            "failure_pages": 0,
+            "nonempty_pages": 144,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 144
+            }
+          },
+          "financebench:BOEING_2022_10K": {
+            "blank_pages": 1,
+            "completed_engine_pages": 190,
+            "expected_pages": 190,
+            "failure_pages": 0,
+            "nonempty_pages": 189,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 1,
+              "ok": 189
+            }
+          },
+          "financebench:PEPSICO_2015_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 168,
+            "expected_pages": 168,
+            "failure_pages": 0,
+            "nonempty_pages": 168,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 168
+            }
+          },
+          "financebench:PEPSICO_2019_10K": {
+            "blank_pages": 1,
+            "completed_engine_pages": 667,
+            "expected_pages": 667,
+            "failure_pages": 0,
+            "nonempty_pages": 666,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 1,
+              "ok": 666
+            }
+          },
+          "financebench:PEPSICO_2022_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 503,
+            "expected_pages": 503,
+            "failure_pages": 0,
+            "nonempty_pages": 503,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 503
+            }
+          }
+        },
+        "status_counts": {
+          "blank_ocr_text": 5,
+          "ok": 2615
+        }
+      },
+      "timing": {
+        "failed_initializations": 0,
+        "model_initialization_seconds": 107.28105239989236,
+        "page_attempt_wall_seconds": 65699.2588688964,
+        "page_attempts": 2620,
+        "page_attempts_with_unknown_duration": 0,
+        "policy": "cumulative actual invocations/attempts including retries and diagnostic reuse; fixed-order descriptive timing, not energy or a repeated latency benchmark",
+        "recorded_invocation_wall_seconds": 65903.79171969998,
+        "unfinished_invocations": 0,
+        "worker_initialization_wall_seconds": 112.27347519947216,
+        "worker_initializations": 16,
+        "worker_page_seconds": 65520.54924309277,
+        "worker_startup_attempts": 16
+      },
+      "executions": [
+        {
+          "elapsed_seconds": 205.10733009991236,
+          "finished_utc": "2026-10-17T20:54:34.349759+00:00",
+          "max_pages": null,
+          "mode": "diagnostic",
+          "newly_attempted_pages": 8,
+          "selected_pages": 8,
+          "selection_identity": {
+            "sha256": "7f3b4c5a8e7b9fedafb79b3623c780e30fcf7f26b427d4322b10c681e30fc5d2",
+            "size_bytes": 2729
+          },
+          "started_utc": "2026-10-17T20:51:09.200563+00:00",
+          "validation_seconds": 15.232589799910784
+        },
+        {
+          "elapsed_seconds": 65698.68438960006,
+          "finished_utc": "2026-10-18T15:15:22.393811+00:00",
+          "max_pages": null,
+          "mode": "full",
+          "newly_attempted_pages": 2612,
+          "selected_pages": 2620,
+          "selection_identity": null,
+          "started_utc": "2026-10-17T21:00:20.822388+00:00",
+          "validation_seconds": 4.1837718999013305
+        }
+      ]
+    },
+    "gpu": {
+      "directory": "gpu-diagnostic-200dpi-20261017T222256Z-d11c4cff",
+      "run_id": "2ceb1dc5ae404c01b65e7128ea5afb3b",
+      "manifest": {
+        "sha256": "c79e71c736ca6fe1f33d3fc7cdae039f212d01a094a209c3cd9eb17324afcf0d",
+        "size_bytes": 45816
+      },
+      "code": {
+        "git_commit": "61a696d9ca7dd0c505b1de662ca3eaea57ed3e9d",
+        "git_diff_sha256": "d50caf4ac72a8fab897ae2243b592eaf9dffc6f221e8b4852e1ebe4885ebf246",
+        "git_dirty": true,
+        "package_versions": {
+          "cryptography": "50.0.2",
+          "financial-ocr-research": "0.2.0",
+          "fonttools": null,
+          "pypdf": "6.19.0"
+        },
+        "platform": "Windows-11-10.0.22000-SP0",
+        "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+        "python_source_sha256": "4008f049ffb362f49a40fb86f0946f077bef55e862e86aa4f85de14d2f5b80e1"
+      },
+      "status": "complete",
+      "coverage": {
+        "blank_pages": 5,
+        "completed_engine_pages": 2620,
+        "documents": 12,
+        "expected_pages": 2620,
+        "failure_pages": 0,
+        "nonempty_pages": 2615,
+        "pending_pages": 0,
+        "reports": {
+          "financebench:AMD_2015_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 215,
+            "expected_pages": 215,
+            "failure_pages": 0,
+            "nonempty_pages": 215,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 215
+            }
+          },
+          "financebench:AMD_2019_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 109,
+            "expected_pages": 109,
+            "failure_pages": 0,
+            "nonempty_pages": 109,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 109
+            }
+          },
+          "financebench:AMD_2022_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 121,
+            "expected_pages": 121,
+            "failure_pages": 0,
+            "nonempty_pages": 121,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 121
+            }
+          },
+          "financebench:BESTBUY_2015_10K": {
+            "blank_pages": 2,
+            "completed_engine_pages": 147,
+            "expected_pages": 147,
+            "failure_pages": 0,
+            "nonempty_pages": 145,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 2,
+              "ok": 145
+            }
+          },
+          "financebench:BESTBUY_2019_10K": {
+            "blank_pages": 1,
+            "completed_engine_pages": 107,
+            "expected_pages": 107,
+            "failure_pages": 0,
+            "nonempty_pages": 106,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 1,
+              "ok": 106
+            }
+          },
+          "financebench:BESTBUY_2023_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 75,
+            "expected_pages": 75,
+            "failure_pages": 0,
+            "nonempty_pages": 75,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 75
+            }
+          },
+          "financebench:BOEING_2015_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 174,
+            "expected_pages": 174,
+            "failure_pages": 0,
+            "nonempty_pages": 174,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 174
+            }
+          },
+          "financebench:BOEING_2019_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 144,
+            "expected_pages": 144,
+            "failure_pages": 0,
+            "nonempty_pages": 144,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 144
+            }
+          },
+          "financebench:BOEING_2022_10K": {
+            "blank_pages": 1,
+            "completed_engine_pages": 190,
+            "expected_pages": 190,
+            "failure_pages": 0,
+            "nonempty_pages": 189,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 1,
+              "ok": 189
+            }
+          },
+          "financebench:PEPSICO_2015_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 168,
+            "expected_pages": 168,
+            "failure_pages": 0,
+            "nonempty_pages": 168,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 168
+            }
+          },
+          "financebench:PEPSICO_2019_10K": {
+            "blank_pages": 1,
+            "completed_engine_pages": 667,
+            "expected_pages": 667,
+            "failure_pages": 0,
+            "nonempty_pages": 666,
+            "pending_pages": 0,
+            "status_counts": {
+              "blank_ocr_text": 1,
+              "ok": 666
+            }
+          },
+          "financebench:PEPSICO_2022_10K": {
+            "blank_pages": 0,
+            "completed_engine_pages": 503,
+            "expected_pages": 503,
+            "failure_pages": 0,
+            "nonempty_pages": 503,
+            "pending_pages": 0,
+            "status_counts": {
+              "ok": 503
+            }
+          }
+        },
+        "status_counts": {
+          "blank_ocr_text": 5,
+          "ok": 2615
+        }
+      },
+      "timing": {
+        "failed_initializations": 0,
+        "model_initialization_seconds": 126.49953890405595,
+        "page_attempt_wall_seconds": 924.0696821976453,
+        "page_attempts": 2620,
+        "page_attempts_with_unknown_duration": 0,
+        "policy": "cumulative actual invocations/attempts including retries and diagnostic reuse; fixed-order descriptive timing, not energy or a repeated latency benchmark",
+        "recorded_invocation_wall_seconds": 1163.5858836006373,
+        "unfinished_invocations": 0,
+        "worker_initialization_wall_seconds": 131.0896270032972,
+        "worker_initializations": 16,
+        "worker_page_seconds": 747.8767134808004,
+        "worker_startup_attempts": 16
+      },
+      "executions": [
+        {
+          "elapsed_seconds": 70.55224430002272,
+          "finished_utc": "2026-10-17T22:34:33.287042+00:00",
+          "max_pages": null,
+          "mode": "diagnostic",
+          "newly_attempted_pages": 8,
+          "selected_pages": 8,
+          "selection_identity": {
+            "sha256": "7f3b4c5a8e7b9fedafb79b3623c780e30fcf7f26b427d4322b10c681e30fc5d2",
+            "size_bytes": 2729
+          },
+          "started_utc": "2026-10-17T22:33:22.693721+00:00",
+          "validation_seconds": 15.002373998984694
+        },
+        {
+          "elapsed_seconds": 1093.0336393006146,
+          "finished_utc": "2026-10-17T23:02:53.949574+00:00",
+          "max_pages": null,
+          "mode": "full",
+          "newly_attempted_pages": 2612,
+          "selected_pages": 2620,
+          "selection_identity": null,
+          "started_utc": "2026-10-17T22:44:40.882768+00:00",
+          "validation_seconds": 4.15394919924438
+        }
+      ]
+    },
+    "cpu-retrieval": {
+      "directory": "native-ocr-expansion-v1-20261017T204901Z-f3f8357f",
+      "run_id": "2830eb7f969f44559e9dad1ddc82fd57",
+      "manifest": {
+        "sha256": "d49a871743eacb187f62339ed3788ca75bd9a37376c4a2b86401b8ad8f82a69c",
+        "size_bytes": 14639
+      },
+      "code": {
+        "git_commit": "61a696d9ca7dd0c505b1de662ca3eaea57ed3e9d",
+        "git_diff_sha256": "12ee65a07cba25398fb24939ebfb5da4d94cbaaacf1dfd6c22538a0ea531e7a1",
+        "git_dirty": true,
+        "package_versions": {
+          "cryptography": "50.0.2",
+          "financial-ocr-research": "0.2.0",
+          "fonttools": "4.66.1",
+          "pypdf": "6.19.0"
+        },
+        "platform": "Windows-11-10.0.22000-SP0",
+        "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+        "python_source_sha256": "a408775060c340843c51f93f4dcc36f1ef3983bb70b421a21c31bd0d37593fad"
+      },
+      "status": "complete",
+      "index_seconds": {
+        "native": 0.5444097998552024,
+        "ocr": 0.48430379945784807
+      },
+      "query_seconds": {
+        "native": 0.017955100163817406,
+        "ocr": 0.018171799601987004
+      },
+      "elapsed_seconds": 21.31693989993073,
+      "inputs": {
+        "expansion_manifest": {
+          "sha256": "4eb18afc2eecc460cdd7b38b50773625ed8a59dfd862ada787395223b31bba63",
+          "size_bytes": 11154
+        },
+        "native_manifest": {
+          "sha256": "5e4213b5e7e65a53e01e78352abeb039c6c79eac7a55c9c0999f304d4d114497",
+          "size_bytes": 4241
+        },
+        "ocr_manifest": {
+          "sha256": "12a73c95b9d72a4100dd4c716c15705c42be5e6870b379b2b3b18273e0ee6d5e",
+          "size_bytes": 45180
+        },
+        "tasks": {
+          "sha256": "1d1bfa444a3041b3e51be9535ff276fc89fa3d7985231a0bd7f4aa6746395356",
+          "size_bytes": 147707
+        }
+      },
+      "ocr_device": "cpu"
+    },
+    "gpu-retrieval": {
+      "directory": "native-gpu-ocr-20261018T200302Z",
+      "run_id": "856d76e60bc645cd9da9926232f83cb8",
+      "manifest": {
+        "sha256": "49b25103ac86366da493156e504ad6ca373a191301bd9425035d84978bd5b9e0",
+        "size_bytes": 14777
+      },
+      "code": {
+        "git_commit": "3d0fc599cfb3b7abae0c60761c5f31d5018e43fc",
+        "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_dirty": false,
+        "package_versions": {
+          "cryptography": "50.0.2",
+          "financial-ocr-research": "0.2.0",
+          "fonttools": "4.66.1",
+          "pypdf": "6.19.0"
+        },
+        "platform": "Windows-11-10.0.22000-SP0",
+        "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+        "python_source_sha256": "4008f049ffb362f49a40fb86f0946f077bef55e862e86aa4f85de14d2f5b80e1"
+      },
+      "status": "complete",
+      "index_seconds": {
+        "native": 0.5417705001309514,
+        "ocr": 0.49159709992818534
+      },
+      "query_seconds": {
+        "native": 0.01948129991069436,
+        "ocr": 0.018782200757414103
+      },
+      "elapsed_seconds": 20.97753689996898,
+      "inputs": {
+        "expansion_manifest": {
+          "sha256": "4eb18afc2eecc460cdd7b38b50773625ed8a59dfd862ada787395223b31bba63",
+          "size_bytes": 11154
+        },
+        "native_manifest": {
+          "sha256": "5e4213b5e7e65a53e01e78352abeb039c6c79eac7a55c9c0999f304d4d114497",
+          "size_bytes": 4241
+        },
+        "ocr_manifest": {
+          "sha256": "c79e71c736ca6fe1f33d3fc7cdae039f212d01a094a209c3cd9eb17324afcf0d",
+          "size_bytes": 45816
+        },
+        "tasks": {
+          "sha256": "1d1bfa444a3041b3e51be9535ff276fc89fa3d7985231a0bd7f4aa6746395356",
+          "size_bytes": 147707
+        }
+      },
+      "ocr_device": "gpu:0"
+    }
+  },
+  "verification": {
+    "zip_integrity": "passed",
+    "manifest_artifact_counts": {
+      "cpu": {
+        "manifest_artifacts_verified": 51,
+        "immutable_page_commits_verified": 2620,
+        "ready_sessions_verified": 16
+      },
+      "gpu": {
+        "manifest_artifacts_verified": 51,
+        "immutable_page_commits_verified": 2620,
+        "ready_sessions_verified": 16
+      },
+      "cpu-retrieval": {
+        "manifest_artifacts_verified": 8
+      },
+      "gpu-retrieval": {
+        "manifest_artifacts_verified": 8
+      }
+    },
+    "independent_BM25": {
+      "native": {
+        "scores": 5239,
+        "full_rankings": 24,
+        "max_absolute_score_discrepancy": 7.105427357601002e-15
+      },
+      "cpu": {
+        "scores": 5239,
+        "full_rankings": 24,
+        "max_absolute_score_discrepancy": 7.105427357601002e-15
+      },
+      "gpu": {
+        "scores": 5239,
+        "full_rankings": 24,
+        "max_absolute_score_discrepancy": 7.105427357601002e-15
+      }
+    },
+    "total_independent_scores": 15717,
+    "unique_full_rankings": 72,
+    "current_prediction_records_checked": 96,
+    "historical_native_E_rankings_checked": 24,
+    "metrics_per_question_and_paired_arithmetic": "reproduced",
+    "query_projection_and_expansion_audit": "reproduced",
+    "full_report_candidates_and_index_lengths": "reproduced",
+    "raw_to_text_lines_polygons_confidences_normalization": "reproduced",
+    "physical_PDF_PNG_model_bytes_all_present": false,
+    "source_fingerprints_windows_crlf": {
+      "committed_3d0fc59": "4008f049ffb362f49a40fb86f0946f077bef55e862e86aa4f85de14d2f5b80e1",
+      "delivered_cpu": "a408775060c340843c51f93f4dcc36f1ef3983bb70b421a21c31bd0d37593fad"
+    }
+  },
+  "shared_render_manifest": {
+    "sha256": "1ff37ad01d37e3d961b3ae0d27805a1dde244023f7cd830c3bbab876c8c5ebce",
+    "size_bytes": 27937
+  },
+  "shared_model_manifest": {
+    "sha256": "d0a91a2378b843c0fcc3ea007e4505072277b55f3b6aa07ffab15c3af8a07cf4",
+    "size_bytes": 2091
+  },
+  "ocr_configuration_cpu": {
+    "cpu_threads": 2,
+    "device": "cpu",
+    "enable_hpi": false,
+    "enable_mkldnn": false,
+    "lang": "en",
+    "ocr_version": "PP-OCRv5",
+    "precision": "fp32",
+    "text_det_box_thresh": 0.6,
+    "text_det_limit_side_len": 1024,
+    "text_det_limit_type": "max",
+    "text_det_thresh": 0.3,
+    "text_det_unclip_ratio": 1.5,
+    "text_rec_score_thresh": 0.0,
+    "use_doc_orientation_classify": false,
+    "use_doc_unwarping": false,
+    "use_tensorrt": false,
+    "use_textline_orientation": false
+  },
+  "ocr_configuration_gpu": {
+    "cpu_threads": 2,
+    "device": "gpu:0",
+    "enable_hpi": false,
+    "enable_mkldnn": false,
+    "lang": "en",
+    "ocr_version": "PP-OCRv5",
+    "precision": "fp32",
+    "text_det_box_thresh": 0.6,
+    "text_det_limit_side_len": 1024,
+    "text_det_limit_type": "max",
+    "text_det_thresh": 0.3,
+    "text_det_unclip_ratio": 1.5,
+    "text_rec_score_thresh": 0.0,
+    "use_doc_orientation_classify": false,
+    "use_doc_unwarping": false,
+    "use_tensorrt": false,
+    "use_textline_orientation": false
+  },
+  "runtime_package_differences": {
+    "htcondor": {
+      "cpu": null,
+      "gpu": "25.10.1"
+    },
+    "nvidia-cublas-cu11": {
+      "cpu": null,
+      "gpu": "11.11.3.6"
+    },
+    "nvidia-cuda-nvrtc-cu11": {
+      "cpu": null,
+      "gpu": "11.8.89"
+    },
+    "nvidia-cuda-runtime-cu11": {
+      "cpu": null,
+      "gpu": "11.8.89"
+    },
+    "nvidia-cudnn-cu11": {
+      "cpu": null,
+      "gpu": "8.9.4.19"
+    },
+    "nvidia-cufft-cu11": {
+      "cpu": null,
+      "gpu": "10.9.0.58"
+    },
+    "nvidia-curand-cu11": {
+      "cpu": null,
+      "gpu": "10.3.0.86"
+    },
+    "nvidia-cusolver-cu11": {
+      "cpu": null,
+      "gpu": "11.4.1.48"
+    },
+    "nvidia-cusparse-cu11": {
+      "cpu": null,
+      "gpu": "11.7.5.86"
+    },
+    "paddlepaddle": {
+      "cpu": "3.3.0",
+      "gpu": null
+    },
+    "paddlepaddle-gpu": {
+      "cpu": null,
+      "gpu": "3.3.0"
+    }
+  },
+  "metrics": {
+    "native": {
+      "question_count": 24,
+      "no_match_question_count": 0,
+      "failed_question_count": 0,
+      "partial_extraction_question_count": 0,
+      "mrr_full_ranking": 0.3024075204503773,
+      "at_k": {
+        "1": {
+          "macro_evidence_recall": 0.10416666666666667,
+          "any_evidence_hit_rate": 0.16666666666666666,
+          "all_evidence_coverage_rate": 0.041666666666666664,
+          "question_count": 24
+        },
+        "3": {
+          "macro_evidence_recall": 0.3263888888888889,
+          "any_evidence_hit_rate": 0.4166666666666667,
+          "all_evidence_coverage_rate": 0.25,
+          "question_count": 24
+        },
+        "5": {
+          "macro_evidence_recall": 0.40972222222222227,
+          "any_evidence_hit_rate": 0.5,
+          "all_evidence_coverage_rate": 0.3333333333333333,
+          "question_count": 24
+        }
+      }
+    },
+    "cpu": {
+      "question_count": 24,
+      "no_match_question_count": 0,
+      "failed_question_count": 0,
+      "partial_extraction_question_count": 0,
+      "mrr_full_ranking": 0.26647403541841813,
+      "at_k": {
+        "1": {
+          "macro_evidence_recall": 0.08333333333333333,
+          "any_evidence_hit_rate": 0.125,
+          "all_evidence_coverage_rate": 0.041666666666666664,
+          "question_count": 24
+        },
+        "3": {
+          "macro_evidence_recall": 0.24305555555555555,
+          "any_evidence_hit_rate": 0.3333333333333333,
+          "all_evidence_coverage_rate": 0.16666666666666666,
+          "question_count": 24
+        },
+        "5": {
+          "macro_evidence_recall": 0.40972222222222227,
+          "any_evidence_hit_rate": 0.5,
+          "all_evidence_coverage_rate": 0.3333333333333333,
+          "question_count": 24
+        }
+      }
+    },
+    "gpu": {
+      "question_count": 24,
+      "no_match_question_count": 0,
+      "failed_question_count": 0,
+      "partial_extraction_question_count": 0,
+      "mrr_full_ranking": 0.26647403541841813,
+      "at_k": {
+        "1": {
+          "macro_evidence_recall": 0.08333333333333333,
+          "any_evidence_hit_rate": 0.125,
+          "all_evidence_coverage_rate": 0.041666666666666664,
+          "question_count": 24
+        },
+        "3": {
+          "macro_evidence_recall": 0.24305555555555555,
+          "any_evidence_hit_rate": 0.3333333333333333,
+          "all_evidence_coverage_rate": 0.16666666666666666,
+          "question_count": 24
+        },
+        "5": {
+          "macro_evidence_recall": 0.40972222222222227,
+          "any_evidence_hit_rate": 0.5,
+          "all_evidence_coverage_rate": 0.3333333333333333,
+          "question_count": 24
+        }
+      }
+    }
+  },
+  "primary_pairwise": {
+    "native_to_cpu": {
+      "recall5_gains": [],
+      "recall5_regressions": [],
+      "unchanged_questions": 24,
+      "changed_top5_sets": 3,
+      "changed_top5_order": 7,
+      "first_gold_rank_improved": 3,
+      "first_gold_rank_worsened": 7
+    },
+    "native_to_gpu": {
+      "recall5_gains": [],
+      "recall5_regressions": [],
+      "unchanged_questions": 24,
+      "changed_top5_sets": 3,
+      "changed_top5_order": 7,
+      "first_gold_rank_improved": 3,
+      "first_gold_rank_worsened": 7
+    },
+    "cpu_to_gpu": {
+      "all_saved_full_scores_and_rankings_exactly_equal": true,
+      "recall5_gains": [],
+      "recall5_regressions": []
+    }
+  },
+  "per_question_evidence_ranks_and_top5": [
+    {
+      "task_id": "financebench:financebench_id_03069",
+      "doc_id": "financebench:AMD_2015_10K",
+      "question": "Answer the following question as if you are an equity research analyst and have lost internet connection so you do not have access to financial metric providers. According to the details clearly outlined within the P&L statement and the statement of cash flows, what is the FY2015 depreciation and amortization (D&A from cash flow statement) % margin for AMD?",
+      "gold_pages": [
+        55,
+        59
+      ],
+      "rank": {
+        "native": {
+          "55": 25,
+          "59": 1
+        },
+        "cpu": {
+          "55": 41,
+          "59": 3
+        },
+        "gpu": {
+          "55": 41,
+          "59": 3
+        }
+      },
+      "top5": {
+        "native": [
+          59,
+          62,
+          2,
+          69,
+          71
+        ],
+        "cpu": [
+          62,
+          2,
+          59,
+          69,
+          71
+        ],
+        "gpu": [
+          62,
+          2,
+          59,
+          69,
+          71
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00222",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
+      "gold_pages": [
+        55
+      ],
+      "rank": {
+        "native": {
+          "55": 5
+        },
+        "cpu": {
+          "55": 5
+        },
+        "gpu": {
+          "55": 5
+        }
+      },
+      "top5": {
+        "native": [
+          62,
+          78,
+          71,
+          52,
+          55
+        ],
+        "cpu": [
+          62,
+          78,
+          71,
+          52,
+          55
+        ],
+        "gpu": [
+          62,
+          78,
+          71,
+          52,
+          55
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00995",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "What are the major products and services that AMD sells as of FY22?",
+      "gold_pages": [
+        3
+      ],
+      "rank": {
+        "native": {
+          "3": 8
+        },
+        "cpu": {
+          "3": 8
+        },
+        "gpu": {
+          "3": 8
+        }
+      },
+      "top5": {
+        "native": [
+          6,
+          59,
+          110,
+          68,
+          10
+        ],
+        "cpu": [
+          6,
+          59,
+          110,
+          68,
+          10
+        ],
+        "gpu": [
+          6,
+          59,
+          110,
+          68,
+          10
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01198",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "What drove revenue change as of the FY22 for AMD?",
+      "gold_pages": [
+        42
+      ],
+      "rank": {
+        "native": {
+          "42": 7
+        },
+        "cpu": {
+          "42": 8
+        },
+        "gpu": {
+          "42": 8
+        }
+      },
+      "top5": {
+        "native": [
+          111,
+          3,
+          110,
+          40,
+          89
+        ],
+        "cpu": [
+          111,
+          3,
+          110,
+          40,
+          89
+        ],
+        "gpu": [
+          111,
+          3,
+          110,
+          40,
+          89
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00917",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "What drove operating margin change as of the FY22 for AMD? If operating margin is not a useful metric for a company like this, then please state that and explain why.",
+      "gold_pages": [
+        42
+      ],
+      "rank": {
+        "native": {
+          "42": 3
+        },
+        "cpu": {
+          "42": 4
+        },
+        "gpu": {
+          "42": 4
+        }
+      },
+      "top5": {
+        "native": [
+          48,
+          45,
+          42,
+          72,
+          53
+        ],
+        "cpu": [
+          48,
+          45,
+          72,
+          42,
+          53
+        ],
+        "gpu": [
+          48,
+          45,
+          72,
+          42,
+          53
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01279",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "Among operations, investing, and financing activities, which brought in the most (or lost the least) cash flow for AMD in FY22?",
+      "gold_pages": [
+        57
+      ],
+      "rank": {
+        "native": {
+          "57": 4
+        },
+        "cpu": {
+          "57": 4
+        },
+        "gpu": {
+          "57": 4
+        }
+      },
+      "top5": {
+        "native": [
+          50,
+          58,
+          51,
+          57,
+          36
+        ],
+        "cpu": [
+          50,
+          58,
+          51,
+          57,
+          36
+        ],
+        "gpu": [
+          50,
+          58,
+          51,
+          57,
+          36
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00563",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "From FY21 to FY22, excluding Embedded, in which AMD reporting segment did sales proportionally increase the most?",
+      "gold_pages": [
+        47
+      ],
+      "rank": {
+        "native": {
+          "47": 1
+        },
+        "cpu": {
+          "47": 1
+        },
+        "gpu": {
+          "47": 1
+        }
+      },
+      "top5": {
+        "native": [
+          47,
+          111,
+          42,
+          110,
+          8
+        ],
+        "cpu": [
+          47,
+          111,
+          42,
+          110,
+          8
+        ],
+        "gpu": [
+          47,
+          111,
+          42,
+          110,
+          8
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00757",
+      "doc_id": "financebench:AMD_2022_10K",
+      "question": "Did AMD report customer concentration in FY22?",
+      "gold_pages": [
+        11
+      ],
+      "rank": {
+        "native": {
+          "11": 51
+        },
+        "cpu": {
+          "11": 51
+        },
+        "gpu": {
+          "11": 51
+        }
+      },
+      "top5": {
+        "native": [
+          0,
+          101,
+          111,
+          102,
+          103
+        ],
+        "cpu": [
+          0,
+          101,
+          102,
+          111,
+          103
+        ],
+        "gpu": [
+          0,
+          101,
+          102,
+          111,
+          103
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_04417",
+      "doc_id": "financebench:BESTBUY_2019_10K",
+      "question": "What is the year end FY2019 total amount of inventories for Best Buy? Answer in USD millions. Base your judgments on the information provided primarily in the balance sheet.",
+      "gold_pages": [
+        51
+      ],
+      "rank": {
+        "native": {
+          "51": 13
+        },
+        "cpu": {
+          "51": 16
+        },
+        "gpu": {
+          "51": 16
+        }
+      },
+      "top5": {
+        "native": [
+          42,
+          34,
+          43,
+          106,
+          66
+        ],
+        "cpu": [
+          34,
+          42,
+          43,
+          56,
+          80
+        ],
+        "gpu": [
+          34,
+          42,
+          43,
+          56,
+          80
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00685",
+      "doc_id": "financebench:BESTBUY_2023_10K",
+      "question": "Are Best Buy's gross margins historically consistent (not fluctuating more than roughly 2% each year)? If gross margins are not a relevant metric for a company like this, then please state that and explain why.",
+      "gold_pages": [
+        39
+      ],
+      "rank": {
+        "native": {
+          "39": 29
+        },
+        "cpu": {
+          "39": 27
+        },
+        "gpu": {
+          "39": 27
+        }
+      },
+      "top5": {
+        "native": [
+          22,
+          48,
+          24,
+          26,
+          50
+        ],
+        "cpu": [
+          26,
+          22,
+          48,
+          24,
+          50
+        ],
+        "gpu": [
+          26,
+          22,
+          48,
+          24,
+          50
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01077",
+      "doc_id": "financebench:BESTBUY_2023_10K",
+      "question": "What are major acquisitions that Best Buy has done in FY2023, FY2022 and FY2021?",
+      "gold_pages": [
+        50
+      ],
+      "rank": {
+        "native": {
+          "50": 3
+        },
+        "cpu": {
+          "50": 4
+        },
+        "gpu": {
+          "50": 4
+        }
+      },
+      "top5": {
+        "native": [
+          28,
+          43,
+          50,
+          22,
+          49
+        ],
+        "cpu": [
+          21,
+          28,
+          43,
+          50,
+          22
+        ],
+        "gpu": [
+          21,
+          28,
+          43,
+          50,
+          22
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01275",
+      "doc_id": "financebench:BESTBUY_2023_10K",
+      "question": "Among operations, investing, and financing activities, which brought in the most (or lost the least) cash flow for Best Buy in FY2023?",
+      "gold_pages": [
+        41
+      ],
+      "rank": {
+        "native": {
+          "41": 2
+        },
+        "cpu": {
+          "41": 2
+        },
+        "gpu": {
+          "41": 2
+        }
+      },
+      "top5": {
+        "native": [
+          28,
+          41,
+          6,
+          5,
+          36
+        ],
+        "cpu": [
+          28,
+          41,
+          21,
+          6,
+          5
+        ],
+        "gpu": [
+          28,
+          41,
+          21,
+          6,
+          5
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00517",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "Are there any product categories / service categories that represent more than 20% of Boeing's revenue for FY2022?",
+      "gold_pages": [
+        61
+      ],
+      "rank": {
+        "native": {
+          "61": 97
+        },
+        "cpu": {
+          "61": 96
+        },
+        "gpu": {
+          "61": 96
+        }
+      },
+      "top5": {
+        "native": [
+          9,
+          36,
+          64,
+          49,
+          3
+        ],
+        "cpu": [
+          9,
+          36,
+          64,
+          49,
+          3
+        ],
+        "gpu": [
+          9,
+          36,
+          64,
+          49,
+          3
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01091",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "Has Boeing reported any materially important ongoing legal battles from FY2022?",
+      "gold_pages": [
+        112
+      ],
+      "rank": {
+        "native": {
+          "112": 20
+        },
+        "cpu": {
+          "112": 20
+        },
+        "gpu": {
+          "112": 20
+        }
+      },
+      "top5": {
+        "native": [
+          36,
+          3,
+          7,
+          125,
+          49
+        ],
+        "cpu": [
+          36,
+          3,
+          7,
+          125,
+          49
+        ],
+        "gpu": [
+          36,
+          3,
+          7,
+          125,
+          49
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00678",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "Does Boeing have an improving gross margin profile as of FY2022? If gross margin is not a useful metric for a company like this, then state that and explain why.",
+      "gold_pages": [
+        54
+      ],
+      "rank": {
+        "native": {
+          "54": 17
+        },
+        "cpu": {
+          "54": 17
+        },
+        "gpu": {
+          "54": 17
+        }
+      },
+      "top5": {
+        "native": [
+          49,
+          63,
+          50,
+          68,
+          120
+        ],
+        "cpu": [
+          49,
+          63,
+          50,
+          68,
+          120
+        ],
+        "gpu": [
+          49,
+          63,
+          50,
+          68,
+          120
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01290",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "Who are the primary customers of Boeing as of FY2022?",
+      "gold_pages": [
+        7,
+        9,
+        13
+      ],
+      "rank": {
+        "native": {
+          "7": 39,
+          "9": 3,
+          "13": 161
+        },
+        "cpu": {
+          "7": 39,
+          "9": 3,
+          "13": 161
+        },
+        "gpu": {
+          "7": 39,
+          "9": 3,
+          "13": 161
+        }
+      },
+      "top5": {
+        "native": [
+          36,
+          117,
+          9,
+          112,
+          15
+        ],
+        "cpu": [
+          36,
+          117,
+          9,
+          112,
+          15
+        ],
+        "gpu": [
+          36,
+          117,
+          9,
+          112,
+          15
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00464",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "Is Boeing's business subject to cyclicality?",
+      "gold_pages": [
+        7
+      ],
+      "rank": {
+        "native": {
+          "7": 31
+        },
+        "cpu": {
+          "7": 32
+        },
+        "gpu": {
+          "7": 32
+        }
+      },
+      "top5": {
+        "native": [
+          11,
+          13,
+          155,
+          16,
+          167
+        ],
+        "cpu": [
+          11,
+          13,
+          155,
+          16,
+          167
+        ],
+        "gpu": [
+          11,
+          13,
+          155,
+          16,
+          167
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00494",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "What production rate changes is Boeing forecasting for FY2023?",
+      "gold_pages": [
+        8
+      ],
+      "rank": {
+        "native": {
+          "8": 3
+        },
+        "cpu": {
+          "8": 3
+        },
+        "gpu": {
+          "8": 3
+        }
+      },
+      "top5": {
+        "native": [
+          36,
+          9,
+          8,
+          34,
+          33
+        ],
+        "cpu": [
+          36,
+          9,
+          8,
+          34,
+          33
+        ],
+        "gpu": [
+          36,
+          9,
+          8,
+          34,
+          33
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00585",
+      "doc_id": "financebench:BOEING_2022_10K",
+      "question": "How does Boeing's effective tax rate in FY2022 compare to FY2021?",
+      "gold_pages": [
+        54
+      ],
+      "rank": {
+        "native": {
+          "54": 30
+        },
+        "cpu": {
+          "54": 31
+        },
+        "gpu": {
+          "54": 31
+        }
+      },
+      "top5": {
+        "native": [
+          78,
+          36,
+          23,
+          144,
+          76
+        ],
+        "cpu": [
+          78,
+          36,
+          23,
+          144,
+          76
+        ],
+        "gpu": [
+          78,
+          36,
+          23,
+          144,
+          76
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01009",
+      "doc_id": "financebench:PEPSICO_2022_10K",
+      "question": "What are the geographies that Pepsico primarily operates in as of FY2022?",
+      "gold_pages": [
+        3,
+        4
+      ],
+      "rank": {
+        "native": {
+          "3": 228,
+          "4": 20
+        },
+        "cpu": {
+          "3": 229,
+          "4": 19
+        },
+        "gpu": {
+          "3": 229,
+          "4": 19
+        }
+      },
+      "top5": {
+        "native": [
+          99,
+          5,
+          54,
+          52,
+          108
+        ],
+        "cpu": [
+          99,
+          5,
+          54,
+          52,
+          108
+        ],
+        "gpu": [
+          99,
+          5,
+          54,
+          52,
+          108
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_00735",
+      "doc_id": "financebench:PEPSICO_2022_10K",
+      "question": "Has Pepsico reported any materially important ongoing legal battles from FY2022 and FY2021?",
+      "gold_pages": [
+        25
+      ],
+      "rank": {
+        "native": {
+          "25": 133
+        },
+        "cpu": {
+          "25": 133
+        },
+        "gpu": {
+          "25": 133
+        }
+      },
+      "top5": {
+        "native": [
+          118,
+          67,
+          75,
+          110,
+          117
+        ],
+        "cpu": [
+          118,
+          67,
+          75,
+          110,
+          117
+        ],
+        "gpu": [
+          118,
+          67,
+          75,
+          110,
+          117
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_01328",
+      "doc_id": "financebench:PEPSICO_2022_10K",
+      "question": "What is the quantity of restructuring costs directly outlined in Pepsico's income statements for FY2022? If restructuring costs are not explicitly outlined then state 0.",
+      "gold_pages": [
+        77
+      ],
+      "rank": {
+        "native": {
+          "77": 3
+        },
+        "cpu": {
+          "77": 3
+        },
+        "gpu": {
+          "77": 3
+        }
+      },
+      "top5": {
+        "native": [
+          78,
+          67,
+          77,
+          56,
+          54
+        ],
+        "cpu": [
+          78,
+          67,
+          77,
+          56,
+          54
+        ],
+        "gpu": [
+          78,
+          67,
+          77,
+          56,
+          54
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_03620",
+      "doc_id": "financebench:PEPSICO_2022_10K",
+      "question": "What is the FY2022 unadjusted EBITDA less capex for PepsiCo? Define unadjusted EBITDA as unadjusted operating income + depreciation and amortization [from cash flow statement]. Answer in USD millions. Respond to the question by assuming the perspective of an investment analyst who can only use the details shown within the statement of cash flows and the income statement.",
+      "gold_pages": [
+        61,
+        63
+      ],
+      "rank": {
+        "native": {
+          "61": 23,
+          "63": 1
+        },
+        "cpu": {
+          "61": 22,
+          "63": 1
+        },
+        "gpu": {
+          "61": 22,
+          "63": 1
+        }
+      },
+      "top5": {
+        "native": [
+          63,
+          46,
+          53,
+          76,
+          54
+        ],
+        "cpu": [
+          63,
+          46,
+          53,
+          76,
+          54
+        ],
+        "gpu": [
+          63,
+          46,
+          53,
+          76,
+          54
+        ]
+      }
+    },
+    {
+      "task_id": "financebench:financebench_id_04481",
+      "doc_id": "financebench:PEPSICO_2022_10K",
+      "question": "What is the FY2022 unadjusted EBITDA % margin for PepsiCo? Calculate unadjusted EBITDA using unadjusted operating income and D&A (from cash flow statement). Give a response to the question by relying on the details shown in the statement of cash flows and the P&L statement.",
+      "gold_pages": [
+        61,
+        63
+      ],
+      "rank": {
+        "native": {
+          "61": 24,
+          "63": 1
+        },
+        "cpu": {
+          "61": 25,
+          "63": 1
+        },
+        "gpu": {
+          "61": 25,
+          "63": 1
+        }
+      },
+      "top5": {
+        "native": [
+          63,
+          39,
+          53,
+          99,
+          76
+        ],
+        "cpu": [
+          63,
+          39,
+          53,
+          99,
+          76
+        ],
+        "gpu": [
+          63,
+          39,
+          53,
+          99,
+          76
+        ]
+      }
+    }
+  ],
+  "multipage": {
+    "question_count": 5,
+    "macro_recall5": {
+      "native": 0.36666666666666664,
+      "cpu": 0.36666666666666664,
+      "gpu": 0.36666666666666664
+    },
+    "hit5_count": {
+      "native": 4,
+      "cpu": 4,
+      "gpu": 4
+    },
+    "complete5_count": {
+      "native": 0,
+      "cpu": 0,
+      "gpu": 0
+    },
+    "questions": [
+      {
+        "task_id": "financebench:financebench_id_03069",
+        "doc_id": "financebench:AMD_2015_10K",
+        "question": "Answer the following question as if you are an equity research analyst and have lost internet connection so you do not have access to financial metric providers. According to the details clearly outlined within the P&L statement and the statement of cash flows, what is the FY2015 depreciation and amortization (D&A from cash flow statement) % margin for AMD?",
+        "gold_pages": [
+          55,
+          59
+        ],
+        "rank": {
+          "native": {
+            "55": 25,
+            "59": 1
+          },
+          "cpu": {
+            "55": 41,
+            "59": 3
+          },
+          "gpu": {
+            "55": 41,
+            "59": 3
+          }
+        },
+        "top5": {
+          "native": [
+            59,
+            62,
+            2,
+            69,
+            71
+          ],
+          "cpu": [
+            62,
+            2,
+            59,
+            69,
+            71
+          ],
+          "gpu": [
+            62,
+            2,
+            59,
+            69,
+            71
+          ]
+        }
+      },
+      {
+        "task_id": "financebench:financebench_id_01290",
+        "doc_id": "financebench:BOEING_2022_10K",
+        "question": "Who are the primary customers of Boeing as of FY2022?",
+        "gold_pages": [
+          7,
+          9,
+          13
+        ],
+        "rank": {
+          "native": {
+            "7": 39,
+            "9": 3,
+            "13": 161
+          },
+          "cpu": {
+            "7": 39,
+            "9": 3,
+            "13": 161
+          },
+          "gpu": {
+            "7": 39,
+            "9": 3,
+            "13": 161
+          }
+        },
+        "top5": {
+          "native": [
+            36,
+            117,
+            9,
+            112,
+            15
+          ],
+          "cpu": [
+            36,
+            117,
+            9,
+            112,
+            15
+          ],
+          "gpu": [
+            36,
+            117,
+            9,
+            112,
+            15
+          ]
+        }
+      },
+      {
+        "task_id": "financebench:financebench_id_01009",
+        "doc_id": "financebench:PEPSICO_2022_10K",
+        "question": "What are the geographies that Pepsico primarily operates in as of FY2022?",
+        "gold_pages": [
+          3,
+          4
+        ],
+        "rank": {
+          "native": {
+            "3": 228,
+            "4": 20
+          },
+          "cpu": {
+            "3": 229,
+            "4": 19
+          },
+          "gpu": {
+            "3": 229,
+            "4": 19
+          }
+        },
+        "top5": {
+          "native": [
+            99,
+            5,
+            54,
+            52,
+            108
+          ],
+          "cpu": [
+            99,
+            5,
+            54,
+            52,
+            108
+          ],
+          "gpu": [
+            99,
+            5,
+            54,
+            52,
+            108
+          ]
+        }
+      },
+      {
+        "task_id": "financebench:financebench_id_03620",
+        "doc_id": "financebench:PEPSICO_2022_10K",
+        "question": "What is the FY2022 unadjusted EBITDA less capex for PepsiCo? Define unadjusted EBITDA as unadjusted operating income + depreciation and amortization [from cash flow statement]. Answer in USD millions. Respond to the question by assuming the perspective of an investment analyst who can only use the details shown within the statement of cash flows and the income statement.",
+        "gold_pages": [
+          61,
+          63
+        ],
+        "rank": {
+          "native": {
+            "61": 23,
+            "63": 1
+          },
+          "cpu": {
+            "61": 22,
+            "63": 1
+          },
+          "gpu": {
+            "61": 22,
+            "63": 1
+          }
+        },
+        "top5": {
+          "native": [
+            63,
+            46,
+            53,
+            76,
+            54
+          ],
+          "cpu": [
+            63,
+            46,
+            53,
+            76,
+            54
+          ],
+          "gpu": [
+            63,
+            46,
+            53,
+            76,
+            54
+          ]
+        }
+      },
+      {
+        "task_id": "financebench:financebench_id_04481",
+        "doc_id": "financebench:PEPSICO_2022_10K",
+        "question": "What is the FY2022 unadjusted EBITDA % margin for PepsiCo? Calculate unadjusted EBITDA using unadjusted operating income and D&A (from cash flow statement). Give a response to the question by relying on the details shown in the statement of cash flows and the P&L statement.",
+        "gold_pages": [
+          61,
+          63
+        ],
+        "rank": {
+          "native": {
+            "61": 24,
+            "63": 1
+          },
+          "cpu": {
+            "61": 25,
+            "63": 1
+          },
+          "gpu": {
+            "61": 25,
+            "63": 1
+          }
+        },
+        "top5": {
+          "native": [
+            63,
+            39,
+            53,
+            99,
+            76
+          ],
+          "cpu": [
+            63,
+            39,
+            53,
+            99,
+            76
+          ],
+          "gpu": [
+            63,
+            39,
+            53,
+            99,
+            76
+          ]
+        }
+      }
+    ]
+  },
+  "blank_pages": {
+    "native": [
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 95
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 108
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 140
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2019_10K",
+        "page_index": 20
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2019_10K",
+        "page_index": 99
+      },
+      {
+        "doc_id": "financebench:BOEING_2022_10K",
+        "page_index": 59
+      },
+      {
+        "doc_id": "financebench:PEPSICO_2019_10K",
+        "page_index": 548
+      }
+    ],
+    "cpu": [
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 95
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 140
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2019_10K",
+        "page_index": 20
+      },
+      {
+        "doc_id": "financebench:BOEING_2022_10K",
+        "page_index": 59
+      },
+      {
+        "doc_id": "financebench:PEPSICO_2019_10K",
+        "page_index": 548
+      }
+    ],
+    "gpu": [
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 95
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2015_10K",
+        "page_index": 140
+      },
+      {
+        "doc_id": "financebench:BESTBUY_2019_10K",
+        "page_index": 20
+      },
+      {
+        "doc_id": "financebench:BOEING_2022_10K",
+        "page_index": 59
+      },
+      {
+        "doc_id": "financebench:PEPSICO_2019_10K",
+        "page_index": 548
+      }
+    ]
+  },
+  "cpu_gpu_text_agreement": {
+    "raw_equal_pages": 2616,
+    "search_equal_pages": 2617,
+    "indexed_token_multisets_equal_pages": 2620
+  },
+  "cpu_gpu_top5_packets": {
+    "ordered_page_ids_and_raw_text_equal_questions": 24,
+    "questions": 24,
+    "text_difference_pages_in_top5": []
+  },
+  "text_differences": [
+    {
+      "doc_id": "financebench:AMD_2022_10K",
+      "page_index": 29,
+      "search_text_equal": false,
+      "indexed_token_multisets_equal": true,
+      "cpu_fragment": "our business.",
+      "gpu_fragment": "our business",
+      "source_glyph_correctness": "not established from text-only artifacts",
+      "selected_in_any_pilot_top5": false
+    },
+    {
+      "doc_id": "financebench:BESTBUY_2019_10K",
+      "page_index": 99,
+      "search_text_equal": true,
+      "indexed_token_multisets_equal": true,
+      "cpu_fragment": "leading empty line before FSC* C0112076",
+      "gpu_fragment": "no leading empty line before FSC* C0112076",
+      "source_glyph_correctness": "not established from text-only artifacts",
+      "selected_in_any_pilot_top5": false
+    },
+    {
+      "doc_id": "financebench:PEPSICO_2019_10K",
+      "page_index": 107,
+      "search_text_equal": false,
+      "indexed_token_multisets_equal": true,
+      "cpu_fragment": "/",
+      "gpu_fragment": "—",
+      "source_glyph_correctness": "not established from text-only artifacts",
+      "selected_in_any_pilot_top5": false
+    },
+    {
+      "doc_id": "financebench:PEPSICO_2022_10K",
+      "page_index": 255,
+      "search_text_equal": false,
+      "indexed_token_multisets_equal": true,
+      "cpu_fragment": "Section 409A.",
+      "gpu_fragment": "Section 409A",
+      "source_glyph_correctness": "not established from text-only artifacts",
+      "selected_in_any_pilot_top5": false
+    }
+  ],
+  "timing_policy": "recorded descriptive invocations/attempts including diagnostic reuse; not a randomized device-only speedup, repeated latency or energy measurement",
+  "generation_status": "proposed only; no generated answers or correctness scores",
+  "limitations": [
+    "24 dependent label-exposed development questions, four companies and six annotated reports",
+    "Native text is not transcription gold; clean financial PDFs are not a scanned-KYC benchmark",
+    "Recorded source/model identities verified; complete physical PDF/PNG/model bytes absent from these archives",
+    "Five explicit OCR blanks are completed engine responses, not verified blank source pages",
+    "Token or retrieval equality does not establish financial/table/answer correctness",
+    "Cross-machine load and timing order uncontrolled; no measured peak memory or energy",
+    "No answer-generation, CER/WER, training or held-out result"
+  ]
+}

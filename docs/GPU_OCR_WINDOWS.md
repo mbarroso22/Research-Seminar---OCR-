@@ -1,5 +1,10 @@
 # Isolated GPU diagnostic on the second Windows machine
 
+**Status update 2026-10-18:** the diagnostic, full GPU extension and matched
+retrieval have completed. See [NATIVE_OCR_PILOT_RESULTS.md](NATIVE_OCR_PILOT_RESULTS.md)
+for verified findings and limitations. Pending/stop instructions below describe
+the original staged setup; they do not indicate that a new GPU run is needed.
+
 This is an **incremental** patch over `61a696d` plus the delivered
 `full-report-ocr-final.patch` (SHA-256
 `1ca6be76855466ca0dde634ea2b3d437b3edb68c447653c3b8aaaced2f6587a7`).
