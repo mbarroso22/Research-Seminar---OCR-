@@ -1,0 +1,53 @@
+{
+  "answer": "1250",
+  "calculation": {
+    "expression": "1.25 * 1000",
+    "operand_ids": [
+      "revenue_billion",
+      "scale_factor"
+    ],
+    "result": "1250",
+    "unit": "million USD"
+  },
+  "claims": [
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "Cedar Works FY2031 revenue was 1.25 USD billion."
+        }
+      ],
+      "text": "Cedar Works FY2031 revenue was 1.25 USD billion."
+    }
+  ],
+  "missing_information": [],
+  "quantities": [
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "revenue_billion",
+      "name": "Revenue",
+      "scale": "billion",
+      "source": {
+        "page_id": 0,
+        "span": "Cedar Works FY2031 revenue was 1.25 USD billion."
+      },
+      "unit": "billion USD",
+      "value": "value: 1.25"
+    },
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "revenue_million",
+      "name": "Revenue",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "Cedar Works FY2031 revenue was 1.25 USD billion."
+      },
+      "unit": "million USD",
+      "value": "1250"
+    }
+  ],
+  "status": "answered"
+}

@@ -1,0 +1,21 @@
+{
+  "answer": "insufficient_evidence",
+  "calculation": null,
+  "claims": [
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "Current liabilities were not supplied."
+        }
+      ],
+      "text": "Cedar Works' FY2031 quick ratio can be calculated"
+    }
+  ],
+  "missing_information": [
+    "Current liabilities for Fictional Cedar Works FY2031",
+    "Current assets for Fictional Cedar Works FY2031"
+  ],
+  "quantities": [],
+  "status": "insufficient_evidence"
+}

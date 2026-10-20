@@ -1,0 +1,366 @@
+{
+  "kind": "offline_v3_evidence_and_frozen_scoring_review",
+  "review_date_local": "2026-10-20",
+  "reviewer_type": "AI-assisted offline review; not independent human adjudication",
+  "new_inference_executed": 0,
+  "new_allowance_created": false,
+  "frozen_source_git_unchanged_on_review_host": true,
+  "all_18_authorization_bindings_match": true,
+  "binding_hashes": {
+    "implementation_fingerprint": "3b86653a204f349bfcc43cb6a044aa9fc23a2ba96ab1ff729d44c7aae16c9a41",
+    "implementation_record_canonical_sha256": "6d45308d47c93579bd99ad01a8214dc3703801095005f63baf5058b5195974d2",
+    "preparation_file_sha256": "5c96fcc6cb3311c2b1e5bf8feec4f33c8c2da1110b6a9c5ccf9cb45740d668bc",
+    "preparation_canonical_sha256": "c00e0fab3ece81ad0cb503af9a54bfca51161480d0a9241d3e59ad2d5c3bcd9f"
+  },
+  "authorization_record_sha256": "1394d5deadd108774d9b90eceb212a544a1ae18b2e49aec809cc7e7346988ba5",
+  "operator_approval_sha256": "7c32528846507698ec14ac07e22fa38e8c9cd1101f3f52c7aceabfa5b5f86095",
+  "authorization_issued_utc": "2026-10-20T21:36:12.956009Z",
+  "approved_utc": "2026-10-20T21:38:35.557810Z",
+  "expires_utc": "2026-10-20T22:36:12.956009Z",
+  "campaign_first_event_utc": "2026-10-20T21:40:04.881007+00:00",
+  "campaign_terminal_event_utc": "2026-10-20T21:41:07.221066+00:00",
+  "event_hash_chain": {
+    "attempted": 6,
+    "finished": 6,
+    "uncertain_cases": [],
+    "unattempted": [],
+    "terminal_recorded": true,
+    "restart_permitted": false,
+    "existing_anchor_consumed": true
+  },
+  "charged_attempts": 6,
+  "submission_attempts": 6,
+  "responses_received": 6,
+  "remaining_authorized_requests": 0,
+  "cumulative_charged_attempts": 18,
+  "server_posts": {
+    "apply_template": 6,
+    "tokenize": 6,
+    "completion": 6,
+    "all_http_200": true,
+    "metadata_precedes_completions": true
+  },
+  "effective_grammar_bytes": 18525,
+  "effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce",
+  "case_reports": [
+    {
+      "case_id": "signed",
+      "structural_conformance": true,
+      "generic_mechanics": true,
+      "mechanical_pass": false,
+      "expected_status_pass": true,
+      "status": "answered",
+      "input_tokens": 620,
+      "evidence_tokens": 69,
+      "overhead_tokens": 551,
+      "generated_tokens": 193,
+      "prompt_ms": 936.596,
+      "decode_ms": 1674.764,
+      "decode_tokens_per_second": 115.24011741355798,
+      "request_wall_seconds": 2.6560000000026776,
+      "required_quantities": {
+        "quantity_0": false
+      },
+      "issue_codes": [
+        "required_quantity",
+        "unsupported_quantity"
+      ],
+      "request_sha256": "f4754ce0f45cf8acd60765b7b5c33ce0618b25a3ac8437ef6faa4a926380b477",
+      "raw_response_sha256": "7c4d41b06d8f88ca0f3a982101aa59f3317d36c90434d4931092ed09d28ba81d",
+      "raw_content_sha256": "a2bf72ea6058a147911d62ff01bb63029bde97397431370a3a7c050935c4d9c2",
+      "server_effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce"
+    },
+    {
+      "case_id": "scale",
+      "structural_conformance": true,
+      "generic_mechanics": true,
+      "mechanical_pass": false,
+      "expected_status_pass": false,
+      "status": "insufficient_evidence",
+      "input_tokens": 613,
+      "evidence_tokens": 65,
+      "overhead_tokens": 548,
+      "generated_tokens": 152,
+      "prompt_ms": 792.925,
+      "decode_ms": 1304.563,
+      "decode_tokens_per_second": 116.51411238859295,
+      "request_wall_seconds": 2.139999999999418,
+      "required_quantities": {
+        "quantity_0": false
+      },
+      "issue_codes": [
+        "expected_status",
+        "required_quantity",
+        "missing_conversion_calculation"
+      ],
+      "request_sha256": "2457a58a14fea9cb542f2a4ae3d2d318e8194e03aa20342714565ce815e7eef7",
+      "raw_response_sha256": "23488e775a69d3405880509d3cbe5c3795f4aa5a695832cc4da7e39ab28a8e08",
+      "raw_content_sha256": "7ac1d01463ccbc86d739e5c782de4cd8ae16a4554fe919cc09fa54825592b6b7",
+      "server_effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce"
+    },
+    {
+      "case_id": "margin",
+      "structural_conformance": true,
+      "generic_mechanics": true,
+      "mechanical_pass": false,
+      "expected_status_pass": false,
+      "status": "insufficient_evidence",
+      "input_tokens": 644,
+      "evidence_tokens": 87,
+      "overhead_tokens": 557,
+      "generated_tokens": 93,
+      "prompt_ms": 863.747,
+      "decode_ms": 807.078,
+      "decode_tokens_per_second": 115.23049816746338,
+      "request_wall_seconds": 1.7029999999940628,
+      "required_quantities": {
+        "quantity_0": false,
+        "quantity_1": false,
+        "quantity_2": false,
+        "quantity_3": false,
+        "quantity_4": false
+      },
+      "issue_codes": [
+        "expected_status",
+        "required_quantity",
+        "required_quantity",
+        "required_quantity",
+        "required_quantity",
+        "required_quantity",
+        "gross_margin_calculation"
+      ],
+      "request_sha256": "4049269e741c82678cfb325abd21553cba0aaeebaf94f67ad45ee8eec3e3e48f",
+      "raw_response_sha256": "1468e86c8112a6568c600368241d0dce708d7e5ecd0fc6c6d3aff981d258ba31",
+      "raw_content_sha256": "5d40d89cda388d2906ac056dd1e651fabb2b36727a4046b592884fdba29334f6",
+      "server_effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce"
+    },
+    {
+      "case_id": "comparison",
+      "structural_conformance": true,
+      "generic_mechanics": true,
+      "mechanical_pass": false,
+      "expected_status_pass": false,
+      "status": "insufficient_evidence",
+      "input_tokens": 636,
+      "evidence_tokens": 86,
+      "overhead_tokens": 550,
+      "generated_tokens": 246,
+      "prompt_ms": 790.559,
+      "decode_ms": 2128.544,
+      "decode_tokens_per_second": 115.57195904806291,
+      "request_wall_seconds": 2.9679999999934807,
+      "required_quantities": {
+        "quantity_0": false,
+        "quantity_1": false,
+        "quantity_2": false
+      },
+      "issue_codes": [
+        "expected_status",
+        "required_quantity",
+        "required_quantity",
+        "required_quantity"
+      ],
+      "request_sha256": "c1a914ebf9ebab1020ff9272aa1dc0762f788e0f57635b3fb33813246eb7a2a7",
+      "raw_response_sha256": "6392298fcb289fb6db3e606815b781a8cce324faddefb1a9c6280cac55a79e4d",
+      "raw_content_sha256": "a998e05c3577e1038e1e39030b4d27de4ba812f742df2d780a4ad2340785fa18",
+      "server_effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce"
+    },
+    {
+      "case_id": "missing",
+      "structural_conformance": true,
+      "generic_mechanics": true,
+      "mechanical_pass": true,
+      "expected_status_pass": true,
+      "status": "insufficient_evidence",
+      "input_tokens": 623,
+      "evidence_tokens": 77,
+      "overhead_tokens": 546,
+      "generated_tokens": 62,
+      "prompt_ms": 1030.302,
+      "decode_ms": 538.138,
+      "decode_tokens_per_second": 115.21208314595884,
+      "request_wall_seconds": 1.610000000000582,
+      "required_quantities": {},
+      "issue_codes": [],
+      "request_sha256": "c05dc475103b5560fd4d22c72017eb6f52c5b53b5f65e3756e62f7f6adcdf03c",
+      "raw_response_sha256": "ddd9ee300d9b8e1700ea13cc184092179b9e91672a1730af089c828fcadb160e",
+      "raw_content_sha256": "ebe84aeb34ea8706de2b0983ff1e59d2258418eee452ce3ec32d34740ef5b6e1",
+      "server_effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce"
+    },
+    {
+      "case_id": "capacity",
+      "structural_conformance": true,
+      "generic_mechanics": true,
+      "mechanical_pass": true,
+      "expected_status_pass": true,
+      "status": "insufficient_evidence",
+      "input_tokens": 5120,
+      "evidence_tokens": 4096,
+      "overhead_tokens": 1024,
+      "generated_tokens": 57,
+      "prompt_ms": 6761.252,
+      "decode_ms": 691.106,
+      "decode_tokens_per_second": 82.47649419915324,
+      "request_wall_seconds": 7.5,
+      "required_quantities": {},
+      "issue_codes": [],
+      "request_sha256": "7d5de46541aef0e921e4bfb74797a1decd1eee1a4e7afa1fd983ceb2df15e23f",
+      "raw_response_sha256": "641e994593b4177ab14d8f6439808e1fecf8550e7705c6072d6a1cc7401d4a33",
+      "raw_content_sha256": "0edd4361c0febcb9f28a20af4486edd219474e59da699c10c441baa5a08ca116",
+      "server_effective_grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce"
+    }
+  ],
+  "metrics": {
+    "structural_conformance": "6/6",
+    "generic_mechanics": "6/6",
+    "mechanical_validation": "2/6",
+    "correct_expected_status": "3/6",
+    "complete_typed_numerical_task_checks": "0/4",
+    "required_typed_quantity_components": "0/10",
+    "expected_answered_cases_answered": "1/4",
+    "unnecessary_abstentions": "3/4 answerable cases",
+    "required_abstentions": "2/2",
+    "calculation_objects_returned": 0
+  },
+  "resources_recomputed": {
+    "sample_count": 112,
+    "server_sampled_peak_rss_bytes": 2988908544,
+    "client_sampled_peak_rss_bytes": 313311232,
+    "sampled_peak_sum_rss_bytes": 3299606528,
+    "minimum_system_available_bytes": 6103478272,
+    "server_os_peak_working_set_bytes": 3029712896,
+    "device_wide_sampled_peak_used_mib": 4008,
+    "device_sample_count": 32,
+    "maximum_sample_gap_seconds": 0.5310000000026776,
+    "maximum_gpu_gap_seconds": 1.360000000000582
+  },
+  "runtime_observed": {
+    "flash_attention_declared": "disabled",
+    "flash_attention_effective": "disabled",
+    "full_gpu_offload": true,
+    "device": "Vulkan0",
+    "gpu_name": "RTX 3070 Ti",
+    "n_ctx": "6144",
+    "n_ctx_per_seq": "6144",
+    "n_seq_max": "1",
+    "n_batch": "512",
+    "n_ubatch": "128",
+    "kv_f16": true
+  },
+  "wall_seconds": 48.23400000001129,
+  "validation_and_repacking_wall_seconds": 19.422000000005937,
+  "startup_wall_seconds": 3.1719999999913853,
+  "backend_controls_wall_seconds": 0.5470000000059372,
+  "sum_request_wall_seconds": 18.57699999999022,
+  "generated_tokens_total": 803,
+  "preservation": {
+    "preparation_protected_roots": 201,
+    "run_protected_roots": 204,
+    "unique_protected_files": 272,
+    "matching_original_tracked_files": 184,
+    "all_environments": {
+      "Research-Seminar-OCR-current-.venv.txt": {
+        "lines": 7,
+        "matches": true,
+        "raw_before_after_identical": false
+      },
+      "Research-Seminar-OCR-current-.venv-ocr.txt": {
+        "lines": 67,
+        "matches": true,
+        "raw_before_after_identical": false
+      },
+      "Research-Seminar-OCR-review-.venv-answer.txt": {
+        "lines": 44,
+        "matches": true,
+        "raw_before_after_identical": false
+      }
+    },
+    "prior_reviews_before_after_identical": true,
+    "scope": "Exported snapshots/records verified; original Windows filesystem and full model/cache payloads unavailable for a new host rehash"
+  },
+  "operator_log_statuses": {
+    "authorization-issue-captured.txt": "authorization_record_issued_pin_pending",
+    "authorization-pin-captured.txt": "authorization_installed_and_read_only_verifier_pass",
+    "scope-preflight-captured-v2.txt": "authorized_scope_preflight_pass"
+  },
+  "qualification_exit_code": 6,
+  "initial_export_matches_console": true,
+  "signed_quantity_check": {
+    "unit": false,
+    "currency": false,
+    "fiscal_year": true,
+    "sign": true,
+    "final_number": false,
+    "unit_scale_valid": true,
+    "pass": false
+  },
+  "signed_literal_zero_occurs_at_character": 15,
+  "manual_reviews_found": 0,
+  "human_qualification": "pending two independent reviewers and adjudication",
+  "limitations": [
+    "No new numerical free-disk reading is serialized for live campaign; earlier preparation disk value is setup evidence only.",
+    "Backend metadata parity is recorded as a successful gate; raw metadata responses are not retained.",
+    "No human ratings/adjudication are included.",
+    "Synthetic development cases only; bundled contract/prompt/capacity-wording changes prevent causal or held-out accuracy claims."
+  ],
+  "independent_source_arithmetic_evaluator_only": {
+    "signed_usd_million": "-12.5",
+    "scale_usd_million": "1250.00",
+    "margin_percent": "25.00",
+    "margin_change_percentage_points": "5.00",
+    "operations_usd_million": "40",
+    "investing_usd_million": "-12",
+    "financing_usd_million": "-9",
+    "largest_cash_source": "operations",
+    "profit_direction": "declined",
+    "not_model_requests_or_repaired_outputs": true
+  },
+  "journal_claim_to_terminal_seconds": 62.340059,
+  "wall_timer_scope": "Runner wall_seconds is set before post-run preservation/asset hashing, journal close and ZIP export; it is not total end-to-end elapsed time.",
+  "archives": {
+    "operator": {
+      "archive": "qualification-authorized-20261019-operator-evidence(1).zip",
+      "sha256": "e3ad775d41f127fb774156414c2d76b9da09fab83e2989d016cd6c84475215eb",
+      "content_files": 16,
+      "crc_pass": true,
+      "exact_inventory_and_all_content_hashes_pass": true
+    },
+    "preservation": {
+      "archive": "qualification-authorized-postrun-20261019-review(2).zip",
+      "sha256": "9d78cb15163a99f7fdad05c2d84086e5f3520910d65515b43b631c18aab49997",
+      "content_files": 15,
+      "crc_pass": true,
+      "exact_inventory_and_all_content_hashes_pass": true
+    },
+    "campaign": {
+      "archive": "synthetic-contract-v3-qualification-evidence(1).zip",
+      "sha256": "e9e4e5678f46d5675e12c4007d80dd620afe7dd1fab91c7c17ae85ac3ed83142",
+      "content_files": 213,
+      "crc_pass": true,
+      "exact_inventory_and_all_content_hashes_pass": true
+    }
+  },
+  "human_review_status": {
+    "independent_reviews_present": 0,
+    "adjudication_present": false,
+    "AI_review_counts_as_human_review": false,
+    "automated_qualification_pass": false
+  },
+  "exact_limits_and_attempt_charge_hashes_match": true,
+  "post_review_preservation": {
+    "attached_archives_unchanged": true,
+    "frozen_review_host_code_and_git_unchanged": true,
+    "all_48_implementation_file_hashes_reconciled": true,
+    "existing_windows_crlf_variants": [
+      "docs/ANSWER_SETUP_LOCK.json",
+      "requirements/answer-windows-py312.lock.txt",
+      "scripts/check_answer_rubric.py",
+      "scripts/prepare_answer_setup.py",
+      "src/finocr_answer/__init__.py"
+    ],
+    "new_inference": 0,
+    "new_allowance": false,
+    "code_patches": false,
+    "historical_scoring_changed": false
+  }
+}

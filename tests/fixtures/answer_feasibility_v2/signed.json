@@ -1,0 +1,39 @@
+{
+  "answer": "-12.5 USD million",
+  "calculation": {
+    "expression": "A",
+    "operand_ids": [
+      "A"
+    ],
+    "result": "-12.5",
+    "unit": "USD million"
+  },
+  "claims": [
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "Operating cash flow: (12.5) USD million."
+        }
+      ],
+      "text": "Cedar Works' FY2031 operating cash flow was -12.5 USD million."
+    }
+  ],
+  "missing_information": [],
+  "quantities": [
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "A",
+      "name": "Operating cash flow",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "Operating cash flow: (12.5) USD million."
+      },
+      "unit": "percent",
+      "value": "-12.5"
+    }
+  ],
+  "status": "answered"
+}

@@ -696,3 +696,109 @@ tuning, new answer result, CER/WER, training or held-out claim is introduced.
 
 This is a documentation-only patch against 3d0fc59. Runtime code, dependencies,
 all executable policies and docs/EXPANSION_V1_CONTROL.json remain unchanged.
+
+## Answer feasibility and evaluator preparation (2026-10-18; base 828ba06)
+
+Read docs/ANSWER_PREPARATION_STATUS.md and docs/ANSWER_FEASIBILITY_WINDOWS.md.
+An isolated, pinned Qwen3-4B-Instruct-2507 -> local Q4_K_M / llama.cpp b6500
+Windows Vulkan candidate and synthetic-only six-request harness are implemented.
+Existing baseline/OCR environments, caches and expansion v1/k=5 remain unchanged.
+Actual Windows install/conversion/inference, device/memory/timing checks and manual
+synthetic review are pending; no new experimental result is established.
+
+A separate evaluator-private 24-item rubric is prepared from checksum-matching
+source PDFs and visual page review. Three source/reference issues block final
+scoring-key freeze until prospective researcher adjudication. Original task labels
+are preserved. No private key is committed or accepted by the synthetic generator.
+No primary FinanceBench generation or annotated-page diagnostic is implemented or
+run; benchmark generation and correctness results remain deferred.
+
+## Synthetic feasibility review and strict validation v2 (2026-10-18)
+
+The supplied synthetic-20261018T220936Z archive is independently audited; read
+docs/SYNTHETIC_FEASIBILITY_REVIEW.md. All six requests completed and recorded
+resource checks passed, but output checks failed. Source-bound strict mechanical
+checks pass only the missing-evidence response (1/6), including rejection of the
+capacity response's abstention/claim contradiction. This is synthetic compliance,
+not FinanceBench accuracy. The original run and exhausted ledger are retained.
+
+The intended Flash Attention setting was not enforced by the original wrapper:
+the pinned backend's auto mode enabled it. Strict v2 sends --flash-attn off and
+requires disabled runtime state before any completion. It also enforces typed
+units/scales, numeric syntax, defined/linked calculation operands, arithmetic,
+the synthetic financing sign and consistent abstention. Semantic support and
+financial formula interpretation remain manual review responsibilities.
+
+The incremental patch applies over the original answer-preparation patch on
+828ba06. All 219 tests pass on the development host; actual Windows strict-v2
+execution remains pending. docs/ANSWER_VALIDATION_V2_WINDOWS.md gives zero-inference
+audit/preparation and one optional, separate six-request synthetic campaign;
+cumulative synthetic ceiling 12, no retries. Original setup/cache/ledger stay
+unchanged. No primary/annotated-page generation, OCR or retrieval tuning is added.
+All existing environments/caches, finocr source bytes and expansion v1/k=5 are
+preserved. Private rubric adjudication still has three holds before benchmark work.
+
+## Completed v2 synthetic review (2026-10-18; zero further inference)
+
+Read docs/SYNTHETIC_V2_REVIEW.md and docs/SYNTHETIC_V2_RESULTS.json. The completed
+Windows v2 run verifies explicit Flash Attention disabled, fixed full-offload
+runtime and resource checks. All six requests completed and conform to the
+recorded schema/grammar; strict source/mechanical checks pass only missing (1/6).
+Wrong quantity dimensions/scales, undefined/unlinked calculations, financing +9
+instead of -9, a nonliteral cost citation and capacity's contradictory claim remain
+failures. These are fictional setup observations, not benchmark accuracy.
+
+Both original six-request ledgers are exhausted: cumulative attempts 12, zero
+currently authorized requests. All four before/after snapshots agree; 110 hash
+entries and three package inventories match. V2 source bytes, request/response
+hashes, prompt/token controls, all saved diagnostics and 119 resource samples
+reconcile. The C++ and Python pinned converters reproduce the saved grammar
+exactly. Its six responses are accepted by an offline C++ character recognizer.
+
+The review identifies asymmetric answer/abstention validation, canonical sorting
+that puts status last on the wire, prompt/evaluator representation gaps and
+capacity's availability-question/status-policy ambiguity. It finds no converter
+defect in the exercised schema. Model factual/structural errors and these
+implementation contributions are separated; no measured rejection is relaxed.
+
+All 219 existing tests and 14 offline characterization probes pass on the
+development host. No generation runtime or old test policy changes in this
+documentation continuation. docs/ANSWER_CONTRACT_NEXT_DESIGN.md proposes a
+zero-inference conformance repair followed, only with a separately authorized
+budget, by at most six new fictional qualification requests. That proposal is
+unimplemented/unexecuted and does not reopen the 12-request allowance.
+
+Both runs, setups, raw failures and ledgers remain immutable. No environment,
+OCR cache, finocr code, source/task label, expansion v1/k=5 policy or ranking is
+changed. No FinanceBench/annotated-page generation occurs; three private-rubric
+adjudication holds still block benchmark preparation from advancing to answers.
+
+## Offline contract repairs implemented (2026-10-19 UTC; inference paused)
+
+Read docs/ANSWER_CONTRACT_REPAIR_STATUS.md and the staged Windows guide. The
+increment applies over preparation + validation-v2 + synthetic-v2-review-docs.patch.
+The revised typed-response-v3-offline contract preserves status-first wire schema
+order separately from canonical hashing, couples quantity dimensions, rejects
+both directions of answer/abstention conflict, states derived-result/selection
+requirements explicitly and prospectively clarifies capacity as a calculation.
+Literal, numeric/sign/year/scale, operand, arithmetic and completeness checks stay
+strict. Semantic entailment/final prose/formula review is still manual.
+
+Historical v2 contract/validator/case helpers and exact output fixtures retain
+the old diagnostics. SYNTHETIC_V2_REVIEW.md and SYNTHETIC_V2_RESULTS.json are not
+rewritten. The saved common-v2 reviews retain 1/6 for each historical output set;
+the separate original run records remain unchanged. Six requests were spent in
+each campaign: 12 total, currently authorized remaining zero. The run, follow-up and seal
+entry points now stop immediately with an unconditional pause guard.
+
+Development-host offline validation passes 250 tests, including 31 new repair
+tests; portable/pinned-C++ grammar recognition agrees on all 23 constructed
+fixtures. Local tokenizer-only checks reproduce all old token IDs and revised
+counts 620/613/644/636/623/5120 within unchanged budgets. These checks are not
+new model outputs or experimental answer results. Actual Windows replay remains
+pending. No dependency installation, model/backend initialization, new inference
+allowance, setup/ticket/cache/ledger or FinanceBench generation occurs.
+
+All baseline/OCR environments and caches, finocr source bytes, zero-based page
+IDs, raw labels, frozen expansion v1/k=5 and existing rankings remain unchanged.
+The private rubric's three pre-generation adjudication holds remain.

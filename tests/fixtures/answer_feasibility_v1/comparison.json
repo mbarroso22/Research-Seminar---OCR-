@@ -1,0 +1,76 @@
+{
+  "answer": "Operations supplied the most cash in FY2031, as it was the only activity with a positive cash flow of 40 million USD. Profit declined in FY2031 due to increased input costs, so profit did not improve.",
+  "calculation": {
+    "expression": "40 - (-12) - 9",
+    "operand_ids": [
+      "operations",
+      "investing",
+      "financing"
+    ],
+    "result": "43",
+    "unit": "million USD"
+  },
+  "claims": [
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "operations 40; investing (12); financing (9)"
+        }
+      ],
+      "text": "Operations supplied the most cash in FY2031"
+    },
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "Revenue rose, but profit declined because input costs increased."
+        }
+      ],
+      "text": "Profit declined in FY2031"
+    }
+  ],
+  "missing_information": [],
+  "quantities": [
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "operations_cash",
+      "name": "Cash from operations",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "operations 40"
+      },
+      "unit": "million USD",
+      "value": "value: 40"
+    },
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "investing_cash",
+      "name": "Cash from investing",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "investing (12)"
+      },
+      "unit": "million USD",
+      "value": "value: -12"
+    },
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "financing_cash",
+      "name": "Cash from financing",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "financing (9)"
+      },
+      "unit": "million USD",
+      "value": "value: 9"
+    }
+  ],
+  "status": "answered"
+}

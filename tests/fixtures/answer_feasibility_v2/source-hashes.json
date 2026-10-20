@@ -1,0 +1,12 @@
+{
+  "kind": "unchanged historical-v2 output bytes, not revised-contract inference",
+  "archive_sha256": "bb64b96f9d581f30cb85ec1c496863cf659fa02becce6f4be163c342e5251e14",
+  "raw_content_sha256": {
+    "signed": "1ff056c5cef164072903900e53a1af86bb7d4c83531295df38d544a77c13f0e7",
+    "scale": "5d30fa45b7b23d2d0fe84f59b5bc6d4e1aba6b989c2d6e94ceed5b10135cae05",
+    "margin": "c192d221b76955392710019b9615335929aa2f887c13fc76e10f4b4e1dd2f296",
+    "comparison": "ed99dfdc2ec1037a3853ca04383a8d2480875f47310ac78e5081b82f56a13bc0",
+    "missing": "b5c5db88b23b7c6911e9442ca8e67366b1f2ddb70f6051a1d9be5387a8828bc7",
+    "capacity": "583de7b49648c8066269a8ec534311032ff455be82f328da22b6eca91ff83b29"
+  }
+}

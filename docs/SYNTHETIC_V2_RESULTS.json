@@ -1,0 +1,496 @@
+{
+  "kind": "verified_synthetic_v2_results_not_financebench_accuracy",
+  "review_date": "2026-10-18",
+  "supplied_archive": "synthetic-contract-v2-review(1).zip",
+  "archive_sha256": "bb64b96f9d581f30cb85ec1c496863cf659fa02becce6f4be163c342e5251e14",
+  "archive_files": 58,
+  "implementation_base": {
+    "git_commit": "828ba0645b7004951ae4e15134e80afc3893c542",
+    "prerequisite_patch": "answer-feasibility-preparation.patch",
+    "v2_patch": "answer-validation-v2-incremental.patch",
+    "v2_patch_sha256": "d18a45e297ed3293c68487260b0ee245031e135f4ffbfd22408c63bd3fcfc531",
+    "v2_tree": "0ed7ecd8cb573d43ad7af17855204e273a3b7990",
+    "recorded_source_sha256": "af3daf1cb3592b00a6788ed5eb796e469d4d3d1e9bae727bd5444787466a3f07",
+    "source_bytes_exactly_reconstructed": true
+  },
+  "setup_sha256": "d1a496141c9de242034e5114ded3bc5500fb44afe92986d96c13bd94e9cc4774",
+  "budget": {
+    "v1_attempts": 6,
+    "v2_attempts": 6,
+    "cumulative_attempts": 12,
+    "remaining_authorized": 0
+  },
+  "review_additional_inference": 0,
+  "financebench_generation": false,
+  "completions": 6,
+  "schema_pass_count": 6,
+  "recorded_grammar_acceptance_count": 6,
+  "strict_mechanical_pass_count": 1,
+  "overall_feasibility": "not established",
+  "resources": {
+    "recomputed": {
+      "sample_count": 119,
+      "server_sampled_peak_rss_bytes": 3029127168,
+      "client_sampled_peak_rss_bytes": 324395008,
+      "sampled_peak_sum_rss_bytes": 3352899584,
+      "minimum_system_available_bytes": 5726253056,
+      "sampled_peak_system_used_bytes": 11333001216,
+      "device_wide_sampled_peak_used_mib": 4094
+    },
+    "summary_matches_samples": true,
+    "scope": "Sampled RSS / whole-system used RAM / whole-device VRAM. Not isolated exact peaks.",
+    "windows_peak_working_set": "Recorded summary only; no per-sample OS peak values supplied."
+  },
+  "runtime_observed": {
+    "flash_attention_declared": "disabled",
+    "flash_attention_effective": "disabled",
+    "full_gpu_offload": true,
+    "device": "Vulkan0",
+    "gpu_name": "RTX 3070 Ti",
+    "n_ctx": "6144",
+    "n_ctx_per_seq": "6144",
+    "n_seq_max": "1",
+    "n_batch": "512",
+    "n_ubatch": "128",
+    "kv_f16": true
+  },
+  "timing": {
+    "startup_wall_seconds": 1.6978877000510693,
+    "sum_recorded_request_wall_seconds": 30.020445700036362,
+    "run_wall_seconds": 32.59992399998009,
+    "generated_tokens": 2122,
+    "scope": "One FA-off synthetic campaign, sampled whole-device/system memory; no isolated speedup or accuracy claim."
+  },
+  "preservation": {
+    "snapshot_files_equal": 4,
+    "hash_entries_equal": 110,
+    "actual_files_cross_checked": 98,
+    "limits": "Twelve cache/model manifest bytes and every cached page/model binary are not included in this bundle. Three environment inventories, not complete virtualenv byte snapshots, are supplied."
+  },
+  "recorded_grammar": {
+    "sha256": "90f3a53882a22a0222155eb3854034a05ba356f7b02b49cd85c3d167a82d5561",
+    "bytes": 12383,
+    "all_six_saved_grammars_identical": true,
+    "pinned_cpp_conversion_byte_match": true,
+    "pinned_python_conversion_byte_match": true,
+    "model_or_sampler_loaded_in_offline_grammar_probe": false,
+    "any_converter_defect_demonstrated_for_this_schema": false
+  },
+  "implementation_findings": [
+    {
+      "id": "D1",
+      "classification": "schema/validator invariant gap",
+      "finding": "answered + answer insufficient_evidence + nonempty claims passes generic schema/mechanics; fixed synthetic expected-status check still rejects capacity."
+    },
+    {
+      "id": "D2",
+      "classification": "wire-order and conformance-test defect",
+      "finding": "canonical(sort_keys=True) sorts nested schema properties; status moves from first in source to last on wire. Recorded C++ grammar follows wire order faithfully. Canonical schema hash alone cannot distinguish ordering effects."
+    },
+    {
+      "id": "D3",
+      "classification": "prompt/schema/evaluator alignment gap",
+      "finding": "Prompt omits the full strict abstention shape and some case-specific required representation rules. Single calculation field cannot trace multiple requested calculations separately."
+    },
+    {
+      "id": "D4",
+      "classification": "fictional task/status-policy ambiguity",
+      "finding": "Capacity asks whether a ratio can be calculated. A supported answered No fails only the hardcoded expected-status requirement; the actual positive claim remains false and rejected. Clarify the future fictional question prospectively; retain both old failures."
+    },
+    {
+      "id": "L1",
+      "classification": "intentional layered checks / improvement opportunity",
+      "finding": "Flat enums do not encode unit/currency/scale compatibility; validator rejects invalid tuples. Grammar membership is not factual validity."
+    },
+    {
+      "id": "L2",
+      "classification": "declared semantic limitation",
+      "finding": "Mechanics do not establish final-answer meaning, quantity-role association, formula meaning or citation entailment. Manual review remains required."
+    }
+  ],
+  "validation": {
+    "existing_suite_tests": 219,
+    "existing_suite_pass": true,
+    "offline_characterization_probes": 14,
+    "offline_probe_pass": true,
+    "meaning": "Probes reproduce saved outcomes and characterize gaps; no repaired implementation is claimed.",
+    "actual_windows_tests": "User reported complete 219-test pass separately; full Windows test log not present in this archive."
+  },
+  "future_design": {
+    "status": "proposal only; not authorized or executed",
+    "offline_contract_gate_requests": 0,
+    "proposed_additional_synthetic_request_ceiling": 6,
+    "proposed_cumulative_synthetic_ceiling_if_later_authorized": 18,
+    "current_remaining_authorized_requests": 0,
+    "retries": 0,
+    "financebench_requests": 0
+  },
+  "limitations": [
+    "Previously inspected fictional cases are development checks, not held-out/generalization evidence.",
+    "Both grammar/contract and effective Flash Attention changed between v1/v2; observed differences are not causally attributable.",
+    "Model/backend/weight and cache page bytes are absent from the supplied v2 bundle.",
+    "Three private rubric source/reference holds remain; no scoring-key freeze or benchmark generation is authorized."
+  ],
+  "cases": [
+    {
+      "case_id": "signed",
+      "input_tokens": 340,
+      "generated_tokens": 252,
+      "recorded_request_wall_seconds": 3.6915814001113176,
+      "request_sha256": "52e8ef76ddb0df3ab652b312153fc4a59a0742b1fa13e16f2456b41e19ee2ab1",
+      "response_sha256": "5c9fb15fcdd2671cfe7dc10f2b69d37dc77f184602a5148bae03382c5141615f",
+      "schema_pass": true,
+      "grammar_accepts_exact_saved_bytes": true,
+      "strict_mechanical_pass": false,
+      "reproduced_checks": {
+        "schema": true,
+        "mechanical_pass": false,
+        "issues": [
+          {
+            "code": "unit_scale_dimension",
+            "path": "quantities[0]",
+            "message": "Dimensionless quantities require currency none and scale unit"
+          },
+          {
+            "code": "required_quantity",
+            "path": "synthetic:signed",
+            "message": "Missing or incorrect required fact 0"
+          },
+          {
+            "code": "unsupported_quantity",
+            "path": "synthetic:signed",
+            "message": "Quantity 0 does not match any permitted source/derived synthetic fact"
+          }
+        ],
+        "calculation": {
+          "recomputed": "-12.5",
+          "declared": "-12.5",
+          "exact_match": true
+        },
+        "semantic_support": "pending_manual_review",
+        "financial_formula": "pending_manual_review",
+        "expected_status": true,
+        "quantity_0": false,
+        "citation_structure": true
+      },
+      "visible_answer": "Correct -12.5 USD million",
+      "model_error": [
+        "Quantity uses percent with currency USD and scale million, despite an amount source."
+      ],
+      "implementation_contribution": [
+        "Flat enums permit the contradictory dimension tuple; runtime validation correctly rejects it."
+      ],
+      "v1_to_v2": "Invalid compound unit replaced by valid-enum but wrong-dimension percent. Still fails."
+    },
+    {
+      "case_id": "scale",
+      "input_tokens": 333,
+      "generated_tokens": 383,
+      "recorded_request_wall_seconds": 4.014057799940929,
+      "request_sha256": "0cc900d741d1916bc1d90172aacf267c9b4f3273fb72a9724bc6c222be835961",
+      "response_sha256": "8ed09c317c2e80a25349418dfaaa162318db454bae511cd0168bef89f7076880",
+      "schema_pass": true,
+      "grammar_accepts_exact_saved_bytes": true,
+      "strict_mechanical_pass": false,
+      "reproduced_checks": {
+        "schema": true,
+        "mechanical_pass": false,
+        "issues": [
+          {
+            "code": "unit_scale_dimension",
+            "path": "quantities[0]",
+            "message": "Dimensionless quantities require currency none and scale unit"
+          },
+          {
+            "code": "unit_scale_dimension",
+            "path": "quantities[1]",
+            "message": "Dimensionless quantities require currency none and scale unit"
+          },
+          {
+            "code": "undefined_operand",
+            "path": "calculation.operand_ids",
+            "message": "['scale_factor']"
+          },
+          {
+            "code": "operand_expression_mismatch",
+            "path": "calculation.expression",
+            "message": "Expression names must equal the declared operands; literal-only substitution is forbidden"
+          },
+          {
+            "code": "unlinked_calculation",
+            "path": "calculation.expression",
+            "message": "At least one quantity operand must be used"
+          },
+          {
+            "code": "invalid_calculation",
+            "path": "calculation",
+            "message": "KeyError: 'scale_factor'"
+          },
+          {
+            "code": "required_quantity",
+            "path": "synthetic:scale",
+            "message": "Missing or incorrect required fact 0"
+          },
+          {
+            "code": "unsupported_quantity",
+            "path": "synthetic:scale",
+            "message": "Quantity 0 does not match any permitted source/derived synthetic fact"
+          },
+          {
+            "code": "unsupported_quantity",
+            "path": "synthetic:scale",
+            "message": "Quantity 1 does not match any permitted source/derived synthetic fact"
+          }
+        ],
+        "calculation": null,
+        "semantic_support": "pending_manual_review",
+        "financial_formula": "pending_manual_review",
+        "expected_status": true,
+        "quantity_0": false,
+        "citation_structure": true
+      },
+      "visible_answer": "Numerical 1250 conversion is right; final answer alone lacks a unit.",
+      "model_error": [
+        "Both quantities use percent with USD monetary scales.",
+        "Converted 1250 has scale thousand rather than million (1000-fold error if treated as an amount).",
+        "Undefined scale_factor and literal-only expression 1.25 * 1000."
+      ],
+      "implementation_contribution": [
+        "Grammar constrains lexical values/enums, not operand references or dimensional consistency."
+      ],
+      "v1_to_v2": "Malformed value prefix disappears; scale and source-link failures remain."
+    },
+    {
+      "case_id": "margin",
+      "input_tokens": 364,
+      "generated_tokens": 796,
+      "recorded_request_wall_seconds": 7.864859499968588,
+      "request_sha256": "c7476abbd8eb62bc45b961f45ec1f028b15179bb2ef79c79a526f2c4af40e3f7",
+      "response_sha256": "eecea9459fadfb58ad0f81376f79afaa0b29df8fe4c438d85d3a2d38f8d3ff50",
+      "schema_pass": true,
+      "grammar_accepts_exact_saved_bytes": true,
+      "strict_mechanical_pass": false,
+      "reproduced_checks": {
+        "schema": true,
+        "mechanical_pass": false,
+        "issues": [
+          {
+            "code": "unit_scale_dimension",
+            "path": "quantities[0]",
+            "message": "Dimensionless quantities require currency none and scale unit"
+          },
+          {
+            "code": "unit_scale_dimension",
+            "path": "quantities[1]",
+            "message": "Dimensionless quantities require currency none and scale unit"
+          },
+          {
+            "code": "quantity_citation",
+            "path": "quantities[1].source",
+            "message": "Included zero-based page and nonempty literal span required"
+          },
+          {
+            "code": "operand_expression_mismatch",
+            "path": "calculation.expression",
+            "message": "Expression names must equal the declared operands; literal-only substitution is forbidden"
+          },
+          {
+            "code": "unlinked_calculation",
+            "path": "calculation.expression",
+            "message": "At least one quantity operand must be used"
+          },
+          {
+            "code": "required_quantity",
+            "path": "synthetic:margin",
+            "message": "Missing or incorrect required fact 0"
+          },
+          {
+            "code": "required_quantity",
+            "path": "synthetic:margin",
+            "message": "Missing or incorrect required fact 1"
+          },
+          {
+            "code": "unsupported_quantity",
+            "path": "synthetic:margin",
+            "message": "Quantity 0 does not match any permitted source/derived synthetic fact"
+          },
+          {
+            "code": "unsupported_quantity",
+            "path": "synthetic:margin",
+            "message": "Quantity 1 does not match any permitted source/derived synthetic fact"
+          }
+        ],
+        "calculation": {
+          "recomputed": "25.00",
+          "declared": "25",
+          "exact_match": true
+        },
+        "semantic_support": "pending_manual_review",
+        "financial_formula": "pending_manual_review",
+        "expected_status": true,
+        "quantity_0": false,
+        "quantity_1": false,
+        "quantity_2": true,
+        "quantity_3": true,
+        "quantity_4": true,
+        "arithmetic_25_percent": true,
+        "five_percentage_point_change": "pending_manual_review",
+        "citation_structure": false
+      },
+      "visible_answer": "25 percent gross margin and +5 percentage points from 20 percent are numerically correct.",
+      "model_error": [
+        "Revenue and cost are incorrectly typed percent with USD/million.",
+        "Cost citation inserts a nonliteral prefix before cost of sales.",
+        "Expression uses literals rather than declared revenue/cost operand IDs."
+      ],
+      "implementation_contribution": [
+        "Schema does not encode the quantity-dimension relationship.",
+        "Only one calculation object can be recorded; all derived numerical components need manual/formula review."
+      ],
+      "v1_to_v2": "Percentage scales become valid unit scales; cost citation regresses. Still fails."
+    },
+    {
+      "case_id": "comparison",
+      "input_tokens": 356,
+      "generated_tokens": 522,
+      "recorded_request_wall_seconds": 5.159545800182968,
+      "request_sha256": "e661dc9cb750f1f2dd82e44fc65a616e9a35f3ce2e8050d9466c8cd17529e444",
+      "response_sha256": "84d163d5c86f21f2286c3b31bc05d161a72e916b5aba627bd5330696a079e834",
+      "schema_pass": true,
+      "grammar_accepts_exact_saved_bytes": true,
+      "strict_mechanical_pass": false,
+      "reproduced_checks": {
+        "schema": true,
+        "mechanical_pass": false,
+        "issues": [
+          {
+            "code": "operand_expression_mismatch",
+            "path": "calculation.expression",
+            "message": "Expression names must equal the declared operands; literal-only substitution is forbidden"
+          },
+          {
+            "code": "unlinked_calculation",
+            "path": "calculation.expression",
+            "message": "At least one quantity operand must be used"
+          },
+          {
+            "code": "required_quantity",
+            "path": "synthetic:comparison",
+            "message": "Missing or incorrect required fact 2"
+          },
+          {
+            "code": "unsupported_quantity",
+            "path": "synthetic:comparison",
+            "message": "Quantity 2 does not match any permitted source/derived synthetic fact"
+          },
+          {
+            "code": "activity_value_or_sign",
+            "path": "synthetic:comparison",
+            "message": "Quantity 2 has wrong signed figure for its named activity"
+          },
+          {
+            "code": "unrequested_calculation",
+            "path": "synthetic:comparison",
+            "message": "Selection/interpretation task requires null calculation, not an invented cash-flow total"
+          }
+        ],
+        "calculation": {
+          "recomputed": "43",
+          "declared": "43",
+          "exact_match": true
+        },
+        "semantic_support": "pending_manual_review",
+        "financial_formula": "pending_manual_review",
+        "expected_status": true,
+        "quantity_0": true,
+        "quantity_1": true,
+        "quantity_2": false,
+        "operations_and_profit_decline": "pending_manual_review",
+        "citation_structure": true
+      },
+      "visible_answer": "Operations selected; profit decline and input-cost cause correctly stated.",
+      "model_error": [
+        "Financing is +9 while source (9) means -9.",
+        "Literal-only unrequested expression 40 - (-12) - 9 = 43 does not represent signed net cash 19."
+      ],
+      "implementation_contribution": [
+        "Case-specific null-calculation requirement is not fully exposed by the common prompt/schema."
+      ],
+      "v1_to_v2": "Quantity unit names, value syntax and declared IDs become valid; sign and unlinked/unrequested formula still fail."
+    },
+    {
+      "case_id": "missing",
+      "input_tokens": 343,
+      "generated_tokens": 63,
+      "recorded_request_wall_seconds": 1.1167609998956323,
+      "request_sha256": "a641eb079c971940a1c719fd5f51c31ae04d22977366a85c2db8006a12ea1657",
+      "response_sha256": "3e89ce4eca6664372ae0f495a72fe8213e5d88c0a55d54d0ae1c77eed4090a59",
+      "schema_pass": true,
+      "grammar_accepts_exact_saved_bytes": true,
+      "strict_mechanical_pass": true,
+      "reproduced_checks": {
+        "schema": true,
+        "mechanical_pass": true,
+        "issues": [],
+        "calculation": null,
+        "semantic_support": "pending_manual_review",
+        "financial_formula": "pending_manual_review",
+        "expected_status": true,
+        "explicit_missing_facts": true,
+        "citation_structure": true
+      },
+      "visible_answer": "Appropriate abstention: current liabilities missing.",
+      "model_error": [],
+      "implementation_contribution": [],
+      "v1_to_v2": "Retains mechanical pass; manual source inspection agrees."
+    },
+    {
+      "case_id": "capacity",
+      "input_tokens": 5120,
+      "generated_tokens": 106,
+      "recorded_request_wall_seconds": 8.173640199936926,
+      "request_sha256": "ae914b494b1233fb16bc5738ef93381252ca86f5610b7e51e2842f6ee190c134",
+      "response_sha256": "35a5ee879da44d20eef4d2be6c8c67b5fdaeb7b5cf0a9c7635322e35e8d8d2e4",
+      "schema_pass": true,
+      "grammar_accepts_exact_saved_bytes": true,
+      "strict_mechanical_pass": false,
+      "reproduced_checks": {
+        "schema": true,
+        "mechanical_pass": false,
+        "issues": [
+          {
+            "code": "expected_status",
+            "path": "synthetic:capacity",
+            "message": "Status disagrees with fictional context"
+          }
+        ],
+        "calculation": null,
+        "semantic_support": "pending_manual_review",
+        "financial_formula": "pending_manual_review",
+        "expected_status": false,
+        "explicit_missing_facts": false,
+        "citation_structure": true
+      },
+      "visible_answer": "Insufficient-evidence answer contradicts an answered status and claim that quick ratio can be calculated.",
+      "model_error": [
+        "Claim directly contradicts the supplied missing-liabilities sentence.",
+        "Answered status contradicts its own reserved abstention answer; missing_information is empty."
+      ],
+      "implementation_contribution": [
+        "ANSWERED permits the reserved abstention answer string.",
+        "Generic conflict check is only applied when status is insufficient_evidence.",
+        "Canonical wire serialization moves status last; the nonempty-claim prefix excludes the abstention branch.",
+        "The availability metaquestion is answerable with a supported No, whereas the case-specific harness requires insufficient_evidence; actual output is still contradictory and false."
+      ],
+      "v1_to_v2": "Status changes to answered and missing-facts list empties, but claim remains unsupported. Still fails."
+    }
+  ],
+  "same_v2_validator_comparison": {
+    "v1_schema_pass": 1,
+    "v2_schema_pass": 6,
+    "v1_mechanical_pass": 1,
+    "v2_mechanical_pass": 1,
+    "denominator_each": 6,
+    "limits": "Different output grammar and effective Flash Attention; not a single-factor causal comparison."
+  }
+}

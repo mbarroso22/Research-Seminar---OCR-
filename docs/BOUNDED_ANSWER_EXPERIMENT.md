@@ -1,6 +1,15 @@
 # Proposed bounded answer-generation and correctness pilot
 
-**Proposal dated 2026-10-18; not implemented or executed.** This follows the
+**Design proposed 2026-10-18; primary generation/evaluation not implemented or executed.**
+Feasibility setup and evaluator preparation now have a separate implementation:
+[staged Windows guide](ANSWER_FEASIBILITY_WINDOWS.md) and
+[preparation status](ANSWER_PREPARATION_STATUS.md). The pinned backend is a
+setup candidate; the original synthetic execution is now reviewed separately in
+[the synthetic review](SYNTHETIC_FEASIBILITY_REVIEW.md). The completed v2 FA-off
+campaign is now [verified separately](SYNTHETIC_V2_REVIEW.md): 1/6 strict mechanical
+compliance, budget exhausted. Contract repair and final private-rubric adjudication
+remain pending. No benchmark answers have
+been generated. This follows the
 [verified native/CPU-OCR/GPU-OCR pilot](NATIVE_OCR_PILOT_RESULTS.md). It instantiates
 the fixed answer-extraction stage of the roadmap, before any further context or
 memory study. It changes neither OCR nor retrieval. Expansion v1, primary k=5,
@@ -27,12 +36,30 @@ conditions. Do not interpret C-answer/G-answer as different generator hardware.
 No new OCR, retrieval, query, heading, formula-expansion, re-ranking or context
 selection sweep is included. No ledger, fine-tuning, web search or VLM inputs.
 
-**Budget:** at most six synthetic feasibility requests, at most 48 distinct
+**Original design budget:** at most six synthetic feasibility requests, at most 48 distinct
 primary requests representing 72 logical condition/question records, and at most
 24 separately labeled annotated-page diagnostic requests. Maximum 78 distinct
 requests in this proposed pilot, each with one completion. No best-of-N selection
 or answer-driven retries. Transport failures can be resumed without changing the
 request; retain all attempts, charge them and never choose among successful outputs.
+
+**Setup-only amendment, 2026-10-18:** the first six synthetic requests are exhausted
+and retained, including their validation failures and unintended effective Flash
+Attention setting. One separately sealed campaign permits at most **six additional
+synthetic requests**, with no retries: cumulative synthetic ceiling **12**. It uses
+the same fictional prompts/model/backend, strict v2 output grammar and explicit
+verified FA off. See [the staged v2 guide](ANSWER_VALIDATION_V2_WINDOWS.md). Offline
+audit/preparation spends zero requests. No primary or annotated-page generation
+is authorized or implemented by this amendment. The future design allowances of
+48 primary and 24 diagnostic requests remain unchanged; if separately implemented
+and authorized later, the amended all-stage ceiling would be 84 rather than 78.
+This does not erase the first six or permit answer-driven repeated campaigns.
+
+**Completed-budget update:** both synthetic campaigns are now complete and the
+12-request allowance is exhausted. Zero new inference is authorized. The
+[next contract qualification](ANSWER_CONTRACT_NEXT_DESIGN.md) is an unimplemented
+proposal only, contingent on offline conformance repair and a separately declared
+new budget; it does not reopen either ledger or borrow future benchmark requests.
 
 The reason for deduplication is verified input equality, not presumed model
 accuracy. All 24 CPU/GPU ordered top-five raw-text packets match exactly; none of
@@ -56,15 +83,19 @@ four-bit weight quantization, not a claim that the original BF16 weights plus
 context fit the GPU. If a local conversion such as Q4_K_M is used, pin the
 official base revision, conversion/quantizer commit and resulting file SHA-256;
 do not describe a community or locally converted file as an official Qwen release.
-The exact feasible backend, conversion artifact and build remain unresolved
-until the setup check. Do not substitute another model during scored execution.
+The setup now pins llama.cpp b6500 and a locally converted Q4_K_M artifact. The
+first six completions fit the recorded resource limits, but output validation
+failed and FA was auto-enabled. V2 now completes with verified FA off/resource
+checks, but only one response passes strict mechanics; overall feasibility fails.
+Do not substitute another model during scored execution.
 
 Use a new answer environment/model directory/cache. Preserve `.venv`, `.venv-ocr`,
 `.venv-ocr-gpu`, all OCR outputs, source files and retrieval controls. Do not
 install generation dependencies into an OCR environment or update the GPU driver
 as an implicit part of this documentation proposal.
 
-At most six synthetic requests using fictional reports should check signed
+The original six synthetic requests, plus only the explicit six-request setup
+amendment above, use fictional reports to check signed
 amounts, unit conversion, percentages, arithmetic, narrative support/contradiction,
 and insufficient evidence, including one request at the maximum input/output cap.
 No FinanceBench question, answer, justification or evidence text is a prompt
@@ -296,5 +327,6 @@ and pretrained financial knowledge are additional unresolved limitations.
 End the bounded pilot after these requests and the adjudicated report. Any prompt,
 model, quantization, packing, calculator, ledger or retrieval change requires a
 separate versioned future study. Later company/document-held-out evaluation must
-be excluded from this development process. Implementation, pinned setup commands
-and real generation remain pending.
+be excluded from this development process. Primary generation/evaluation implementation and real execution remain pending;
+only feasibility setup and private evaluator preparation are implemented in the
+separate continuation guide.

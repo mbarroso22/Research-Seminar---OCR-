@@ -1,0 +1,10 @@
+{
+  "contract_version": "typed-response-v3-offline",
+  "case_version": "fictional-cases-v3-offline",
+  "schema_canonical_sha256": "bc759ce3837b6bd2353a52b92bb0bb206bd8240a17de71da8ac905d679e8519f",
+  "schema_wire_sha256": "3c09fec51d31962d78768f6ad3809abc9b6ad5fe8b8065197b2eec9133ac4076",
+  "grammar_sha256": "dd3d90c3e13de2e852727aa6f49776edd6b6699b21d62ebdee65d5b69df60fce",
+  "instruction_sha256": "e01ebeb03de8d70e34e16f1d1706697a3842447b707f9e29734d4301c896d736",
+  "cases_sha256": "610d5eff4a8157f9c031b99f5f69e3fc12aa73a3fdf0a2c4ae58b999441dab68",
+  "kind": "offline schema/handwritten-fixture identity; not an inference setup"
+}

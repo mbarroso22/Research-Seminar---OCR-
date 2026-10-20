@@ -1,0 +1,9 @@
+# Isolated CPython 3.12 conversion/feasibility tooling; torch is CPU-only.
+torch==2.6.0+cpu
+transformers==4.56.2
+numpy==1.26.4
+safetensors==0.6.2
+mistral-common==1.8.3
+sentencepiece==0.2.1
+protobuf==4.25.8
+psutil==7.0.0

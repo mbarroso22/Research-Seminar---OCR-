@@ -1,5 +1,7 @@
 # Financial OCR Research — audit and native-text baseline
 
+Current continuation: [answer feasibility and private evaluator preparation](docs/ANSWER_PREPARATION_STATUS.md), with [staged PowerShell commands](docs/ANSWER_FEASIBILITY_WINDOWS.md). This stage runs only six fictional setup checks. Primary FinanceBench generation remains deferred; expansion v1 / k=5 stays frozen.
+
 ## Native-text continuation (2026-10-08)
 
 Setup and development-pilot validation are complete on the user's machine:

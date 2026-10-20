@@ -1,0 +1,101 @@
+{
+  "answer": "Cedar Works' FY2031 gross margin is 25 percent, representing a 5 percentage point increase from FY2030's 20 percent.",
+  "calculation": {
+    "expression": "((240 - 180) / 240) * 100",
+    "operand_ids": [
+      "revenue",
+      "cost_of_sales"
+    ],
+    "result": "25",
+    "unit": "percent"
+  },
+  "claims": [
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "Cedar Works FY2031: revenue 240 USD million; cost of sales 180 USD million."
+        }
+      ],
+      "text": "Cedar Works' FY2031 gross margin is 25 percent."
+    },
+    {
+      "support": [
+        {
+          "page_id": 0,
+          "span": "FY2030 gross margin was 20 percent."
+        }
+      ],
+      "text": "Cedar Works' FY2030 gross margin was 20 percent."
+    }
+  ],
+  "missing_information": [],
+  "quantities": [
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "revenue",
+      "name": "revenue",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "Cedar Works FY2031: revenue 240 USD million;"
+      },
+      "unit": "million",
+      "value": "240"
+    },
+    {
+      "currency": "USD",
+      "fiscal_year": "2031",
+      "id": "cost_of_sales",
+      "name": "cost of sales",
+      "scale": "million",
+      "source": {
+        "page_id": 0,
+        "span": "Cedar Works FY2031: revenue 240 USD million; cost of sales 180 USD million."
+      },
+      "unit": "million",
+      "value": "180"
+    },
+    {
+      "currency": "none",
+      "fiscal_year": "2030",
+      "id": "gross_margin_2030",
+      "name": "gross margin",
+      "scale": "percent",
+      "source": {
+        "page_id": 0,
+        "span": "FY2030 gross margin was 20 percent."
+      },
+      "unit": "percent",
+      "value": "20"
+    },
+    {
+      "currency": "none",
+      "fiscal_year": "2031",
+      "id": "gross_margin_2031",
+      "name": "gross margin",
+      "scale": "percent",
+      "source": {
+        "page_id": 0,
+        "span": "Cedar Works FY2031: revenue 240 USD million; cost of sales 180 USD million."
+      },
+      "unit": "percent",
+      "value": "25"
+    },
+    {
+      "currency": "none",
+      "fiscal_year": "2031",
+      "id": "margin_change",
+      "name": "percentage-point change in gross margin",
+      "scale": "percentage_points",
+      "source": {
+        "page_id": 0,
+        "span": "FY2030 gross margin was 20 percent."
+      },
+      "unit": "percentage_points",
+      "value": "5"
+    }
+  ],
+  "status": "answered"
+}

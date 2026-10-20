@@ -1,0 +1,157 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "answer": {
+      "type": "string"
+    },
+    "calculation": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "expression": {
+              "type": "string"
+            },
+            "operand_ids": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "result": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operand_ids",
+            "expression",
+            "result",
+            "unit"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "claims": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "support": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "page_id": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "span": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "page_id",
+                "span"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "support"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "missing_information": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "quantities": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "fiscal_year": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "scale": {
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "properties": {
+              "page_id": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "span": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "page_id",
+              "span"
+            ],
+            "type": "object"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "value",
+          "unit",
+          "currency",
+          "scale",
+          "fiscal_year",
+          "source"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "answered",
+        "insufficient_evidence"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "answer",
+    "claims",
+    "quantities",
+    "calculation",
+    "missing_information"
+  ],
+  "type": "object"
+}

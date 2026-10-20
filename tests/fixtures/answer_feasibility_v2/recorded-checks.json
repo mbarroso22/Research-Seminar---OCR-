@@ -1,0 +1,234 @@
+{
+  "signed": {
+    "calculation": {
+      "declared": "-12.5",
+      "exact_match": true,
+      "recomputed": "-12.5"
+    },
+    "citation_structure": true,
+    "expected_status": true,
+    "financial_formula": "pending_manual_review",
+    "issues": [
+      {
+        "code": "unit_scale_dimension",
+        "message": "Dimensionless quantities require currency none and scale unit",
+        "path": "quantities[0]"
+      },
+      {
+        "code": "required_quantity",
+        "message": "Missing or incorrect required fact 0",
+        "path": "synthetic:signed"
+      },
+      {
+        "code": "unsupported_quantity",
+        "message": "Quantity 0 does not match any permitted source/derived synthetic fact",
+        "path": "synthetic:signed"
+      }
+    ],
+    "mechanical_pass": false,
+    "quantity_0": false,
+    "schema": true,
+    "semantic_support": "pending_manual_review"
+  },
+  "scale": {
+    "calculation": null,
+    "citation_structure": true,
+    "expected_status": true,
+    "financial_formula": "pending_manual_review",
+    "issues": [
+      {
+        "code": "unit_scale_dimension",
+        "message": "Dimensionless quantities require currency none and scale unit",
+        "path": "quantities[0]"
+      },
+      {
+        "code": "unit_scale_dimension",
+        "message": "Dimensionless quantities require currency none and scale unit",
+        "path": "quantities[1]"
+      },
+      {
+        "code": "undefined_operand",
+        "message": "['scale_factor']",
+        "path": "calculation.operand_ids"
+      },
+      {
+        "code": "operand_expression_mismatch",
+        "message": "Expression names must equal the declared operands; literal-only substitution is forbidden",
+        "path": "calculation.expression"
+      },
+      {
+        "code": "unlinked_calculation",
+        "message": "At least one quantity operand must be used",
+        "path": "calculation.expression"
+      },
+      {
+        "code": "invalid_calculation",
+        "message": "KeyError: 'scale_factor'",
+        "path": "calculation"
+      },
+      {
+        "code": "required_quantity",
+        "message": "Missing or incorrect required fact 0",
+        "path": "synthetic:scale"
+      },
+      {
+        "code": "unsupported_quantity",
+        "message": "Quantity 0 does not match any permitted source/derived synthetic fact",
+        "path": "synthetic:scale"
+      },
+      {
+        "code": "unsupported_quantity",
+        "message": "Quantity 1 does not match any permitted source/derived synthetic fact",
+        "path": "synthetic:scale"
+      }
+    ],
+    "mechanical_pass": false,
+    "quantity_0": false,
+    "schema": true,
+    "semantic_support": "pending_manual_review"
+  },
+  "margin": {
+    "arithmetic_25_percent": true,
+    "calculation": {
+      "declared": "25",
+      "exact_match": true,
+      "recomputed": "25.00"
+    },
+    "citation_structure": false,
+    "expected_status": true,
+    "financial_formula": "pending_manual_review",
+    "five_percentage_point_change": "pending_manual_review",
+    "issues": [
+      {
+        "code": "unit_scale_dimension",
+        "message": "Dimensionless quantities require currency none and scale unit",
+        "path": "quantities[0]"
+      },
+      {
+        "code": "unit_scale_dimension",
+        "message": "Dimensionless quantities require currency none and scale unit",
+        "path": "quantities[1]"
+      },
+      {
+        "code": "quantity_citation",
+        "message": "Included zero-based page and nonempty literal span required",
+        "path": "quantities[1].source"
+      },
+      {
+        "code": "operand_expression_mismatch",
+        "message": "Expression names must equal the declared operands; literal-only substitution is forbidden",
+        "path": "calculation.expression"
+      },
+      {
+        "code": "unlinked_calculation",
+        "message": "At least one quantity operand must be used",
+        "path": "calculation.expression"
+      },
+      {
+        "code": "required_quantity",
+        "message": "Missing or incorrect required fact 0",
+        "path": "synthetic:margin"
+      },
+      {
+        "code": "required_quantity",
+        "message": "Missing or incorrect required fact 1",
+        "path": "synthetic:margin"
+      },
+      {
+        "code": "unsupported_quantity",
+        "message": "Quantity 0 does not match any permitted source/derived synthetic fact",
+        "path": "synthetic:margin"
+      },
+      {
+        "code": "unsupported_quantity",
+        "message": "Quantity 1 does not match any permitted source/derived synthetic fact",
+        "path": "synthetic:margin"
+      }
+    ],
+    "mechanical_pass": false,
+    "quantity_0": false,
+    "quantity_1": false,
+    "quantity_2": true,
+    "quantity_3": true,
+    "quantity_4": true,
+    "schema": true,
+    "semantic_support": "pending_manual_review"
+  },
+  "comparison": {
+    "calculation": {
+      "declared": "43",
+      "exact_match": true,
+      "recomputed": "43"
+    },
+    "citation_structure": true,
+    "expected_status": true,
+    "financial_formula": "pending_manual_review",
+    "issues": [
+      {
+        "code": "operand_expression_mismatch",
+        "message": "Expression names must equal the declared operands; literal-only substitution is forbidden",
+        "path": "calculation.expression"
+      },
+      {
+        "code": "unlinked_calculation",
+        "message": "At least one quantity operand must be used",
+        "path": "calculation.expression"
+      },
+      {
+        "code": "required_quantity",
+        "message": "Missing or incorrect required fact 2",
+        "path": "synthetic:comparison"
+      },
+      {
+        "code": "unsupported_quantity",
+        "message": "Quantity 2 does not match any permitted source/derived synthetic fact",
+        "path": "synthetic:comparison"
+      },
+      {
+        "code": "activity_value_or_sign",
+        "message": "Quantity 2 has wrong signed figure for its named activity",
+        "path": "synthetic:comparison"
+      },
+      {
+        "code": "unrequested_calculation",
+        "message": "Selection/interpretation task requires null calculation, not an invented cash-flow total",
+        "path": "synthetic:comparison"
+      }
+    ],
+    "mechanical_pass": false,
+    "operations_and_profit_decline": "pending_manual_review",
+    "quantity_0": true,
+    "quantity_1": true,
+    "quantity_2": false,
+    "schema": true,
+    "semantic_support": "pending_manual_review"
+  },
+  "missing": {
+    "calculation": null,
+    "citation_structure": true,
+    "expected_status": true,
+    "explicit_missing_facts": true,
+    "financial_formula": "pending_manual_review",
+    "issues": [],
+    "mechanical_pass": true,
+    "schema": true,
+    "semantic_support": "pending_manual_review"
+  },
+  "capacity": {
+    "calculation": null,
+    "citation_structure": true,
+    "expected_status": false,
+    "explicit_missing_facts": false,
+    "financial_formula": "pending_manual_review",
+    "issues": [
+      {
+        "code": "expected_status",
+        "message": "Status disagrees with fictional context",
+        "path": "synthetic:capacity"
+      }
+    ],
+    "mechanical_pass": false,
+    "schema": true,
+    "semantic_support": "pending_manual_review"
+  }
+}

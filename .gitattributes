@@ -1,0 +1,4 @@
+# Saved synthetic regression outputs retain their original bytes on Windows.
+tests/fixtures/answer_feasibility_v1/*.json binary
+tests/fixtures/answer_feasibility_v2/*.json binary
+tests/fixtures/answer_contract_v3/*.gbnf text eol=lf

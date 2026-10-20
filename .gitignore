@@ -18,3 +18,7 @@ results/*
 !results/.gitkeep
 
 .venv-ocr-gpu/
+
+# Isolated answer setup and evaluator-private material (keep outside the repo).
+.venv-answer/
+private-answer-evaluation/
