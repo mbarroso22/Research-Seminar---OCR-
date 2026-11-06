@@ -94,7 +94,7 @@ def _compare_cached(
         "schema_version": 1, "run_id": run_id, "status": "running",
         "baseline_run_id": old_manifest["run_id"], "baseline_directory": str(baseline),
         "baseline_manifest_sha256": sha256_file(baseline / "run_manifest.json"),
-        "experimental_group": "development_pilot", "page_index_base": 0,
+        "experimental_group": old_manifest.get("experimental_group", "development_pilot"), "page_index_base": 0,
         "started_utc": overall_started_utc if expand_queries else datetime.now(timezone.utc).isoformat(),
         "code": code_provenance(root),
         "inputs": verified, "task_sha256": task_hash, "manifest_totals": totals,
@@ -250,6 +250,10 @@ def _compare_cached(
                 } for control, metrics in (("baseline", baseline_metrics), ("stopwords", stopword_metrics))
             }
             comparison["interpretation"] = "development-only question-term expansion; not answer correctness or held-out evaluation"
+        if manifest["experimental_group"] == "company_disjoint_evaluation":
+            comparison["interpretation"] = (
+                "frozen reference replay on the company-disjoint cohort; "
+                "no parameter selection or answer correctness evaluation")
         if sha256_file(tasks) != task_hash:
             raise ValueError("Task annotations changed during scoring")
         write_json(output / "comparison_metrics.json", comparison)

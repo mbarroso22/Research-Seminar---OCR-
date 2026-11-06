@@ -106,6 +106,8 @@ def build_parser() -> argparse.ArgumentParser:
     native.add_argument("--expected-pages", type=int)
     native.add_argument("--expected-questions", type=int)
     native.add_argument("--skip-evaluation", action="store_true")
+    native.add_argument("--experimental-group", choices=("development_pilot", "company_disjoint_evaluation", "larger_exploratory"),
+                        default="development_pilot", help="Cohort metadata only; scoring and retrieval stay fixed")
 
     evaluate = commands.add_parser("evaluate-retrieval", help="Score saved predictions offline against evidence labels")
     evaluate.add_argument("--predictions", required=True)
@@ -190,6 +192,13 @@ def build_parser() -> argparse.ArgumentParser:
     devices.add_argument("--gpu-dir", required=True)
     devices.add_argument("--selection", required=True)
     devices.add_argument("--output-dir", required=True)
+    encoder = commands.add_parser("prepare-hybrid-encoder", help="Download/hash-check the pinned BGE ONNX assets; no encoding")
+    encoder.add_argument("--models-dir", required=True)
+    hybrid = commands.add_parser("compare-hybrid-retrieval", help="Original pilot only: frozen BM25, fixed semantic encoder and equal-weight RRF")
+    for name in ("native-dir", "reference-dir", "ocr-dir", "tasks", "models-dir", "output-dir"):
+        hybrid.add_argument("--" + name, required=True)
+    hybrid.add_argument("--repository-root", default=".")
+    hybrid.add_argument("--check-only", action="store_true", help="Verify original caches and replay both BM25 controls, without loading/forwarding the encoder or parsing labels")
     return parser
 
 
@@ -457,6 +466,18 @@ def _run_plan(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "prepare-hybrid-encoder":
+            from finocr.retrieval.semantic import prepare_model
+            result = prepare_model(args.models_dir, progress=lambda message: print(message, file=sys.stderr, flush=True))
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "compare-hybrid-retrieval":
+            from finocr.pipelines.hybrid_comparison import compare_hybrid
+            result = compare_hybrid(args.native_dir, args.reference_dir, args.ocr_dir, args.tasks, args.models_dir,
+                args.output_dir, repository_root=args.repository_root, check_only=args.check_only,
+                progress=lambda message: print(message, file=sys.stderr, flush=True))
+            print(json.dumps(result, indent=2))
+            return 0
         if args.command == "compare-ocr-devices":
             from finocr.pipelines.ocr_device_comparison import compare_ocr_devices
             result = compare_ocr_devices(args.cpu_dir, args.gpu_dir, args.selection, args.output_dir)
@@ -523,6 +544,7 @@ def main(argv: list[str] | None = None) -> int:
                 expected_documents=args.expected_documents, expected_pages=args.expected_pages,
                 expected_questions=args.expected_questions, skip_evaluation=args.skip_evaluation,
                 progress=lambda message: print(message, file=sys.stderr, flush=True),
+                experimental_group=args.experimental_group,
             )
             print(json.dumps(result, indent=2))
             return 0 if result["status"] == "complete" else 1

@@ -38,7 +38,9 @@ def comparison_report(metrics, manifest):
     lines += ["", "Detailed evidence ranks, gained/lost pages and extraction statuses are in comparison_metrics.json.", "",
         "Timing and ingestion history are in run_manifest.json. OCR timing includes diagnostics and retries; rendering wall time is its last retained invocation. Index/query runs have fixed native-then-OCR order.",
         "These descriptive timings are not repeated latency or energy measurements. Blank and failed pages remain zero-text candidates; zero-score ties can hit evidence by chance.",
-        "No answer correctness, CER/WER, or held-out generalization is measured.", ""]
+        ("Company-disjoint cohort comparison; no answer correctness, CER/WER, or population equivalence claim."
+         if manifest.get("experimental_group") == "company_disjoint_evaluation" else
+         "No answer correctness, CER/WER, or held-out generalization is measured."), ""]
     return "\n".join(lines)
 
 
@@ -84,6 +86,9 @@ def compare_native_ocr(native_dir, expansion_dir, ocr_dir, output_dir, *, tasks_
     ocr_identity = verify(ocr_root / "run_manifest.json")
     native, expansion, ocr = (read_json(p / "run_manifest.json") for p in (native_root, expansion_root, ocr_root))
     config, ref_config = native["configuration"], expansion["configuration"]
+    experimental_group = native.get("experimental_group", "development_pilot")
+    require(expansion.get("experimental_group", "development_pilot") == experimental_group,
+            "Expansion/native experimental group mismatch")
     require(native["status"] == "complete" and native["condition"] == "N_native_text_bm25"
             and native["page_index_base"] == 0 and config["full_ranking"] is True
             and config["tokenizer_version"] == TOKENIZER_VERSION and config["token_pattern"] == TOKEN_PATTERN
@@ -164,7 +169,7 @@ def compare_native_ocr(native_dir, expansion_dir, ocr_dir, output_dir, *, tasks_
     require(seen == set(docs) and len(native_pages) == native["manifest_totals"]["pages"], "Native full-report coverage changed")
     output.mkdir(parents=True)
     manifest = {"schema_version": 1, "run_id": uuid.uuid4().hex, "status": "running", "stage": "matched_native_ocr_retrieval",
-        "experimental_group": "development_pilot", "page_index_base": 0, "code": code_provenance(root),
+        "experimental_group": experimental_group, "page_index_base": 0, "code": code_provenance(root),
         "primary_k": 5, "configuration": ref_config, "ocr_device": device, "ocr_package_pins": pins,
         "manifest_totals": native["manifest_totals"],
         "inputs": {"native_manifest": native_identity, "expansion_manifest": expansion_identity, "ocr_manifest": ocr_identity,
@@ -214,6 +219,10 @@ def compare_native_ocr(native_dir, expansion_dir, ocr_dir, output_dir, *, tasks_
                 ("macro_evidence_recall", "any_evidence_hit_rate", "all_evidence_coverage_rate")} for k, value in n_metrics["at_k"].items()},
             "paired": changes, "ocr_failure_inclusive": bool(ocr["coverage"]["failure_pages"]),
             "interpretation": "matched input-representation comparison on the label-exposed development pilot; not answer correctness, OCR transcription accuracy or held-out generalization"}
+        if experimental_group == "company_disjoint_evaluation":
+            metrics["interpretation"] = (
+                "matched input-representation comparison on a frozen company-disjoint cohort; "
+                "not answer correctness, OCR transcription accuracy or population equivalence")
         write_json(output / "comparison_metrics.json", metrics)
         manifest.update(index_seconds=timing, query_seconds={c: sum(p["elapsed_seconds"] for p in ps) for c, ps in predictions.items()},
                         indexing_and_ranking_seconds=time.perf_counter()-indexing_started,

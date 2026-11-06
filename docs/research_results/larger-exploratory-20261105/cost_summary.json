@@ -1,0 +1,749 @@
+{
+  "historical_preprocessing": {
+    "prior_native_extraction_seconds": 351.40068359998986,
+    "prior_ocr_ingestion_timing": {
+      "failed_initializations": 0,
+      "model_initialization_seconds": 334.9373963000253,
+      "page_attempt_wall_seconds": 2731.9993162932806,
+      "page_attempts": 7003,
+      "page_attempts_with_unknown_duration": 0,
+      "policy": "cumulative actual invocations/attempts including retries and diagnostic reuse; fixed-order descriptive timing, not energy or a repeated latency benchmark",
+      "recorded_invocation_wall_seconds": 3425.004491500091,
+      "unfinished_invocations": 0,
+      "worker_initialization_wall_seconds": 347.46033070026897,
+      "worker_initializations": 43,
+      "worker_page_seconds": 2245.8683962954674,
+      "worker_startup_attempts": 43
+    },
+    "prior_rendering_timing": {
+      "attempts": 2,
+      "last_invocation_seconds": 3042.7366597999353
+    }
+  },
+  "native": {
+    "bm25_build_seconds": 1.785965799819678,
+    "bm25_query_seconds": 0.04014590056613088,
+    "encoded_content_tokens": 5850937,
+    "reports": [
+      {
+        "doc_id": "financebench:3M_2018_10K",
+        "encoding_seconds": 54.74958880012855,
+        "pages": 160,
+        "tokenization_seconds": 0.18741859984584153,
+        "vector_path": "vectors/native_report_00.npy",
+        "windows": 431
+      },
+      {
+        "doc_id": "financebench:3M_2022_10K",
+        "encoding_seconds": 82.9779815999791,
+        "pages": 252,
+        "tokenization_seconds": 0.29314379999414086,
+        "vector_path": "vectors/native_report_01.npy",
+        "windows": 664
+      },
+      {
+        "doc_id": "financebench:ACTIVISIONBLIZZARD_2019_10K",
+        "encoding_seconds": 55.72320910007693,
+        "pages": 198,
+        "tokenization_seconds": 0.1996194999665022,
+        "vector_path": "vectors/native_report_02.npy",
+        "windows": 452
+      },
+      {
+        "doc_id": "financebench:ADOBE_2015_10K",
+        "encoding_seconds": 56.89534940011799,
+        "pages": 116,
+        "tokenization_seconds": 0.1649394000414759,
+        "vector_path": "vectors/native_report_03.npy",
+        "windows": 462
+      },
+      {
+        "doc_id": "financebench:ADOBE_2016_10K",
+        "encoding_seconds": 35.937142699956894,
+        "pages": 112,
+        "tokenization_seconds": 0.12809640006162226,
+        "vector_path": "vectors/native_report_04.npy",
+        "windows": 291
+      },
+      {
+        "doc_id": "financebench:ADOBE_2017_10K",
+        "encoding_seconds": 34.35711429989897,
+        "pages": 107,
+        "tokenization_seconds": 0.12614449998363853,
+        "vector_path": "vectors/native_report_05.npy",
+        "windows": 279
+      },
+      {
+        "doc_id": "financebench:ADOBE_2022_10K",
+        "encoding_seconds": 31.91672490001656,
+        "pages": 99,
+        "tokenization_seconds": 0.11616070009768009,
+        "vector_path": "vectors/native_report_06.npy",
+        "windows": 257
+      },
+      {
+        "doc_id": "financebench:AMCOR_2020_10K",
+        "encoding_seconds": 54.47719020000659,
+        "pages": 195,
+        "tokenization_seconds": 0.1820318999234587,
+        "vector_path": "vectors/native_report_07.npy",
+        "windows": 446
+      },
+      {
+        "doc_id": "financebench:AMCOR_2023_10K",
+        "encoding_seconds": 43.74408990005031,
+        "pages": 156,
+        "tokenization_seconds": 0.15488419984467328,
+        "vector_path": "vectors/native_report_08.npy",
+        "windows": 355
+      },
+      {
+        "doc_id": "financebench:AMERICANWATERWORKS_2020_10K",
+        "encoding_seconds": 53.93588880007155,
+        "pages": 152,
+        "tokenization_seconds": 0.19420820008963346,
+        "vector_path": "vectors/native_report_09.npy",
+        "windows": 439
+      },
+      {
+        "doc_id": "financebench:AMERICANWATERWORKS_2021_10K",
+        "encoding_seconds": 60.01380020007491,
+        "pages": 181,
+        "tokenization_seconds": 0.21139269997365773,
+        "vector_path": "vectors/native_report_10.npy",
+        "windows": 484
+      },
+      {
+        "doc_id": "financebench:AMERICANWATERWORKS_2022_10K",
+        "encoding_seconds": 89.76931319991127,
+        "pages": 306,
+        "tokenization_seconds": 0.3185829999856651,
+        "vector_path": "vectors/native_report_11.npy",
+        "windows": 731
+      },
+      {
+        "doc_id": "financebench:COCACOLA_2017_10K",
+        "encoding_seconds": 64.92066430021077,
+        "pages": 197,
+        "tokenization_seconds": 0.23691179999150336,
+        "vector_path": "vectors/native_report_12.npy",
+        "windows": 526
+      },
+      {
+        "doc_id": "financebench:COCACOLA_2021_10K",
+        "encoding_seconds": 60.87867449992336,
+        "pages": 183,
+        "tokenization_seconds": 0.22006029984913766,
+        "vector_path": "vectors/native_report_13.npy",
+        "windows": 495
+      },
+      {
+        "doc_id": "financebench:COCACOLA_2022_10K",
+        "encoding_seconds": 57.08340090001002,
+        "pages": 183,
+        "tokenization_seconds": 0.2105209999717772,
+        "vector_path": "vectors/native_report_14.npy",
+        "windows": 474
+      },
+      {
+        "doc_id": "financebench:CORNING_2020_10K",
+        "encoding_seconds": 37.67920090002008,
+        "pages": 138,
+        "tokenization_seconds": 0.13403830002062023,
+        "vector_path": "vectors/native_report_15.npy",
+        "windows": 307
+      },
+      {
+        "doc_id": "financebench:CORNING_2021_10K",
+        "encoding_seconds": 38.55580600001849,
+        "pages": 125,
+        "tokenization_seconds": 0.13381459983065724,
+        "vector_path": "vectors/native_report_16.npy",
+        "windows": 318
+      },
+      {
+        "doc_id": "financebench:CORNING_2022_10K",
+        "encoding_seconds": 42.55117170000449,
+        "pages": 159,
+        "tokenization_seconds": 0.151383199961856,
+        "vector_path": "vectors/native_report_17.npy",
+        "windows": 351
+      },
+      {
+        "doc_id": "financebench:COSTCO_2021_10K",
+        "encoding_seconds": 20.041196700185537,
+        "pages": 76,
+        "tokenization_seconds": 0.0709156000521034,
+        "vector_path": "vectors/native_report_18.npy",
+        "windows": 164
+      },
+      {
+        "doc_id": "financebench:CVSHEALTH_2018_10K",
+        "encoding_seconds": 128.65428950008936,
+        "pages": 392,
+        "tokenization_seconds": 0.4590980999637395,
+        "vector_path": "vectors/native_report_19.npy",
+        "windows": 1060
+      },
+      {
+        "doc_id": "financebench:CVSHEALTH_2022_10K",
+        "encoding_seconds": 73.41083489987068,
+        "pages": 213,
+        "tokenization_seconds": 0.27104500005953014,
+        "vector_path": "vectors/native_report_20.npy",
+        "windows": 604
+      },
+      {
+        "doc_id": "financebench:GENERALMILLS_2019_10K",
+        "encoding_seconds": 42.9218886999879,
+        "pages": 140,
+        "tokenization_seconds": 0.14385769981890917,
+        "vector_path": "vectors/native_report_21.npy",
+        "windows": 355
+      },
+      {
+        "doc_id": "financebench:GENERALMILLS_2020_10K",
+        "encoding_seconds": 39.85189489996992,
+        "pages": 127,
+        "tokenization_seconds": 0.13933450006879866,
+        "vector_path": "vectors/native_report_22.npy",
+        "windows": 326
+      },
+      {
+        "doc_id": "financebench:GENERALMILLS_2022_10K",
+        "encoding_seconds": 36.52302879979834,
+        "pages": 127,
+        "tokenization_seconds": 0.1303687000181526,
+        "vector_path": "vectors/native_report_23.npy",
+        "windows": 300
+      },
+      {
+        "doc_id": "financebench:JOHNSON_JOHNSON_2022_10K",
+        "encoding_seconds": 47.403952799970284,
+        "pages": 151,
+        "tokenization_seconds": 0.1674120998941362,
+        "vector_path": "vectors/native_report_24.npy",
+        "windows": 389
+      },
+      {
+        "doc_id": "financebench:JPMORGAN_2022_10K",
+        "encoding_seconds": 141.48302350006998,
+        "pages": 382,
+        "tokenization_seconds": 0.4966813998762518,
+        "vector_path": "vectors/native_report_25.npy",
+        "windows": 1165
+      },
+      {
+        "doc_id": "financebench:KRAFTHEINZ_2019_10K",
+        "encoding_seconds": 49.32476360001601,
+        "pages": 152,
+        "tokenization_seconds": 0.17353889998048544,
+        "vector_path": "vectors/native_report_26.npy",
+        "windows": 405
+      },
+      {
+        "doc_id": "financebench:MGMRESORTS_2018_10K",
+        "encoding_seconds": 62.0623060001526,
+        "pages": 188,
+        "tokenization_seconds": 0.21711479988880455,
+        "vector_path": "vectors/native_report_27.npy",
+        "windows": 510
+      },
+      {
+        "doc_id": "financebench:MGMRESORTS_2020_10K",
+        "encoding_seconds": 53.57456559990533,
+        "pages": 150,
+        "tokenization_seconds": 0.18697439995594323,
+        "vector_path": "vectors/native_report_28.npy",
+        "windows": 440
+      },
+      {
+        "doc_id": "financebench:MGMRESORTS_2022_10K",
+        "encoding_seconds": 62.45526749989949,
+        "pages": 220,
+        "tokenization_seconds": 0.22272860002703965,
+        "vector_path": "vectors/native_report_29.npy",
+        "windows": 515
+      },
+      {
+        "doc_id": "financebench:MICROSOFT_2016_10K",
+        "encoding_seconds": 34.362341000000015,
+        "pages": 121,
+        "tokenization_seconds": 0.1265076999552548,
+        "vector_path": "vectors/native_report_30.npy",
+        "windows": 283
+      },
+      {
+        "doc_id": "financebench:MICROSOFT_2023_10K",
+        "encoding_seconds": 30.577410500030965,
+        "pages": 116,
+        "tokenization_seconds": 0.11078560003079474,
+        "vector_path": "vectors/native_report_31.npy",
+        "windows": 252
+      },
+      {
+        "doc_id": "financebench:NETFLIX_2015_10K",
+        "encoding_seconds": 22.52805699990131,
+        "pages": 72,
+        "tokenization_seconds": 0.07686290005221963,
+        "vector_path": "vectors/native_report_32.npy",
+        "windows": 185
+      },
+      {
+        "doc_id": "financebench:NETFLIX_2017_10K",
+        "encoding_seconds": 23.316402700031176,
+        "pages": 73,
+        "tokenization_seconds": 0.0785378001164645,
+        "vector_path": "vectors/native_report_33.npy",
+        "windows": 192
+      },
+      {
+        "doc_id": "financebench:NIKE_2018_10K",
+        "encoding_seconds": 34.098653899971396,
+        "pages": 97,
+        "tokenization_seconds": 0.12613809993490577,
+        "vector_path": "vectors/native_report_34.npy",
+        "windows": 282
+      },
+      {
+        "doc_id": "financebench:NIKE_2019_10K",
+        "encoding_seconds": 32.633343799971044,
+        "pages": 104,
+        "tokenization_seconds": 0.11765459994785488,
+        "vector_path": "vectors/native_report_35.npy",
+        "windows": 269
+      },
+      {
+        "doc_id": "financebench:NIKE_2021_10K",
+        "encoding_seconds": 35.03526129992679,
+        "pages": 109,
+        "tokenization_seconds": 0.12778270011767745,
+        "vector_path": "vectors/native_report_36.npy",
+        "windows": 288
+      },
+      {
+        "doc_id": "financebench:NIKE_2023_10K",
+        "encoding_seconds": 32.50032670004293,
+        "pages": 106,
+        "tokenization_seconds": 0.11560870008543134,
+        "vector_path": "vectors/native_report_37.npy",
+        "windows": 267
+      },
+      {
+        "doc_id": "financebench:PAYPAL_2022_10K",
+        "encoding_seconds": 42.18549680011347,
+        "pages": 134,
+        "tokenization_seconds": 0.15651429980061948,
+        "vector_path": "vectors/native_report_38.npy",
+        "windows": 348
+      },
+      {
+        "doc_id": "financebench:ULTABEAUTY_2023_10K",
+        "encoding_seconds": 28.76759950001724,
+        "pages": 105,
+        "tokenization_seconds": 0.10211420012637973,
+        "vector_path": "vectors/native_report_39.npy",
+        "windows": 237
+      },
+      {
+        "doc_id": "financebench:WALMART_2018_10K",
+        "encoding_seconds": 88.79944989993237,
+        "pages": 304,
+        "tokenization_seconds": 0.304553700145334,
+        "vector_path": "vectors/native_report_40.npy",
+        "windows": 730
+      },
+      {
+        "doc_id": "financebench:WALMART_2019_10K",
+        "encoding_seconds": 44.40379280014895,
+        "pages": 155,
+        "tokenization_seconds": 0.14903019997291267,
+        "vector_path": "vectors/native_report_41.npy",
+        "windows": 364
+      },
+      {
+        "doc_id": "financebench:WALMART_2020_10K",
+        "encoding_seconds": 57.18067209981382,
+        "pages": 170,
+        "tokenization_seconds": 0.19475040002726018,
+        "vector_path": "vectors/native_report_42.npy",
+        "windows": 471
+      }
+    ],
+    "rrf_seconds": 0.011980500537902117,
+    "semantic_ranking_seconds": 0.030886100372299552,
+    "source_content_tokens": 5132985,
+    "source_encoding_seconds": 2220.2621319002938,
+    "source_tokenization_seconds": 7.829262799350545,
+    "windows": 18163
+  },
+  "ocr": {
+    "bm25_build_seconds": 1.590517499949783,
+    "bm25_query_seconds": 0.03942959778942168,
+    "encoded_content_tokens": 5618129,
+    "reports": [
+      {
+        "doc_id": "financebench:3M_2018_10K",
+        "encoding_seconds": 51.61717489990406,
+        "pages": 160,
+        "tokenization_seconds": 0.18179139983840287,
+        "vector_path": "vectors/ocr_report_00.npy",
+        "windows": 427
+      },
+      {
+        "doc_id": "financebench:3M_2022_10K",
+        "encoding_seconds": 80.00917040021159,
+        "pages": 252,
+        "tokenization_seconds": 0.2894448998849839,
+        "vector_path": "vectors/ocr_report_01.npy",
+        "windows": 659
+      },
+      {
+        "doc_id": "financebench:ACTIVISIONBLIZZARD_2019_10K",
+        "encoding_seconds": 54.52458059997298,
+        "pages": 198,
+        "tokenization_seconds": 0.19704060000367463,
+        "vector_path": "vectors/ocr_report_02.npy",
+        "windows": 450
+      },
+      {
+        "doc_id": "financebench:ADOBE_2015_10K",
+        "encoding_seconds": 40.304660900030285,
+        "pages": 116,
+        "tokenization_seconds": 0.13743440015241504,
+        "vector_path": "vectors/ocr_report_03.npy",
+        "windows": 332
+      },
+      {
+        "doc_id": "financebench:ADOBE_2016_10K",
+        "encoding_seconds": 34.519792299950495,
+        "pages": 112,
+        "tokenization_seconds": 0.12744959979318082,
+        "vector_path": "vectors/ocr_report_04.npy",
+        "windows": 285
+      },
+      {
+        "doc_id": "financebench:ADOBE_2017_10K",
+        "encoding_seconds": 33.2853935000021,
+        "pages": 107,
+        "tokenization_seconds": 0.12399320001713932,
+        "vector_path": "vectors/ocr_report_05.npy",
+        "windows": 273
+      },
+      {
+        "doc_id": "financebench:ADOBE_2022_10K",
+        "encoding_seconds": 30.53569700010121,
+        "pages": 99,
+        "tokenization_seconds": 0.11292680003680289,
+        "vector_path": "vectors/ocr_report_06.npy",
+        "windows": 252
+      },
+      {
+        "doc_id": "financebench:AMCOR_2020_10K",
+        "encoding_seconds": 50.437253299867734,
+        "pages": 195,
+        "tokenization_seconds": 0.17105040000751615,
+        "vector_path": "vectors/ocr_report_07.npy",
+        "windows": 415
+      },
+      {
+        "doc_id": "financebench:AMCOR_2023_10K",
+        "encoding_seconds": 42.93317539989948,
+        "pages": 156,
+        "tokenization_seconds": 0.15351730003021657,
+        "vector_path": "vectors/ocr_report_08.npy",
+        "windows": 354
+      },
+      {
+        "doc_id": "financebench:AMERICANWATERWORKS_2020_10K",
+        "encoding_seconds": 50.939802599838,
+        "pages": 152,
+        "tokenization_seconds": 0.1917202000040561,
+        "vector_path": "vectors/ocr_report_09.npy",
+        "windows": 419
+      },
+      {
+        "doc_id": "financebench:AMERICANWATERWORKS_2021_10K",
+        "encoding_seconds": 56.44412660016678,
+        "pages": 181,
+        "tokenization_seconds": 0.20816640020348132,
+        "vector_path": "vectors/ocr_report_10.npy",
+        "windows": 464
+      },
+      {
+        "doc_id": "financebench:AMERICANWATERWORKS_2022_10K",
+        "encoding_seconds": 88.18916890001856,
+        "pages": 306,
+        "tokenization_seconds": 0.31503330008126795,
+        "vector_path": "vectors/ocr_report_11.npy",
+        "windows": 726
+      },
+      {
+        "doc_id": "financebench:COCACOLA_2017_10K",
+        "encoding_seconds": 63.14110670005903,
+        "pages": 197,
+        "tokenization_seconds": 0.23256020015105605,
+        "vector_path": "vectors/ocr_report_12.npy",
+        "windows": 526
+      },
+      {
+        "doc_id": "financebench:COCACOLA_2021_10K",
+        "encoding_seconds": 59.25619029998779,
+        "pages": 183,
+        "tokenization_seconds": 0.2165727000683546,
+        "vector_path": "vectors/ocr_report_13.npy",
+        "windows": 491
+      },
+      {
+        "doc_id": "financebench:COCACOLA_2022_10K",
+        "encoding_seconds": 56.89942810009234,
+        "pages": 183,
+        "tokenization_seconds": 0.20906440005637705,
+        "vector_path": "vectors/ocr_report_14.npy",
+        "windows": 472
+      },
+      {
+        "doc_id": "financebench:CORNING_2020_10K",
+        "encoding_seconds": 36.805946100037545,
+        "pages": 138,
+        "tokenization_seconds": 0.12998059997335076,
+        "vector_path": "vectors/ocr_report_15.npy",
+        "windows": 302
+      },
+      {
+        "doc_id": "financebench:CORNING_2021_10K",
+        "encoding_seconds": 36.094427900156006,
+        "pages": 125,
+        "tokenization_seconds": 0.12831820012070239,
+        "vector_path": "vectors/ocr_report_16.npy",
+        "windows": 296
+      },
+      {
+        "doc_id": "financebench:CORNING_2022_10K",
+        "encoding_seconds": 42.253527799854055,
+        "pages": 159,
+        "tokenization_seconds": 0.15028090006671846,
+        "vector_path": "vectors/ocr_report_17.npy",
+        "windows": 347
+      },
+      {
+        "doc_id": "financebench:COSTCO_2021_10K",
+        "encoding_seconds": 19.577895700000226,
+        "pages": 76,
+        "tokenization_seconds": 0.07060840004123747,
+        "vector_path": "vectors/ocr_report_18.npy",
+        "windows": 162
+      },
+      {
+        "doc_id": "financebench:CVSHEALTH_2018_10K",
+        "encoding_seconds": 121.74575240002014,
+        "pages": 392,
+        "tokenization_seconds": 0.44164229999296367,
+        "vector_path": "vectors/ocr_report_19.npy",
+        "windows": 1001
+      },
+      {
+        "doc_id": "financebench:CVSHEALTH_2022_10K",
+        "encoding_seconds": 72.74783410015516,
+        "pages": 213,
+        "tokenization_seconds": 0.26115990011021495,
+        "vector_path": "vectors/ocr_report_20.npy",
+        "windows": 598
+      },
+      {
+        "doc_id": "financebench:GENERALMILLS_2019_10K",
+        "encoding_seconds": 40.014802699908614,
+        "pages": 140,
+        "tokenization_seconds": 0.13792470004409552,
+        "vector_path": "vectors/ocr_report_21.npy",
+        "windows": 328
+      },
+      {
+        "doc_id": "financebench:GENERALMILLS_2020_10K",
+        "encoding_seconds": 39.41437799995765,
+        "pages": 127,
+        "tokenization_seconds": 0.13722839998081326,
+        "vector_path": "vectors/ocr_report_22.npy",
+        "windows": 325
+      },
+      {
+        "doc_id": "financebench:GENERALMILLS_2022_10K",
+        "encoding_seconds": 34.05793799995445,
+        "pages": 127,
+        "tokenization_seconds": 0.11887559993192554,
+        "vector_path": "vectors/ocr_report_23.npy",
+        "windows": 281
+      },
+      {
+        "doc_id": "financebench:JOHNSON_JOHNSON_2022_10K",
+        "encoding_seconds": 46.96594109991565,
+        "pages": 151,
+        "tokenization_seconds": 0.16464149998500943,
+        "vector_path": "vectors/ocr_report_24.npy",
+        "windows": 388
+      },
+      {
+        "doc_id": "financebench:JPMORGAN_2022_10K",
+        "encoding_seconds": 135.87654840014875,
+        "pages": 382,
+        "tokenization_seconds": 0.47765599982813,
+        "vector_path": "vectors/ocr_report_25.npy",
+        "windows": 1116
+      },
+      {
+        "doc_id": "financebench:KRAFTHEINZ_2019_10K",
+        "encoding_seconds": 49.19671480008401,
+        "pages": 152,
+        "tokenization_seconds": 0.17215960007160902,
+        "vector_path": "vectors/ocr_report_26.npy",
+        "windows": 404
+      },
+      {
+        "doc_id": "financebench:MGMRESORTS_2018_10K",
+        "encoding_seconds": 59.538951199967414,
+        "pages": 188,
+        "tokenization_seconds": 0.21011779992841184,
+        "vector_path": "vectors/ocr_report_27.npy",
+        "windows": 491
+      },
+      {
+        "doc_id": "financebench:MGMRESORTS_2020_10K",
+        "encoding_seconds": 51.39030530001037,
+        "pages": 150,
+        "tokenization_seconds": 0.18258040002547204,
+        "vector_path": "vectors/ocr_report_28.npy",
+        "windows": 422
+      },
+      {
+        "doc_id": "financebench:MGMRESORTS_2022_10K",
+        "encoding_seconds": 62.719520499929786,
+        "pages": 220,
+        "tokenization_seconds": 0.2203196999616921,
+        "vector_path": "vectors/ocr_report_29.npy",
+        "windows": 516
+      },
+      {
+        "doc_id": "financebench:MICROSOFT_2016_10K",
+        "encoding_seconds": 34.15659080003388,
+        "pages": 121,
+        "tokenization_seconds": 0.1267574999947101,
+        "vector_path": "vectors/ocr_report_30.npy",
+        "windows": 282
+      },
+      {
+        "doc_id": "financebench:MICROSOFT_2023_10K",
+        "encoding_seconds": 30.22790119983256,
+        "pages": 116,
+        "tokenization_seconds": 0.10945619991980493,
+        "vector_path": "vectors/ocr_report_31.npy",
+        "windows": 250
+      },
+      {
+        "doc_id": "financebench:NETFLIX_2015_10K",
+        "encoding_seconds": 21.42279789992608,
+        "pages": 72,
+        "tokenization_seconds": 0.07468260009773076,
+        "vector_path": "vectors/ocr_report_32.npy",
+        "windows": 175
+      },
+      {
+        "doc_id": "financebench:NETFLIX_2017_10K",
+        "encoding_seconds": 21.388688700040802,
+        "pages": 73,
+        "tokenization_seconds": 0.07554150000214577,
+        "vector_path": "vectors/ocr_report_33.npy",
+        "windows": 176
+      },
+      {
+        "doc_id": "financebench:NIKE_2018_10K",
+        "encoding_seconds": 33.041711799800396,
+        "pages": 97,
+        "tokenization_seconds": 0.12370890006422997,
+        "vector_path": "vectors/ocr_report_34.npy",
+        "windows": 273
+      },
+      {
+        "doc_id": "financebench:NIKE_2019_10K",
+        "encoding_seconds": 32.26202360005118,
+        "pages": 104,
+        "tokenization_seconds": 0.11742060002870858,
+        "vector_path": "vectors/ocr_report_35.npy",
+        "windows": 265
+      },
+      {
+        "doc_id": "financebench:NIKE_2021_10K",
+        "encoding_seconds": 34.29074340010993,
+        "pages": 109,
+        "tokenization_seconds": 0.12762749986723065,
+        "vector_path": "vectors/ocr_report_36.npy",
+        "windows": 283
+      },
+      {
+        "doc_id": "financebench:NIKE_2023_10K",
+        "encoding_seconds": 32.42233489989303,
+        "pages": 106,
+        "tokenization_seconds": 0.11717749992385507,
+        "vector_path": "vectors/ocr_report_37.npy",
+        "windows": 267
+      },
+      {
+        "doc_id": "financebench:PAYPAL_2022_10K",
+        "encoding_seconds": 41.95336630009115,
+        "pages": 134,
+        "tokenization_seconds": 0.1527794001158327,
+        "vector_path": "vectors/ocr_report_38.npy",
+        "windows": 346
+      },
+      {
+        "doc_id": "financebench:ULTABEAUTY_2023_10K",
+        "encoding_seconds": 28.29058439983055,
+        "pages": 105,
+        "tokenization_seconds": 0.09958289982751012,
+        "vector_path": "vectors/ocr_report_39.npy",
+        "windows": 234
+      },
+      {
+        "doc_id": "financebench:WALMART_2018_10K",
+        "encoding_seconds": 85.58036780008115,
+        "pages": 304,
+        "tokenization_seconds": 0.2970680999569595,
+        "vector_path": "vectors/ocr_report_40.npy",
+        "windows": 704
+      },
+      {
+        "doc_id": "financebench:WALMART_2019_10K",
+        "encoding_seconds": 40.30972760007717,
+        "pages": 155,
+        "tokenization_seconds": 0.1416976999025792,
+        "vector_path": "vectors/ocr_report_41.npy",
+        "windows": 332
+      },
+      {
+        "doc_id": "financebench:WALMART_2020_10K",
+        "encoding_seconds": 54.51468370016664,
+        "pages": 170,
+        "tokenization_seconds": 0.19116899999789894,
+        "vector_path": "vectors/ocr_report_42.npy",
+        "windows": 449
+      }
+    ],
+    "rrf_seconds": 0.01461129984818399,
+    "semantic_ranking_seconds": 0.029508499894291162,
+    "source_content_tokens": 4939473,
+    "source_encoding_seconds": 2131.2987276001368,
+    "source_tokenization_seconds": 7.625929200090468,
+    "windows": 17558
+  },
+  "policy": "fixed native-then-OCR order; shared model/query work reported once; source encoding is added preprocessing; single descriptive run, no controlled CPU/GPU speedup or energy measurement",
+  "shared": {
+    "encoder_initialization_seconds": 0.62948890007101,
+    "evaluation_and_reporting_seconds": 0.0670358999632299,
+    "input_validation_and_bm25_wall_seconds": 50.65111010009423,
+    "preservation_validation_seconds": 10.991613100050017,
+    "query_encoding_seconds": 1.3280760999768972,
+    "query_tokenization_seconds": 0.010332399979233742,
+    "source_validation_seconds": 47.008168400032446,
+    "total_process_cpu_seconds": 8783.328125,
+    "total_wall_seconds": 4431.745531900087
+  }
+}

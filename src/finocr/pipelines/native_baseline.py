@@ -223,9 +223,11 @@ def run_native_baseline(
     k1: float = 1.2, b: float = 0.75, ks: tuple[int, ...] = (1, 3, 5),
     expected_documents: int | None = None, expected_pages: int | None = None,
     expected_questions: int | None = None, skip_evaluation: bool = False,
-    progress: Progress | None = None,
+    progress: Progress | None = None, experimental_group: str = "development_pilot",
 ) -> dict[str, Any]:
     # Validate configuration and minimal inputs before creating the run directory.
+    if experimental_group not in {"development_pilot", "company_disjoint_evaluation", "larger_exploratory"}:
+        raise ValueError("Unsupported experimental group")
     BM25Index("configuration_check", [], k1=k1, b=b)
     if not ks or any(type(k) is not int or k <= 0 for k in ks) or len(set(ks)) != len(ks):
         raise ValueError("k values must be distinct positive integers")
@@ -252,7 +254,7 @@ def run_native_baseline(
     manifest = {
         "schema_version": 1, "run_id": run_id, "status": "running",
         "started_utc": datetime.now(timezone.utc).isoformat(),
-        "condition": "N_native_text_bm25", "experimental_group": "development_pilot",
+        "condition": "N_native_text_bm25", "experimental_group": experimental_group,
         "page_index_base": 0, "code": code_provenance(root),
         "inputs": {"documents": {"path": str(documents_path), "sha256": document_hash},
                    "tasks": {"path": str(tasks_path), "sha256": task_hash}},

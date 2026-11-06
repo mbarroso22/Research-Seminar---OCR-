@@ -1,0 +1,200 @@
+{
+  "purpose": "retrospective development, not held-out confirmation",
+  "runs": [
+    {
+      "task_id": "financebench:financebench_id_01148",
+      "doc_id": "financebench:AMCOR_2023_10K",
+      "arm": "retrieved",
+      "page_indices": [
+        4,
+        10,
+        29,
+        36,
+        54
+      ],
+      "prompt_tokens": 4035,
+      "prompt_sha256": "d6fd66ac517fc5e0545c136d698a36ae9d64582b0d0181274274471022efcd96",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 6.379742200020701,
+      "raw_stdout": " [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_01148",
+      "doc_id": "financebench:AMCOR_2023_10K",
+      "arm": "oracle",
+      "page_indices": [
+        4
+      ],
+      "prompt_tokens": 788,
+      "prompt_sha256": "52bb9a0288f8ffe6ae39f1a07a719a1d094f99a9fcab2382ac4913850674dca2",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 4.244964999845251,
+      "raw_stdout": "\r\nReporting period: Not specified (general company description)  \r\nUnits: N/A (qualitative response)  \r\n\r\nAnswer:  \r\nAMCOR primarily operates in the packaging industry, specifically focused on primary packaging for fast-moving consumer goods (FMCG).  \r\n\r\nEvidence:  \r\n[PDF page index 4]  \r\n\"Today, we are a global leader in developing and producing responsible packaging for food, beverage, pharmaceutical, medical, home and personal-care, and other products.\"  \r\n\"our portfolio of businesses share certain important characteristics: A focus on primary packaging for fast-moving consumer goods...\"  \r\n\r\nThis confirms that Amcor operates in the packaging industry with a primary focus on fast-moving consumer goods.  \r\n\r\nTherefore, the industry is: **packaging**, specifically **primary packaging for fast-moving consumer goods**. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_07966",
+      "doc_id": "financebench:ACTIVISIONBLIZZARD_2019_10K",
+      "arm": "retrieved",
+      "page_indices": [
+        39,
+        69,
+        72,
+        100,
+        107
+      ],
+      "prompt_tokens": 3669,
+      "prompt_sha256": "b073444d7e8e4002efe66c2efaeb2a6c33ae86da5fe0035fdc1f74cb8f5bfeb1",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 12.095607199938968,
+      "raw_stdout": "\r\n**Reporting Period:** Fiscal Year 2017 to Fiscal Year 2019 (FY2017\u2013FY2019)  \r\n**Units:** Percentages (%), rounded to one decimal place  \r\n\r\n---\r\n\r\n### Step 1: Identify Capital Expenditures (Capex) and Total Net Revenues for Each Year\r\n\r\nFrom **PDF page index 72 \u2013 Consolidated Statements of Cash Flows**:\r\n\r\n- **Capital expenditures** are listed under \"Cash flows from investing activities\" and are:\r\n  - **FY2019:** $116 million  \r\n  - **FY2018:** $131 million  \r\n  - **FY2017:** $155 million  \r\n\r\nFrom **PDF page index 69 \u2013 Consolidated Statements of Operations**:\r\n\r\n- **Total net revenues** are:\r\n  - **FY2019:** $6,489 million  \r\n  - **FY2018:** $7,500 million  \r\n  - **FY2017:** $7,017 million  \r\n\r\n> Note: The company's total net revenues are used as the revenue base for the capex-to-revenue ratio.\r\n\r\n---\r\n\r\n### Step 2: Calculate Capex as a % of Revenue for Each Year\r\n\r\n#### FY2019:\r\n$$\r\n\\frac{116}{6,489} \\times 100 = 1.79\\% \\quad \\text{(rounded to two decimals)}\r\n$$\r\n\r\n#### FY2018:\r\n$$\r\n\\frac{131}{7,500} \\times 100 = 1.7467\\% \\approx 1.7\\%\r\n$$\r\n\r\n#### FY2017:\r\n$$\r\n\\frac{155}{7,017} \\times 100 = 2.208\\% \\approx 2.2\\%\r\n$$\r\n\r\n---\r\n\r\n### Step 3: Compute the 3-Year Average\r\n\r\n$$\r\n\\text{Average} = \\frac{1.79 + 1.75 + 2.21}{3} = \\frac{5.75}{3} = 1.9167\\%\r\n$$\r\n\r\nRounded to one decimal place: **1.9%**\r\n\r\n> Note: Used 1.75% for FY2018 (rounded from 1.7467), and 2.21% for FY2017 (rounded from 2.208).\r\n\r\n---\r\n\r\n### \u2705 Final Answer:\r\n**1.9%**\r\n\r\n**Source Evidence:**\r\n- PDF page index 72: Capital expenditures and total net revenues for FY2017\u2013FY2019.\r\n- PDF page index 69: Total net revenues for each year.\r\n- Calculations based on capex / revenue ratio per year, then averaged.\r\n\r\n**Answer:** 1.9% [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_07966",
+      "doc_id": "financebench:ACTIVISIONBLIZZARD_2019_10K",
+      "arm": "oracle",
+      "page_indices": [
+        69,
+        72
+      ],
+      "prompt_tokens": 1682,
+      "prompt_sha256": "081b1e1742cce66a03455d370edc46df1c22f759c38a68bcf78fb4632b7f116a",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 9.3664931000676,
+      "raw_stdout": "\r\n**Reporting Period:** FY2017\u2013FY2019 (Years ended December 31, 2017, 2018, and 2019)  \r\n**Units:** Percentages (%), rounded to one decimal place  \r\n\r\n---\r\n\r\n### Step 1: Extract Capital Expenditures (Capex) from Cash Flow Statement\r\n\r\nFrom **PDF page index 72 \u2013 Consolidated Statements of Cash Flows**:\r\n\r\n- **Capex (Capital expenditures)**:\r\n  - 2019: $ (116) million\r\n  - 2018: $ (131) million\r\n  - 2017: $ (155) million\r\n\r\n> Note: The negative sign indicates outflows (expenditures), so we use absolute values for calculation.\r\n\r\n---\r\n\r\n### Step 2: Extract Total Net Revenues from Income Statement\r\n\r\nFrom **PDF page index 69 \u2013 Consolidated Statements of Operations**:\r\n\r\n- **Total Net Revenues**:\r\n  - 2019: $6,489 million\r\n  - 2018: $7,500 million\r\n  - 2017: $7,017 million\r\n\r\n---\r\n\r\n### Step 3: Calculate Capex as a % of Revenue for Each Year\r\n\r\nWe compute:  \r\n**Capex % of Revenue = (Capex / Total Net Revenue) \u00d7 100**\r\n\r\n#### FY2017:\r\n- Capex = $155 million\r\n- Revenue = $7,017 million\r\n- % = (155 / 7,017) \u00d7 100 \u2248 **2.21%**\r\n\r\n#### FY2018:\r\n- Capex = $131 million\r\n- Revenue = $7,500 million\r\n- % = (131 / 7,500) \u00d7 100 \u2248 **1.75%**\r\n\r\n#### FY2019:\r\n- Capex = $116 million\r\n- Revenue = $6,489 million\r\n- % = (116 / 6,489) \u00d7 100 \u2248 **1.79%**\r\n\r\n---\r\n\r\n### Step 4: Compute 3-Year Average\r\n\r\nSum of percentages:\r\n- 2.21% + 1.75% + 1.79% = 5.75%\r\n\r\nAverage:\r\n- 5.75% \u00f7 3 = **1.9167%**\r\n\r\nRounded to one decimal place: **1.9%**\r\n\r\n---\r\n\r\n### \u2705 Final Answer:\r\n\r\n**1.9%**\r\n\r\n> **Source Evidence:**\r\n> - Capex: Page 72 (Cash Flow Statement)\r\n> - Revenue: Page 69 (Income Statement)\r\n> - Calculations based on direct values from the statements.\r\n\r\n---  \r\n**Answer:** 1.9% [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_02981",
+      "doc_id": "financebench:CORNING_2021_10K",
+      "arm": "retrieved",
+      "page_indices": [
+        27,
+        29,
+        64,
+        84,
+        101
+      ],
+      "prompt_tokens": 6651,
+      "prompt_sha256": "ab7e20c8ce83a3f0b5e3e9599a14b7bfafeceb563ab2c2d469f9f04b8d91eda5",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 15.828817500034347,
+      "raw_stdout": "\r\n**Reporting Period:** Fiscal years ended December 31, 2021, 2020, and 2019 (FY2019\u2013FY2021).  \r\n**Units:** Percentages (rounded to one decimal place).  \r\n\r\n---\r\n\r\n### Step 1: Identify Operating Income and Net Sales for Each Year\r\n\r\nFrom **PDF page index 64 \u2013 Consolidated Statements of Income**:\r\n\r\n| Year | Net Sales | Operating Income |\r\n|------|-----------|------------------|\r\n| 2021 | $14,082 million | $2,112 million |\r\n| 2020 | $11,303 million | $509 million |\r\n| 2019 | $11,503 million | $1,306 million |\r\n\r\n> Note: \"Operating income\" is explicitly listed under \"Operating income\" in the income statement.\r\n\r\n---\r\n\r\n### Step 2: Calculate Operating Income % Margin (Operating Income / Net Sales)\r\n\r\nWe compute the margin for each year:\r\n\r\n#### FY2021:\r\n$$\r\n\\frac{2,112}{14,082} = 0.1500 = 15.0\\%\r\n$$\r\n\r\n#### FY2020:\r\n$$\r\n\\frac{509}{11,303} = 0.0450 = 4.5\\%\r\n$$\r\n\r\n#### FY2019:\r\n$$\r\n\\frac{1,306}{11,503} = 0.1135 = 11.4\\%\r\n$$\r\n\r\n---\r\n\r\n### Step 3: Compute the 3-Year Average\r\n\r\n$$\r\n\\text{Average} = \\frac{15.0\\% + 4.5\\% + 11.4\\%}{3} = \\frac{30.9\\%}{3} = 10.3\\%\r\n$$\r\n\r\n---\r\n\r\n### \u2705 Final Answer:\r\n**10.3%**\r\n\r\n> This is the FY2019\u2013FY2021 3-year average unadjusted operating income margin, expressed as a percentage, rounded to one decimal place.\r\n\r\n**Source Evidence:**  \r\n- PDF page index 64: \"Operating income\" and \"Net sales\" values for 2019, 2020, and 2021.  \r\n- Calculations based on direct income statement data. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_02981",
+      "doc_id": "financebench:CORNING_2021_10K",
+      "arm": "oracle",
+      "page_indices": [
+        64
+      ],
+      "prompt_tokens": 1151,
+      "prompt_sha256": "c44f368baad3556565699d79ea164420863669d442eb4e7b8620878bd425bcfd",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 7.991166500141844,
+      "raw_stdout": "\r\n**Reporting Period:** FY2019 to FY2021 (Year ended December 31)  \r\n**Units:** Percentages (%), rounded to one decimal place  \r\n\r\n---\r\n\r\n### Step 1: Identify Operating Income and Net Sales for Each Year\r\n\r\nFrom the **Consolidated Statements of Income** (PDF page index 64):\r\n\r\n- **FY2021**:  \r\n  - Net Sales = $14,082 million  \r\n  - Operating Income = $2,112 million  \r\n\r\n- **FY2020**:  \r\n  - Net Sales = $11,303 million  \r\n  - Operating Income = $509 million  \r\n\r\n- **FY2019**:  \r\n  - Net Sales = $11,503 million  \r\n  - Operating Income = $1,306 million  \r\n\r\n> Note: \"Operating income\" is defined as income before interest, taxes, and other non-operating items. This is the \"Operating Income\" line item in the income statement.\r\n\r\n---\r\n\r\n### Step 2: Calculate Operating Income % Margin for Each Year\r\n\r\nOperating Income % Margin = (Operating Income / Net Sales) \u00d7 100\r\n\r\n#### FY2021:\r\n(2,112 / 14,082) \u00d7 100 = 0.1500 \u2192 **15.0%**\r\n\r\n#### FY2020:\r\n(509 / 11,303) \u00d7 100 = 0.0450 \u2192 **4.5%**\r\n\r\n#### FY2019:\r\n(1,306 / 11,503) \u00d7 100 = 0.1135 \u2192 **11.4%**\r\n\r\n---\r\n\r\n### Step 3: Compute 3-Year Average\r\n\r\nAverage = (15.0% + 4.5% + 11.4%) / 3  \r\n= (30.9%) / 3  \r\n= **10.3%**\r\n\r\n---\r\n\r\n### \u2705 Final Answer:\r\n\r\n**10.3%**\r\n\r\n> This is the FY2019\u2013FY2021 3-year average unadjusted operating income % margin for Corning, based on the provided income statement data (PDF page index 64).  \r\n\r\n**Source:** Consolidated Statements of Income, Corning Incorporated and Subsidiary Companies, Year ended December 31, 2021, 2020, 2019. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_00790",
+      "doc_id": "financebench:CVSHEALTH_2022_10K",
+      "arm": "retrieved",
+      "page_indices": [
+        3,
+        18,
+        70,
+        113,
+        114
+      ],
+      "prompt_tokens": 4687,
+      "prompt_sha256": "25ce687e3547480f8b15f1020015f2a0699f17b9e7ff70bd2e45b7843c07f4c5",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 13.66922750021331,
+      "raw_stdout": "\r\nNo, CVS Health is not a capital-intensive business based on FY2022 data.\r\n\r\n**Reporting Period:** Fiscal Year 2022 (ended December 31, 2022)  \r\n**Units:** Not applicable (qualitative assessment based on operational structure and financial data)\r\n\r\n**Evidence and Reasoning:**\r\n\r\nThe provided report does not contain data on capital expenditures (CapEx), fixed asset investments, or long-term asset values that would indicate capital intensity. However, the report does describe the nature of CVS Health\u2019s operations and business model, which can be used to assess capital intensity.\r\n\r\nKey points from the report:\r\n\r\n- **Operational Structure:** CVS Health operates over 9,000 retail locations, more than 1,100 walk-in medical clinics (MinuteClinic), and has a dedicated senior pharmacy care business. These are primarily service-based and retail operations, not capital-intensive manufacturing or infrastructure-heavy facilities.\r\n  \r\n- **Capital Use:** The report highlights that the company is focused on digital transformation, health equity, and service delivery (e.g., telehealth, OTC testing, vaccinations), which are service-oriented and lean on technology and staffing rather than large-scale physical capital investment.\r\n\r\n- **Financial Data on Cash and Restricted Cash:** The report includes a reconciliation of cash and cash equivalents to total cash, cash equivalents, and restricted cash (page 113). This data reflects liquidity and operational cash management, not capital investment. For example:\r\n  - Cash and cash equivalents: $12,945 million (2022)\r\n  - Restricted cash (HSA funds): $144 million (2022), down from $3,065 million in 2021 \u2014 indicating a reduction in customer-held funds, likely due to divestiture (PayFlex sale), not capital investment.\r\n\r\n- **No mention of significant CapEx:** There is no reference to large-scale capital expenditures, construction of new facilities, major equipment purchases, or long-term asset investments in the report.\r\n\r\n- **Business Model:** The company is described as a diversified health solutions provider with a consumer-centric, digital-first model. This model emphasizes operational efficiency and service delivery over heavy capital investment.\r\n\r\n**Conclusion:**  \r\nCVS Health operates primarily through a network of retail and service locations with a strong digital presence and a focus on administrative and service-based operations. The absence of significant capital investment data and the nature of its operations suggest that it is not capital-intensive. Instead, it is more service- and technology-driven.\r\n\r\n**Page Index Reference:**  \r\n- Page 3: Overview of business and operations  \r\n- Page 70: Management\u2019s Discussion and Analysis (MD&A) \u2013 business overview  \r\n- Page 113: Cash and cash equivalents, restricted cash, and asset use  \r\n\r\nThus, based on the evidence provided, CVS Health is not a capital-intensive business in FY2022. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_00790",
+      "doc_id": "financebench:CVSHEALTH_2022_10K",
+      "arm": "oracle",
+      "page_indices": [
+        107,
+        109
+      ],
+      "prompt_tokens": 1835,
+      "prompt_sha256": "6644ff1da91f760d857a71a461ba42f56ca8fb0fd174dbb389c64fddc6929da3",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 10.5493024000898,
+      "raw_stdout": "\r\nReporting period: Fiscal Year 2022 (ended December 31, 2022)  \r\nUnits: Millions of dollars (as per report evidence)\r\n\r\n**Analysis:**\r\n\r\nTo determine whether CVS Health is a capital-intensive business, we assess the relative size and composition of its assets, particularly long-term assets such as property and equipment, goodwill, intangible assets, and long-term investments\u2014key indicators of capital intensity.\r\n\r\nFrom **PDF page index 109 (Consolidated Balance Sheets)**:\r\n\r\n- **Total assets**: $228,275 million  \r\n- **Property and equipment, net**: $12,873 million  \r\n- **Goodwill**: $78,150 million  \r\n- **Intangible assets, net**: $24,754 million  \r\n- **Long-term investments**: $21,096 million  \r\n- **Operating lease right-of-use assets**: $17,872 million  \r\n\r\nCapital intensity is typically assessed by evaluating the proportion of long-term, fixed assets (like property, plant, and equipment) relative to total assets. A high proportion of such assets suggests capital intensity.\r\n\r\n**Step 1: Calculate the proportion of property and equipment to total assets**\r\n\r\n$$\r\n\\frac{\\text{Property and equipment, net}}{\\text{Total assets}} = \\frac{12,873}{228,275} \\approx 0.0564 \\text{ or } 5.64\\%\r\n$$\r\n\r\n**Step 2: Consider other long-term assets**\r\n\r\n- Goodwill: $78,150 million \u2192 ~34.1% of total assets  \r\n- Intangible assets: $24,754 million \u2192 ~10.8% of total assets  \r\n- Long-term investments: $21,096 million \u2192 ~9.2% of total assets  \r\n- Operating lease right-of-use assets: $17,872 million \u2192 ~7.8% of total assets  \r\n\r\n**Key observation**:  \r\nWhile property and equipment represent only about 5.6% of total assets, the largest component of total assets is **goodwill** (34.1%), which is a result of acquisitions (e.g., pharmacy chains, health tech platforms). Goodwill is not a direct measure of capital intensity but reflects strategic investment in acquisitions.\r\n\r\nHowever, capital intensity is more directly tied to **physical capital investment** (e.g., stores, facilities, equipment), not intangible or acquisition-related assets.\r\n\r\n**Conclusion**:\r\n\r\n- The proportion of property and equipment to total assets is low (5.6%), indicating that CVS Health is not primarily a capital-intensive business in terms of physical fixed assets.\r\n- The majority of assets are intangible (goodwill, intangibles) or financial (investments, lease assets), which are more typical of a service-based or retail health business with a strong focus on brand and digital infrastructure rather than heavy physical capital investment.\r\n\r\n**Final Answer**:\r\n\r\nNo, CVS Health is not a capital-intensive business based on FY2022 data. The proportion of property and equipment to total assets is only 5.6%, and the majority of assets are intangible or financial in nature, indicating a lower reliance on physical capital investment.\r\n\r\n**Source**: PDF page index 109 (Consolidated Balance Sheets) \u2013 asset breakdown for December 31, 2022. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_03882",
+      "doc_id": "financebench:AMCOR_2020_10K",
+      "arm": "retrieved",
+      "page_indices": [
+        30,
+        47,
+        48,
+        49,
+        111
+      ],
+      "prompt_tokens": 4162,
+      "prompt_sha256": "856282720937d23aa5f22d05d8517b263bffd7259f39ccc46f27e7056f55bbde",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 10.03885139990598,
+      "raw_stdout": "\r\n**Reporting Period:** Fiscal Year 2020 (ended June 30, 2020)  \r\n**Units:** USD millions  \r\n\r\n**Question:** What is Amcor's year-end FY2020 net AR (in USD millions)?  \r\n\r\n---\r\n\r\n**Step 1: Identify the relevant financial item from the balance sheet**\r\n\r\nFrom **PDF page index 49**, the **Consolidated Balance Sheet** as of June 30, 2020, lists:\r\n\r\n- **Trade receivables, net** = **$1,615.9 million**\r\n\r\nThis is the net amount of accounts receivable (AR) as of year-end FY2020.\r\n\r\n---\r\n\r\n**Step 2: Confirm that \"net AR\" is reported**\r\n\r\nThe term \"net\" is explicitly used in the balance sheet line item:  \r\n> \"Trade receivables, net 1,615.9 1,864.3\"\r\n\r\nThis indicates that the figure is already adjusted for allowances, discounts, and other contra-accounts \u2014 i.e., **net accounts receivable**.\r\n\r\n---\r\n\r\n**Conclusion:**\r\n\r\nAmcor's year-end FY2020 net AR is **$1,615.9 million**.\r\n\r\n\u2705 **Source:** PDF page index 49, \"Consolidated Balance Sheet\"  \r\n\u2705 **Item:** Trade receivables, net  \r\n\u2705 **Reporting period:** June 30, 2020 (Fiscal Year 2020)  \r\n\u2705 **Units:** USD millions  \r\n\r\n**Answer:** $1,615.9 million [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_03882",
+      "doc_id": "financebench:AMCOR_2020_10K",
+      "arm": "oracle",
+      "page_indices": [
+        49
+      ],
+      "prompt_tokens": 1000,
+      "prompt_sha256": "59126e18f10f4308d5f321bd124b86b094fae2f21358e83594ec20f6523f5ef3",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 4.930976499803364,
+      "raw_stdout": "\r\n**Reporting Period:** Fiscal Year 2020 (year-end June 30, 2020)  \r\n**Units:** USD millions  \r\n\r\n**Question:** What is Amcor's year-end FY2020 net AR (in USD millions)?  \r\n\r\n**Answer:**  \r\nNet accounts receivable (net AR) is reported as \"Trade receivables, net\" in the Consolidated Balance Sheet.  \r\n\r\nFrom **PDF page index 49**, under \"Current assets\":  \r\n- Trade receivables, net (as of June 30, 2020) = **$1,615.9 million**  \r\n\r\n**Calculation:**  \r\nNo further calculation is needed, as \"Trade receivables, net\" already reflects net accounts receivable (i.e., accounts receivable less allowances for doubtful accounts and other adjustments).  \r\n\r\n**Conclusion:**  \r\nAmcor's year-end FY2020 net AR is **$1,615.9 million**.  \r\n\r\n**Source:** Amcor plc and Subsidiaries \u2013 Consolidated Balance Sheet, page 49. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_00070",
+      "doc_id": "financebench:AMERICANWATERWORKS_2022_10K",
+      "arm": "retrieved",
+      "page_indices": [
+        5,
+        81,
+        86,
+        138,
+        139
+      ],
+      "prompt_tokens": 7400,
+      "prompt_sha256": "267979ff6f1fa918e7e6bf84790fbf44a631133ddf9883160116c550a90ca192",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 20.23837439995259,
+      "raw_stdout": "\r\n**Reporting Period:** Fiscal Year 2022 (ended December 31, 2022)  \r\n**Units:** U.S. dollars (millions)\r\n\r\n---\r\n\r\n**Answer:**  \r\nNo, American Water Works does **not** have positive working capital based on FY2022 data.  \r\n\r\n---\r\n\r\n**Explanation and Calculation:**\r\n\r\nWorking capital is calculated as:  \r\n**Working Capital = Current Assets \u2013 Current Liabilities**\r\n\r\nHowever, the provided report does **not** include a breakdown of current assets (such as cash, accounts receivable, inventory, etc.) in the Consolidated Balance Sheets or any other section. The only available data in the provided report is the **Consolidated Balance Sheets** (PDF page index 81), which lists current liabilities but does **not** list current assets.\r\n\r\nThe balance sheet shows the following for December 31, 2022:\r\n\r\n- **Current liabilities:**  \r\n  - Short-term debt: $1,175 million  \r\n  - Current portion of long-term debt: $281 million  \r\n  - Accounts payable: $254 million  \r\n  - Accrued liabilities: $706 million  \r\n  - Accrued taxes: $49 million  \r\n  - Accrued interest: $91 million  \r\n  - Liabilities related to assets held for sale: $0  \r\n  - Other: $255 million  \r\n  \u2192 **Total current liabilities = $2,811 million**\r\n\r\nBut **no current assets** are provided in the balance sheet. Without current assets, we cannot compute working capital.\r\n\r\n---\r\n\r\n**Why working capital is not a useful or relevant metric for this company:**\r\n\r\nWhile working capital is a standard metric for assessing liquidity, **American Water is a regulated utility company** with a highly capital-intensive, long-term asset-based business model. Its operations are primarily driven by long-term regulated utility services, where:\r\n\r\n- Revenue is collected through regulated rates approved by state utility commissions.\r\n- The company\u2019s financial structure is dominated by long-term debt and regulatory assets/liabilities.\r\n- The business model is not based on short-term inventory or receivables cycles typical of retail or consumer-facing companies.\r\n- The company\u2019s capital structure is designed to support long-term infrastructure investments (e.g., water and wastewater systems), not short-term operational liquidity.\r\n\r\nMoreover, **regulatory accounting principles** (as described in Note 2) allow for deferral of certain costs as regulatory assets and require recognition of regulatory liabilities for future costs or over-collected revenues. These items are not part of traditional working capital calculations and are not directly tied to short-term liquidity.\r\n\r\nAdditionally, the company\u2019s **primary revenue stream is from regulated utilities**, which are subject to rate regulation and long-term rate-of-return approvals. This means that **revenue recognition and cash flow patterns are not aligned with traditional working capital cycles**.\r\n\r\n---\r\n\r\n**Conclusion:**  \r\nThe evidence provided **does not support** the calculation of working capital for American Water Works in FY2022 because **current assets are not disclosed** in the financial statements. Furthermore, **working capital is not a meaningful or relevant metric** for a regulated utility company with a long-term, asset-heavy, and rate-regulated business model.\r\n\r\nTherefore, **working capital cannot be determined**, and **it is not a relevant metric** for this company.\r\n\r\n> **Final Answer:**  \r\n> No, working capital cannot be determined for American Water Works in FY2022 due to lack of current assets data in the provided report. Working capital is not a relevant metric for this regulated utility company because its operations are long-term, asset-intensive, and subject to regulatory rate structures, which differ significantly from short-term, inventory-driven businesses. [end of text]\r\n\r\n\r\n"
+    },
+    {
+      "task_id": "financebench:financebench_id_00070",
+      "doc_id": "financebench:AMERICANWATERWORKS_2022_10K",
+      "arm": "oracle",
+      "page_indices": [
+        80,
+        81
+      ],
+      "prompt_tokens": 1123,
+      "prompt_sha256": "dcf7670873b4782b245920edaae38c29bd4acaa3aa117260895e90035fe022dc",
+      "status": "process_finished",
+      "exit_code": 0,
+      "wall_seconds": 9.986175700090826,
+      "raw_stdout": "\r\n**Reporting Period:** Fiscal Year 2022 (as reflected in the December 31, 2022 Consolidated Balance Sheets)  \r\n**Units:** Millions of dollars (USD)\r\n\r\n---\r\n\r\n### **Answer: Yes, American Water Works has positive working capital based on FY2022 data.**\r\n\r\n---\r\n\r\n### **Working Capital Calculation:**\r\n\r\nWorking capital is calculated as:\r\n\r\n> **Working Capital = Current Assets \u2013 Current Liabilities**\r\n\r\nFrom the provided balance sheet (PDF page index 80):\r\n\r\n- **Total Current Assets** = $1,250 million  \r\n- **Total Current Liabilities** = $2,811 million  \r\n\r\n> Working Capital = $1,250 \u2013 $2,811 = **\u2013$1,561 million**\r\n\r\n---\r\n\r\n### **Conclusion:**\r\n\r\nAmerican Water Works **does not have positive working capital** in FY2022. Instead, it has **negative working capital** of **$1,561 million**.\r\n\r\n---\r\n\r\n### **Why Working Capital May Not Be a Useful or Relevant Metric for This Company:**\r\n\r\nAmerican Water Works is a utility company that operates under a **regulatory framework** where its financial structure is significantly different from typical retail or industrial businesses. Key reasons why working capital may not be a useful or relevant metric include:\r\n\r\n1. **Nature of Utility Operations:**  \r\n   Utilities often have long-term, stable cash flows and operate with significant **long-term assets** (e.g., infrastructure, pipelines) and **regulatory assets**. Their operations are not driven by short-term inventory or receivables cycles like retail businesses.\r\n\r\n2. **Regulatory Assets and Liabilities:**  \r\n   The company holds substantial **regulatory assets** (e.g., $990 million in 2022) and **regulatory liabilities** (e.g., $1,590 million), which are not part of traditional working capital calculations. These are not short-term obligations or assets and are not tied to day-to-day operations.\r\n\r\n3. **Long-Term Debt and Capital Structure:**  \r\n   The company has a large amount of long-term debt and significant capitalization, which reflects a long-term investment strategy rather than short-term liquidity needs.\r\n\r\n4. **Working Capital is Negative:**  \r\n   A negative working capital indicates that the company\u2019s current liabilities exceed its current assets. This is not unusual for utilities, which often have large, long-term obligations (e.g., infrastructure projects, pension liabilities) and may rely on regulatory approvals and long-term financing to fund operations.\r\n\r\n5. **Regulatory Environment:**  \r\n   In regulated utilities, the **regulatory framework allows for the deferral of revenue recognition** and **capitalization of certain costs**, which distorts traditional working capital metrics. For example, unbilled revenues and regulatory assets are not treated as short-term assets in the same way as in other industries.\r\n\r\n---\r\n\r\n### **Conclusion Statement:**\r\n\r\nWhile working capital is technically negative ($1,561 million), **it is not a useful or relevant metric for American Water Works** because:\r\n\r\n> The company operates under a unique regulatory structure where traditional working capital metrics do not reflect the true nature of its financial operations. Its capital structure, asset composition, and revenue recognition practices are fundamentally different from those of typical businesses.\r\n\r\nThus, **working capital is not a meaningful or relevant metric** for American Water Works.\r\n\r\n---\r\n\r\n**Source:** American Water Works Company, Inc. and Subsidiary Companies \u2013 Consolidated Balance Sheets, December 31, 2022 (PDF page index 80 and 81). [end of text]\r\n\r\n\r\n"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "batch_size": 8,
+  "candidates": "every physical page of the question's report, including empty pages; no prefilter",
+  "cohort": "original development pilot only",
+  "diagnostic_ks": [
+    1,
+    3,
+    5
+  ],
+  "dimensions": 384,
+  "empty_page": "no windows; score -1; after every encoded page even at score -1; page ID ascending",
+  "execution_order": "shared queries; native then OCR; saved report/page order; window start ascending",
+  "model_files": {
+    "1_Pooling/config.json": {
+      "sha256": "d1caf60c96f5fba2157c0c26b76d80818fad6cf0b8eb5e73ec372ff9818eba5c",
+      "size_bytes": 190
+    },
+    "config.json": {
+      "sha256": "094f8e891b932f2000c92cfc663bac4c62069f5d8af5b5278c4306aef3084750",
+      "size_bytes": 743
+    },
+    "onnx/model.onnx": {
+      "sha256": "828e1496d7fabb79cfa4dcd84fa38625c0d3d21da474a00f08db0f559940cf35",
+      "size_bytes": 133093490
+    },
+    "special_tokens_map.json": {
+      "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      "size_bytes": 125
+    },
+    "tokenizer.json": {
+      "sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+      "size_bytes": 711396
+    },
+    "tokenizer_config.json": {
+      "sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+      "size_bytes": 366
+    },
+    "vocab.txt": {
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "size_bytes": 231508
+    }
+  },
+  "model_precision": "creator FP32 ONNX export; no quantization",
+  "model_repo": "BAAI/bge-small-en-v1.5",
+  "model_revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+  "ort_execution": "sequential; intra-op 2, inter-op 1; deterministic compute",
+  "ort_graph_optimization": "ORT_ENABLE_ALL",
+  "padding": "right; longest sequence within fixed batch",
+  "passage": "saved search_text only; no prefix, headings, labels, cross-page or cross-report context",
+  "pooling": "last_hidden_state[:,0,:] CLS; float32 L2 normalization",
+  "primary_k": 5,
+  "provider": "CPUExecutionProvider only",
+  "query": "instruction + saved expansion-v1 question; one query encoding shared by both representations",
+  "query_instruction": "Represent this sentence for searching relevant passages: ",
+  "query_max_content_tokens": 510,
+  "query_overflow": "reject; never truncate",
+  "rrf": {
+    "bm25_weight": 1,
+    "constant": 60,
+    "rank_base": 1,
+    "scope": "both complete page rankings",
+    "semantic_weight": 1,
+    "tie": "unrounded score descending, zero-based page ID ascending"
+  },
+  "runtime_pins": {
+    "numpy": "1.26.4",
+    "onnxruntime": "1.22.0",
+    "psutil": "7.2.2",
+    "tokenizers": "0.21.1"
+  },
+  "semantic_tie": "score descending, zero-based page ID ascending",
+  "sha256": "6e151c7af4624e633876c4e500fd56a63444e04a6faff971f43740e82b5d3b96",
+  "similarity": "float32 cosine via fixed-order einsum; clip to [-1,1]; maximum window score per page",
+  "special_tokens": {
+    "CLS": 101,
+    "PAD": 0,
+    "SEP": 102
+  },
+  "thread_environment": {
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "tokenizer": "pinned tokenizer.json; WordPiece; built-in normalization; no extra normalization",
+  "version": "development-bge-small-onnx-rrf-v1",
+  "window_content_tokens": 384,
+  "window_end": "stop when end reaches page token count; no dropped tail or redundant trailing window",
+  "window_overlap_tokens": 64,
+  "window_tie": "earliest window index"
+}
