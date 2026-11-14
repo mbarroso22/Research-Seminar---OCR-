@@ -1,0 +1,181 @@
+{
+  "scope": "Locked fresh filing-level source-cell validation after candidate freeze; known companies, assistant references; not end-to-end or human-certified",
+  "model_calls": 0,
+  "source_cells": 18,
+  "filings": 6,
+  "versions": {
+    "2": {
+      "supported_claims": 108,
+      "invalid_claims": 270,
+      "true_accept": 28,
+      "false_hold": 80,
+      "incorrect_cell_accept": 0,
+      "false_accept": 42,
+      "true_hold": 228,
+      "execution_error": 0
+    },
+    "3": {
+      "supported_claims": 108,
+      "invalid_claims": 270,
+      "true_accept": 96,
+      "false_hold": 12,
+      "incorrect_cell_accept": 0,
+      "false_accept": 0,
+      "true_hold": 270,
+      "execution_error": 0
+    }
+  },
+  "by_family": {
+    "2": {
+      "canonical": {
+        "true_accept": 14,
+        "false_hold": 4
+      },
+      "contradictory_unit": {
+        "true_hold": 18
+      },
+      "duplicate_operand": {
+        "true_hold": 18
+      },
+      "duplicate_source_row": {
+        "true_hold": 18
+      },
+      "extra_field": {
+        "true_hold": 18
+      },
+      "foreign_currency": {
+        "true_hold": 18
+      },
+      "missing_currency_context": {
+        "false_accept": 14,
+        "true_hold": 4
+      },
+      "qualified_label": {
+        "false_accept": 14,
+        "true_hold": 4
+      },
+      "rescaled_thousands": {
+        "true_accept": 14,
+        "false_hold": 4
+      },
+      "top_unsupplied_citation": {
+        "true_hold": 18
+      },
+      "unit_dollars": {
+        "false_hold": 18
+      },
+      "unit_in": {
+        "false_hold": 18
+      },
+      "unit_parenthesized": {
+        "false_hold": 18
+      },
+      "unit_symbol": {
+        "false_hold": 18
+      },
+      "unsupplied_page": {
+        "true_hold": 18
+      },
+      "wrong_document_fingerprint": {
+        "false_accept": 14,
+        "true_hold": 4
+      },
+      "wrong_row_value": {
+        "true_hold": 18
+      },
+      "wrong_scale": {
+        "true_hold": 18
+      },
+      "wrong_sign": {
+        "true_hold": 18
+      },
+      "wrong_supplied_page": {
+        "true_hold": 18
+      },
+      "wrong_year_value": {
+        "true_hold": 18
+      }
+    },
+    "3": {
+      "canonical": {
+        "true_accept": 16,
+        "false_hold": 2
+      },
+      "contradictory_unit": {
+        "true_hold": 18
+      },
+      "duplicate_operand": {
+        "true_hold": 18
+      },
+      "duplicate_source_row": {
+        "true_hold": 18
+      },
+      "extra_field": {
+        "true_hold": 18
+      },
+      "foreign_currency": {
+        "true_hold": 18
+      },
+      "missing_currency_context": {
+        "true_hold": 18
+      },
+      "qualified_label": {
+        "true_hold": 18
+      },
+      "rescaled_thousands": {
+        "true_accept": 16,
+        "false_hold": 2
+      },
+      "top_unsupplied_citation": {
+        "true_hold": 18
+      },
+      "unit_dollars": {
+        "true_accept": 16,
+        "false_hold": 2
+      },
+      "unit_in": {
+        "true_accept": 16,
+        "false_hold": 2
+      },
+      "unit_parenthesized": {
+        "true_accept": 16,
+        "false_hold": 2
+      },
+      "unit_symbol": {
+        "true_accept": 16,
+        "false_hold": 2
+      },
+      "unsupplied_page": {
+        "true_hold": 18
+      },
+      "wrong_document_fingerprint": {
+        "true_hold": 18
+      },
+      "wrong_row_value": {
+        "true_hold": 18
+      },
+      "wrong_scale": {
+        "true_hold": 18
+      },
+      "wrong_sign": {
+        "true_hold": 18
+      },
+      "wrong_supplied_page": {
+        "true_hold": 18
+      },
+      "wrong_year_value": {
+        "true_hold": 18
+      }
+    }
+  },
+  "predeclared_scoped_acceptance_checks_passed": true,
+  "automatic_integration_or_model_comparison_authorized": false,
+  "limits": "Correlated claim variants are not independent observations. V3 context-requirement negatives are new policy controls; legacy v2 assumed USD. No universal zero-error or full-answer accuracy claim.",
+  "candidate_freeze_sha256": "f0b6cda5f25ae24072ed25ba4b3c0f6738a922e5fecc881bdb7dd50257a8ce15",
+  "fresh_lock_sha256": "cbe029f5f841f5a192018616c44acacdc972b23e6ca38c24124b5b614e067242",
+  "validation_harness": "nonoverlapping_duplicate_rows_v2",
+  "harness_revision_sha256": "e8b8d2e7f8b31622b97ede50001eafb06878bbe606b50d532b9b779967ea126d",
+  "first_locked_harness_results": "preserved in package results/original_locked_harness/fresh",
+  "correction_scope": "Only synthetic duplicate-row placement: insert blank band and shift subsequent words, rather than overlaying adjacent rows. No matcher/reference/claim selection changes.",
+  "not_an_additional_independent_cohort": true
+}

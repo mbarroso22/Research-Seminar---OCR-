@@ -1,0 +1,23 @@
+{
+  "runner_version": 7,
+  "scope": "Offline integration regression on saved development and already-tested locked claim fixtures; not a new holdout or model evaluation",
+  "new_model_calls": 0,
+  "new_azure_token_cost_usd": 0,
+  "saved_responses": 24,
+  "v3_outputs_identical": 24,
+  "claim_fixtures_identical": 378,
+  "release_statuses": {
+    "abstained": 6,
+    "table_cell_match_unverified": 14,
+    "held_for_review": 4
+  },
+  "unsupported_variants_still_held": 12,
+  "supplemental_policy": "hold_all_unbound_fields_v1",
+  "technical_reference_checks_passed": true,
+  "independent_human_reference_review": "pending",
+  "source_verified": false,
+  "live_generation_enabled": false,
+  "recognition_changes": 0,
+  "model_comparisons_executed": 0,
+  "next": "Independent reference review and a separately locked prospective end-to-end pilot before model comparisons. Recognition changes require another fresh cohort."
+}

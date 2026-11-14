@@ -1,0 +1,117 @@
+{
+  "scope": "explicit public code, synthetic tests and summaries only",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "6fb2513275d2eeb7d025feec24ea068e8f431852f5f86246cbba0c16be2413ee"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c727ece4d54159bac80777273a5acc64507795d214dae49975516cf0a9b5118b"
+    },
+    {
+      "path": "component/binding_v3.py",
+      "sha256": "0c6d4dd857fae0ededd57ee1ce2a60ef88b114299dd908bb81718daaf7aa8747"
+    },
+    {
+      "path": "component/frozen_v6/calculator_adapter.py",
+      "sha256": "53f35102833c9c844df5ba5dfe7ea842840172d99e417ff41a3558e155a4ab89"
+    },
+    {
+      "path": "component/frozen_v6/calculator_v1.py",
+      "sha256": "1a4df90fc420871fe616a1749dcbe54e182a22435bf0955882185d21d64a7845"
+    },
+    {
+      "path": "component/frozen_v6/calculator_v2.py",
+      "sha256": "643d56d54fd766fab03153bdf84400b0eb67bdf059dbed17a590497f238777ed"
+    },
+    {
+      "path": "component/frozen_v6/evidence_screen.py",
+      "sha256": "30ea70de29acc65cf5caf55b2423e1cad6f509bc229dad6ba268c8b1a075ec44"
+    },
+    {
+      "path": "component/frozen_v6/io_utils.py",
+      "sha256": "12ebc9a5ab35997c489acafc8dce8ea8513703ad501411baa86bd62bd8ca4fc0"
+    },
+    {
+      "path": "component/frozen_v6/pilot_calculator.py",
+      "sha256": "d8703dce25e9ad62ae9b81bb4ab0bb189f5c3fba58e8d6650c663e9c114f9969"
+    },
+    {
+      "path": "component/frozen_v6/pipeline_v5.py",
+      "sha256": "9f79cceec93688e9090f0d65723fbe4c855dca5451d851cc65c6c40bc6071846"
+    },
+    {
+      "path": "component/frozen_v6/table_binding.py",
+      "sha256": "2423612eda3f79aa5c20325bc7c465caa9cbf262c0427edb48231d1c0f245421"
+    },
+    {
+      "path": "component/legacy.py",
+      "sha256": "962905a38c34f2b2ec0993149d2b74aab3de6a308a1f9491aee575e1d83d64f7"
+    },
+    {
+      "path": "component/pipeline_v3.py",
+      "sha256": "3694e6b05b38917ae0ee34211d7d414a2429a4ebcb385b8d9bb06dd57a7f8e3a"
+    },
+    {
+      "path": "component/test_binding_v3.py",
+      "sha256": "6594b2897df4f80c0a7c2ab23067e20ef75b256aa27c7a61e291ccd5f6afbe7c"
+    },
+    {
+      "path": "evaluate_pilot.py",
+      "sha256": "8b3383af3d7a49c0f7b52f3f2378ed0a558d44ccdaed30ce197c747f11e7dc60"
+    },
+    {
+      "path": "integrated_processing.py",
+      "sha256": "44b02195d9ba9c2a7be7135d6ba3649fc9bf50a28e6fe119d9e5bba0f303d1d2"
+    },
+    {
+      "path": "io_utils.py",
+      "sha256": "12ebc9a5ab35997c489acafc8dce8ea8513703ad501411baa86bd62bd8ca4fc0"
+    },
+    {
+      "path": "output_contract.py",
+      "sha256": "d69f48e02145918c31c92bb0356cc11612a5a465968b940bf10310aaab3c62b3"
+    },
+    {
+      "path": "prior_results/binding_v3_development.json",
+      "sha256": "d73949b9dffe34fe908491b9e2bfde4984142653a5f7f09025b274fd48d16be5"
+    },
+    {
+      "path": "prior_results/binding_v3_locked_claims.json",
+      "sha256": "a7d96da67e11f605e60c58246ba9906f753f9a50d61a02e006d4e5ae5a5f1d67"
+    },
+    {
+      "path": "prior_results/runner_v7_qualification.json",
+      "sha256": "afd782549c7e5c134b71230397089938f6e71f1e74ac657f4b5c9f7859b4cb35"
+    },
+    {
+      "path": "retrieval.py",
+      "sha256": "fce47c8734ccde23bf5c66937712b8bb70cb03050389e22ff05198c8150c5a52"
+    },
+    {
+      "path": "run_pilot.py",
+      "sha256": "06ce9767e5ea4426ac4ab9c0bc4c0a4e640e2d0a963bffe1ddefa242b2a2e6b3"
+    },
+    {
+      "path": "structural_retrieval.py",
+      "sha256": "fc8372b5d7d0bab4c1e88e2a224db678e1fedb72b53626f4bf64fa0356caccda"
+    },
+    {
+      "path": "study_lock.json",
+      "sha256": "86934aab31c44d9c5f8dc0958a998adfdf4041dc36e1bc019557ea2dfabebab4"
+    },
+    {
+      "path": "study_plan.json",
+      "sha256": "c96728662fc723c0aa8f22816fd14ac73c7ffcb309ac88ab6ed39154b38df7c2"
+    },
+    {
+      "path": "test_contract.py",
+      "sha256": "116d2c412caf9e06651e95ee91239da070a729a9117f6ed0114b81ccd088758c"
+    }
+  ]
+}

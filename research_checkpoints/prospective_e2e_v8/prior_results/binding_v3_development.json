@@ -1,0 +1,17 @@
+{
+  "scope": "Post hoc development replay of saved v6 responses; no new model results or independent accuracy gain",
+  "model_calls": 0,
+  "records": 24,
+  "raw_answers_preserved": 24,
+  "baseline_candidates": 6,
+  "v3_candidates": 14,
+  "release_statuses": {
+    "abstained": 6,
+    "table_cell_match_unverified": 14,
+    "held_for_review": 4
+  },
+  "walmart_citation_and_cornings_supplemental_holds_retained": true,
+  "source_verified": false,
+  "original_v6_estimated_generation_cost_usd": 0.04264,
+  "new_generation_cost_usd": 0
+}
